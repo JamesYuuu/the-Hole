@@ -1,5 +1,40 @@
 # fish
 
+```csharp
+// better commit messages
+
+feat(lang): add polish language
+feat(api)!: send an email to customer after product shipped
+fix(import): converts file names to lowercase
+chore(*): drop support for Node 6
+docs(*): correct spelling of CHANGELOG
+```
+
+feat: a new feature
+
+fix: a bug fix
+
+chore: other changes that don’t modify src or test files
+
+revert: reverts a previous commit
+
+docs: documentation only changes
+
+style: changes that don’t affect the meaning of the code (white space, formatting, semicolons)
+
+refactor: a code change that neither fixes a bug nor adds a feature
+
+perf: a code change that improves performance.
+
+test: add missing tests or correcting existing tests
+
+build: changes that affect the build system or external dependencies
+
+ci: changes to our CI config files and scripts (Travis, Circle)
+
+- add ! after the type to indicate that it is a breaking change
+
+- add the scope in brackets to indicate the scope. (eg. the component or file name). if it affects everything, it should be (*)
 
 
 ## Getting started

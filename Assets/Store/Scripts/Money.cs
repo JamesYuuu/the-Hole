@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Money
 {
-    public int money; 
+    public int money;
+
     public Money()
     {
         if (PlayerPrefs.HasKey("Money"))

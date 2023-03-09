@@ -1,31 +1,38 @@
 using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
-    private readonly float VIEW_DISTANCE = 10;
-    private readonly float[] DESPAWN_LOCATION = { 0, 200, 0 };
+    public float spawnDistance = 100f;
+    public float viewDistance = 150f;
 
     private GameObject player = null;
-    private GameObject[] enemies = { };
 
     // Start is called before the first frame update
     void Start()
     {
         if (player == null)
         {
-            player = GameObject.Find("XRRig");
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
         }
+        print("Player at " + player.transform.position.x + "," + player.transform.position.y + "," + player.transform.position.z);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         GameObject fish = ObjectPool.SharedInstance.GetPooledObject();
         while (fish != null)
         {
             SpawnFish(fish);
             fish = ObjectPool.SharedInstance.GetPooledObject();
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        foreach (GameObject enemy in ObjectPool.SharedInstance.pooledObjects)
+        {
+            if (FindDistanceToPlayer(enemy) > viewDistance + 1)
+            {
+                DespawnFish(enemy);
+            }
+        }
     }
 
     void SpawnFish(GameObject fish)
@@ -33,25 +40,51 @@ public class SpawnEnemy : MonoBehaviour
         float randX = Random.Range(0f, 1f);
         float randY = Random.Range(0f, 1f);
         float randZ = Random.Range(0f, 1f);
-        float distance = FindDistance(randX, randY, randZ);
 
-        float factor = VIEW_DISTANCE / distance;
-        float dispX = randX * factor;
-        float dispY = randY * factor;
-        float dispZ = randZ * factor;
+        float randDist = FindDistance(randX, randY, randZ);
 
-        float forwardX = player.transform.position.x - dispX;
-        float forwardY = player.transform.position.y - dispY;
-        float forwardZ = player.transform.position.z - dispZ;
+        float scale = (viewDistance - spawnDistance) / randDist;
 
-        fish.transform.position.Set(dispX, dispY, dispZ);
-        fish.transform.forward.Set(forwardX, forwardY, forwardZ);
+        float randTotal = randX + randY + randZ;
+        float minX = spawnDistance * randX / randTotal;
+        float minY = spawnDistance * randY / randTotal;
+        float minZ = spawnDistance * randZ / randTotal;
+
+        bool flipX = Random.Range(0, 2) == 0;
+        bool flipY = Random.Range(0, 2) == 0;
+        bool flipZ = Random.Range(0, 2) == 0;
+
+        float dispX = randX * scale;
+        float dispY = randY * scale;
+        float dispZ = randZ * scale;
+
+        if (flipX) dispX = -dispX;
+        if (flipY) dispY = -dispY;
+        if (flipZ) dispZ = -dispZ;
+
+        float locX = player.transform.position.x + dispX;
+        float locY = player.transform.position.y + dispY;
+        float locZ = player.transform.position.z + dispZ;
+
+        Vector3 loc = new(locX, locY, locZ);
+
+        float forwardX = player.transform.position.x - locX;
+        float forwardY = player.transform.position.y - locY;
+        float forwardZ = player.transform.position.z - locZ;
+
+        Vector3 forward = new(forwardX, forwardY, forwardZ);
+        forward.Normalize();
+
+        print("Spawning fish at " + locX + "," + locY + "," + locZ);
+
+        fish.transform.position = loc;
+        fish.transform.forward = forward;
         fish.SetActive(true);
     }
 
     void DespawnFish(GameObject fish)
     {
-        fish.transform.position.Set(DESPAWN_LOCATION[0], DESPAWN_LOCATION[1], DESPAWN_LOCATION[2]);
+        fish.SetActive(false);
     }
 
     private float FindDistance(float x, float y, float z)
@@ -59,11 +92,11 @@ public class SpawnEnemy : MonoBehaviour
         return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2));
     }
 
-    private float FindDistanceToPlayer(float x, float y, float z)
+    private float FindDistanceToPlayer(GameObject fish)
     {
-        float dispX = player.transform.position.x - x;
-        float dispY = player.transform.position.y - y;
-        float dispZ = player.transform.position.z - z;
+        float dispX = fish.transform.position.x - player.transform.position.x;
+        float dispY = fish.transform.position.y - player.transform.position.y;
+        float dispZ = fish.transform.position.z - player.transform.position.z;
         return FindDistance(dispX, dispY, dispZ);
     }
 }

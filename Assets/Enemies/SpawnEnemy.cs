@@ -1,18 +1,14 @@
 using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
-    public float spawnDistance = 100f;
-    public float viewDistance = 150f;
+    [SerializeField] private float spawnDistance = 100f;
+    [SerializeField] private float viewDistance = 150f;
 
-    private GameObject player = null;
+    [SerializeField] private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
-        }
         print("Player at " + player.transform.position.x + "," + player.transform.position.y + "," + player.transform.position.z);
     }
 
@@ -28,10 +24,11 @@ public class SpawnEnemy : MonoBehaviour
 
         foreach (GameObject enemy in ObjectPool.SharedInstance.pooledObjects)
         {
-            if (FindDistanceToPlayer(enemy) > viewDistance + 1)
+            if (FindDistanceToPlayer(enemy) <= viewDistance)
             {
-                DespawnFish(enemy);
+                continue;
             }
+            DespawnFish(enemy);
         }
     }
 

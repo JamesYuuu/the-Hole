@@ -5,37 +5,41 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool SharedInstance = null;
 
-    [SerializeField] private int AMOUNT = 20;
+    [SerializeField] private static int amount = 20;
 
-    [SerializeField] private List<GameObject> pooledObjects = new(20);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public List<GameObject> pooledObjects = new(amount);
+    private List<GameObject> activeObjects = new(amount);
 
     void Awake()
     {
-        if (SharedInstance == null)
+        if (SharedInstance != null)
         {
-            SharedInstance = this;
-            for (int i = 0; i < AMOUNT; i++)
-            {
-                SharedInstance.pooledObjects[i].SetActive(false);
-            }
+            return;
+        }
+        SharedInstance = this;
+        for (int i = 0; i < amount; i++)
+        {
+            SharedInstance.pooledObjects[i].SetActive(false);
         }
     }
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < AMOUNT; i++)
+        int remaining = pooledObjects.Count;
+        if (remaining == 0)
         {
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
+            return null;
         }
-        return null;
+        int picked = Random.Range(0, remaining);
+        GameObject pickedObject = pooledObjects[picked];
+        pooledObjects.Remove(pickedObject);
+        activeObjects.Add(pickedObject);
+        return pickedObject;
+    }
+
+    public void SetPooledObject(GameObject activeObject)
+    {
+        activeObjects.Remove(activeObject);
+        pooledObjects.Add(activeObject);
     }
 }

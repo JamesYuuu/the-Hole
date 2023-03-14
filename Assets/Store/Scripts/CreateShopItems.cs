@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateShopItems : MonoBehaviour
 {
 
-    public Money CurrentMoney = new Money();
+    // can use PlayerData.Money, .AddMoney() and .RemoveMoney() for money operations.
     public List<Item> Items = new List<Item>();
 
     void SetAllItems()
@@ -16,7 +16,7 @@ public class CreateShopItems : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerData.TestExistence();
     }
 
     // Update is called once per frame

@@ -28,20 +28,6 @@ public class SpawnEnemy : MonoBehaviour
             {
                 DespawnFish(enemy);
             }
-            float locX = enemy.transform.position.x;
-            float locY = enemy.transform.position.y;
-            float locZ = enemy.transform.position.z;
-
-            Vector3 loc = new(locX, locY, locZ);
-
-            float forwardX = player.transform.position.x - locX;
-            float forwardY = player.transform.position.y - locY;
-            float forwardZ = player.transform.position.z - locZ;
-
-            Vector3 forward = new(forwardX, forwardY, forwardZ);
-            forward.Normalize();
-
-            enemy.transform.forward = forward;
         }
     }
 

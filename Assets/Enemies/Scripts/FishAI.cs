@@ -4,14 +4,15 @@ using UnityEngine;
 public class FishAI : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject self;
     [SerializeField] private float speed = 0.0025f;
+    /** Debug flag. Set to true to force fish to move back to test despawning. */
+    [SerializeField] private static bool debug = false;
 
     private void Update()
     {
-        float locX = self.transform.position.x;
-        float locY = self.transform.position.y;
-        float locZ = self.transform.position.z;
+        float locX = gameObject.transform.position.x;
+        float locY = gameObject.transform.position.y;
+        float locZ = gameObject.transform.position.z;
 
         Vector3 loc = new(locX, locY, locZ);
 
@@ -23,8 +24,12 @@ public class FishAI : MonoBehaviour
         forward.Normalize();
 
         Vector3 next = loc + forward * speed;
+        if (debug)
+        {
+            next = loc - forward * speed;
+        } 
 
-        self.transform.forward = forward;
-        self.transform.position = next;
+        gameObject.transform.forward = forward;
+        gameObject.transform.position = next;
     }
 }

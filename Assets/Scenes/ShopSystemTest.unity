@@ -3287,7 +3287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1349332326
 Transform:
   m_ObjectHideFlags: 0
@@ -4492,7 +4492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1635879907
 Transform:
   m_ObjectHideFlags: 0
@@ -4897,6 +4897,8 @@ MonoBehaviour:
   ShopItemDescriptionPanel: {fileID: 680554467}
   ShopItemPricePanel: {fileID: 144352035}
   ShopItemNamePanel: {fileID: 897295431}
+  ShopCartTotalPanel: {fileID: 419756842}
+  ShopPlayerMoneyPanel: {fileID: 1587245747}
 --- !u!4 &1996682501
 Transform:
   m_ObjectHideFlags: 0

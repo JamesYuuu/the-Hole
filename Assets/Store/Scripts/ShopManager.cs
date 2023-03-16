@@ -21,8 +21,11 @@ public class ShopManager : MonoBehaviour, IShop
 
     // UI elements
     [SerializeField] private GameObject ShopItemDescriptionPanel, ShopItemPricePanel, ShopItemNamePanel;
+    [SerializeField] private GameObject ShopCartTotalPanel, ShopPlayerMoneyPanel;
 
     public static ShopManager _instance;
+    private int TotalPrice, PlayerMoney;
+
     private void Awake()
     {
         _instance = this;
@@ -46,22 +49,20 @@ public class ShopManager : MonoBehaviour, IShop
     public void AddToCart(Item item)
     {
         ItemsInCart.Add(item);
+        SetTotalMoney(item.GetPrice());
     }
 
     public void RemoveFromCart(Item item)
     {
         ItemsInCart.Remove(item);
+        SetTotalMoney(-item.GetPrice());
     }
 
     public bool Checkout()
     {
         CheckoutEvent.Invoke();
-        int TotalPrice = 0;
-        int CurrentMoney = PlayerData.Money;
         
-        ItemsInCart.ForEach(item => TotalPrice += item.GetPrice());
-        
-        if (TotalPrice <= CurrentMoney)
+        if (TotalPrice <= PlayerMoney)
         {
             PlayerData.RemoveMoney(TotalPrice);
             return true;
@@ -71,5 +72,17 @@ public class ShopManager : MonoBehaviour, IShop
             // prompt ui to show you have not enough money
             return false;
         }
+    }
+
+    public void SetPlayerMoney()
+    {
+        PlayerMoney = PlayerData.Money;
+        ShopPlayerMoneyPanel.GetComponent<TMP_Text>().text = PlayerMoney.ToString() + 'G';
+    }
+    
+    public void SetTotalMoney(int AddedMoney)
+    {
+        TotalPrice += AddedMoney;
+        ShopCartTotalPanel.GetComponent<TMP_Text>().text = TotalPrice.ToString() + 'G';
     }
 }

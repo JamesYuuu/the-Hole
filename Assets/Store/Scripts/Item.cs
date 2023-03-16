@@ -47,4 +47,20 @@ public class Item : MonoBehaviour
             isBought = false;
         }
     }
+
+    // return private attributes
+    public int GetPrice()
+    {
+        return price;
+    }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
+    public string GetName()
+    {
+        return displayName;
+    }
 }

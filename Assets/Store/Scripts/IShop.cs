@@ -13,7 +13,7 @@ namespace Store.Scripts
         /// money the player has and the total cost of the items in the
         /// shopping cart.
         /// </summary>
-        public void ShowPanels();
+        public void ShowPanels(Item item);
         
         /// <summary>
         /// Add an item to the shopping cart, add its cost to the

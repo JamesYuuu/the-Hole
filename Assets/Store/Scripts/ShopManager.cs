@@ -3,6 +3,7 @@ using Dialog.Scripts;
 using Store.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 /// <summary>
 /// Implements the IShop interface, letting the player
@@ -18,10 +19,13 @@ public class ShopManager : MonoBehaviour, IShop
     [SerializeField] private List<Item> ItemsForSale = new List<Item>();
     [SerializeField] private List<Item> ItemsInCart = new List<Item>();
 
-    void SetAllItems()
+    // UI elements
+    [SerializeField] private GameObject ShopItemDescriptionPanel, ShopItemPricePanel, ShopItemNamePanel;
+
+    public static ShopManager _instance;
+    private void Awake()
     {
-        // i think you can drag and drop the items into the list in the unity inspector instead
-        List<string> ItemNames = new List<string> {"SodaCan"};
+        _instance = this;
     }
 
     /// <summary>
@@ -32,30 +36,37 @@ public class ShopManager : MonoBehaviour, IShop
         ItemsForSale.ForEach(item => item.gameObject.SetActive(true)); // replace this with making it grabbable
     }
 
-    public void ShowPanels()
+    public void ShowPanels(Item GrabbedItem)
     {
-        throw new System.NotImplementedException(); // please replace these lines
+        ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = GrabbedItem.GetDescription();
+        ShopItemPricePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetPrice().ToString() + 'G';
+        ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.name;
     }
 
     public void AddToCart(Item item)
     {
-        throw new System.NotImplementedException();
+        ItemsInCart.Add(item);
     }
 
     public void RemoveFromCart(Item item)
     {
-        throw new System.NotImplementedException();
+        ItemsInCart.Remove(item);
     }
 
     public bool Checkout()
     {
         CheckoutEvent.Invoke();
-        // if ( /* have enough money */)
+        int TotalPrice = 0;
+        int CurrentMoney = PlayerData.Money;
+        
+        ItemsInCart.ForEach(item => TotalPrice += item.GetPrice());
+        
+        if (TotalPrice <= CurrentMoney)
         {
-            // PlayerData.RemoveMoney(/* amt in their cart */);
+            PlayerData.RemoveMoney(TotalPrice);
             return true;
         }
-        // else
+        else
         {
             // prompt ui to show you have not enough money
             return false;

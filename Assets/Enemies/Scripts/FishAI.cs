@@ -6,7 +6,15 @@ public class FishAI : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 0.0025f;
     /** Debug flag. Set to true to force fish to move back to test despawning. */
-    [SerializeField] private static bool debug = false;
+    [SerializeField] private static bool debug = true;
+
+    void Start()
+    {
+        if (debug)
+        {
+            speed = 0.075f;
+        }
+    }
 
     private void Update()
     {

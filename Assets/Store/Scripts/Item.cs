@@ -1,21 +1,22 @@
 using UnityEngine;
 
-public class Item
+/// <summary>
+/// The data associated with the item this script it placed on.
+/// </summary>
+public class Item : MonoBehaviour
 {
-    public string name;
-    public string description;
-    public int price;
-    public GameObject item;
-    public bool isBought;
+    [SerializeField] private string displayName;
+    [SerializeField] private int price;
+    [SerializeField][TextArea] private string description;
+    // place this script on an item
+    // to get the gameObject it is placed on, use this.gameObject
+    public bool isBought { get; private set; }
 
-    public Item(string name, string description, int price, GameObject item)
+    public Item(string name, string description, int price)
     {
         this.name = name;
         this.price = price;
-        this.item = item;
         isBought = PlayerData.Inventory.ContainsKey(this);
-        // ian to james: did i understand your if-else block correctly?
-        // it was checking the inventory if there was the item and returned true if there was.
     }
 
     /// <summary>

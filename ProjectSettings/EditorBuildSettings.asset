@@ -11,24 +11,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Environment_Underwater.unity
     guid: 73bf97b7abaf5e44b9e26c49d6f514ae
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MovementTest2.unity
     guid: 3ce8ddcf633884b62b48d32152ae9ac0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Environment_Underwater_with_movement.unity
     guid: 038d37359e5de8d4981573beeed6e459
-  - enabled: 1
-    path: Assets/Scenes/ShopSystemTest.unity
-    guid: 960aafc562ab4c14585c7d3924dbe01a
+  - enabled: 0
+    path: Assets/Scenes/ShootingTest.unity
+    guid: a69149eb8d99d4c6cad5c1475bbaecb2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba,
       type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9bec1ce6a03ccba4b9a8215241b32e63,
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2e111206c46074c358f11dd137aac9ce,
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1,
       type: 2}

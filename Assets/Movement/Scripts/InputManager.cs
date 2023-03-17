@@ -41,6 +41,9 @@ public class InputManager : MonoBehaviour
     public bool PlayerHoldingTriggerR() {
         return playerControls.VR.ShootR.IsPressed();
     }
+    public bool PlayerHoldingPrimaryR() {
+        return playerControls.VR.Ascend.IsPressed();
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -41,7 +41,7 @@ ci: changes to our CI config files and scripts (Travis, Circle)
 
 - Unity 2021.3.13f1 with Android Build Support
 - Oculus Integration v47
-
+- Unity XR Interaction Toolkit package 2.3.0
 
 ## Getting started
 

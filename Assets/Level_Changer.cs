@@ -19,13 +19,22 @@ public class Level_Changer : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            LoadNextLevel();
+            Load_Shop();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Load_Hole();
         }
     }
 
-    public void LoadNextLevel() 
+    public void Load_Shop() 
     {
         StartCoroutine(LoadLevel(1));
+    }
+
+    public void Load_Hole()
+    {
+        StartCoroutine(LoadLevel(0));
     }
 
     IEnumerator LoadLevel(int levelIndex) 

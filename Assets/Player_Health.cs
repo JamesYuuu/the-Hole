@@ -72,7 +72,7 @@ public class Player_Health : MonoBehaviour
             if (currenOxygen < 0f)
             {
                 print("Dead");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("ShopSystemTest");
                 // to-do Add sound if die to shop
             }
         }

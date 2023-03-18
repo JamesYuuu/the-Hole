@@ -7,9 +7,14 @@ using UnityEngine;
 /// </summary>
 public static class PlayerData
 {
+    /// <summary>
+    /// Amount of money that player has.
+    /// Can be get from anywhere, but only set through methods.
+    /// </summary>
     public static int Money { get; private set; } = 0;
-    // this lets other scripts get PlayerData.Money; but they cannot set it.
     public static Dictionary<Item, int> Inventory { get; private set; } = new();
+    private static readonly Dictionary<Item, int> InventoryMax = new();
+
     // C# Dictionary == Java's HashMap
     // an element can be (Item = SodaCan, quantity = 3)
     // we need a way to limit some items to be only bought once
@@ -21,20 +26,29 @@ public static class PlayerData
     {
         Debug.Log("PlayerData static class exists");
     }
-    
+
     #region Money
     public static void AddMoney(int amount)
     {
         Money += amount;
     }
 
-    public static void RemoveMoney(int amount)
+    public static bool RemoveMoney(int amount)
     {
+        if (Money < amount)
+        {
+            return false;
+        }
         Money -= amount;
+        return true;
     }
     #endregion
 
     #region Inventory
+    /// <summary>
+    /// Treasure item. Given to player upon pickup.
+    /// </summary>
+    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1, null);
     // C# dictionary methods:
     // .Add(Item i, int qty),
     // .ContainsKey(Item i),
@@ -42,20 +56,73 @@ public static class PlayerData
     // .Count,
     // .Remove(Item i),
     // .Inventory[key] // to get the value
-    /*
-     * example on how to use values if they are in the dictionary:
-        int quantity = 0;
-        if (Inventory.TryGetValue("Oxygen", out quantity))
+
+    public static void AddTresure(GameObject treasureObject)
+    {
+        Treasure.item = treasureObject;
+        AddItem(Treasure, 1);
+    }
+
+    /// <summary>
+    /// Removes the treasure from the player's inventory.
+    /// MUST BE CALLED AT START OF EACH DIVE.
+    /// </summary>
+    public static void RemoveTreasure()
+    {
+        RemoveItem(Treasure, 1);
+    }
+
+    /// <summary>
+    /// Adds item to the player's inventory safely.
+    /// Will not insert item past limit set in InventoryMax.
+    /// </summary>
+    /// <param name="item">Item to be added to the player's inventory.</param>
+    /// <param name="amount">Amount of the item to be added to the player's inventory.</param>
+    /// <returns>Whether the item has been added successfully.</returns>
+    private static bool AddItem(Item item, int amount)
+    {
+        int currAmount = 0;
+        if (Inventory.ContainsKey(item))
         {
-            Debug.Log(quantity);
+            currAmount = Inventory[item];
         }
-        
-     * eg. on how to loop through dictionary:
-        foreach( KeyValuePair<Item, int> kvp in Inventory )
+        int newAmount = currAmount + amount;
+        if (newAmount > InventoryMax[item])
         {
-            Debug.Log("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            return false;
         }
-     * see more at: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=netframework-4.8
-     */
+        Inventory[item] = newAmount;
+        return true;
+    }
+
+    /// <summary>
+    /// Removes item from the player's inventory safely.
+    /// Will not remove items if resulting amount is less than 0.
+    /// </summary>
+    /// <param name="item">Item to be removed from the player's inventory.</param>
+    /// <param name="amount">Amount of the item to be removed from the player's inventory.</param>
+    /// <returns>Whether the item has been removed successfully.</returns>
+    private static bool RemoveItem(Item item, int amount)
+    {
+        if (!Inventory.ContainsKey(item))
+        {
+            return false;
+        }
+        int currAmount = Inventory[item];
+        int newAmount = currAmount - amount;
+        if (newAmount < 0)
+        {
+            return false;
+        }
+        if (newAmount == 0)
+        {
+            Inventory.Remove(item);
+            return true;
+        }
+        Inventory[item] = newAmount;
+        return true;
+    }
     #endregion
+
+
 }

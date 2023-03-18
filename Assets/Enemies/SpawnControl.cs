@@ -82,25 +82,17 @@ public class SpawnControl : MonoBehaviour
 
     private void TransformPooledEnemy(GameObject activeEnemy)
     {
-        float randX = Random.Range(0f, 1f);
-        float randY = Random.Range(0f, 1f);
-        float randZ = Random.Range(0f, 1f);
+        float randX = Random.Range(-1f, 1f);
+        float randY = Random.Range(-1f, 1f);
+        float randZ = Random.Range(-1f, 1f);
 
         float randDist = FindDistance(randX, randY, randZ);
 
         float scale = (viewDistance - spawnDistance) / randDist;
 
-        bool flipX = Random.Range(0, 2) == 0;
-        bool flipY = Random.Range(0, 2) == 0;
-        bool flipZ = Random.Range(0, 2) == 0;
-
         float dispX = randX * scale;
         float dispY = randY * scale;
         float dispZ = randZ * scale;
-
-        if (flipX) dispX = -dispX;
-        if (flipY) dispY = -dispY;
-        if (flipZ) dispZ = -dispZ;
 
         float locX = player.transform.position.x + dispX;
         float locY = player.transform.position.y + dispY;
@@ -109,7 +101,7 @@ public class SpawnControl : MonoBehaviour
         Vector3 loc = new(locX, locY, locZ);
 
         float forwardX = player.transform.position.x - locX;
-        float forwardY = player.transform.position.y - locY;
+        float forwardY = 0;
         float forwardZ = player.transform.position.z - locZ;
 
         Vector3 forward = new(forwardX, forwardY, forwardZ);

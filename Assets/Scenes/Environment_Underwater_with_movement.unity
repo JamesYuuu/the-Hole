@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &18157448
 Animator:
   serializedVersion: 4
@@ -262,8 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &83238212
 Animator:
   serializedVersion: 4
@@ -561,8 +563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &170889968
 Animator:
   serializedVersion: 4
@@ -607,8 +610,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &178473798
 Animator:
   serializedVersion: 4
@@ -1268,8 +1272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &439867680
 Animator:
   serializedVersion: 4
@@ -1419,8 +1424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &565685557
 Animator:
   serializedVersion: 4
@@ -2203,8 +2209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &836632860
 Animator:
   serializedVersion: 4
@@ -2403,8 +2410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &863470844
 Animator:
   serializedVersion: 4
@@ -2494,6 +2502,7 @@ MonoBehaviour:
   m_DebounceTime: 0.25
   m_EnableTurnLeftRight: 1
   m_EnableTurnAround: 1
+  m_DelayTime: 0
   m_LeftHandSnapTurnAction:
     m_UseReference: 0
     m_Action:
@@ -2704,7 +2713,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_AttachTransform: {fileID: 1325185924}
   m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2717,6 +2728,8 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2828,8 +2841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &945921596
 Animator:
   serializedVersion: 4
@@ -3245,8 +3259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1036010947
 Animator:
   serializedVersion: 4
@@ -3291,8 +3306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1040929606
 Animator:
   serializedVersion: 4
@@ -3629,8 +3645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1122463384
 Animator:
   serializedVersion: 4
@@ -3737,8 +3754,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1161978639
 Animator:
   serializedVersion: 4
@@ -3857,8 +3875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1267246652
 Animator:
   serializedVersion: 4
@@ -4038,8 +4057,16 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_InteractionLayers:
     m_Bits: 1
+  m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
   m_FirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -4070,6 +4097,9 @@ MonoBehaviour:
   m_Deactivated:
     m_PersistentCalls:
       m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -4098,6 +4128,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
+  m_SecondaryAttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 2
   m_VelocityDamping: 1
@@ -4134,6 +4170,9 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
 --- !u!54 &1325185926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6872,8 +6911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1446120615
 Animator:
   serializedVersion: 4
@@ -7122,6 +7162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointer: {fileID: 0}
+  targetPointPrefab: {fileID: 0}
+  affectedRigidbody: {fileID: 0}
+  range: 30
+  shootSpeed: 25
+  reelSpeed: 50
+  cannotShootMaterial: {fileID: 0}
+  canShootMaterial: {fileID: 0}
+  reelMaterial: {fileID: 0}
+  hand: 0
 --- !u!1 &1497343301
 GameObject:
   m_ObjectHideFlags: 0
@@ -7460,8 +7510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1567762578
 Animator:
   serializedVersion: 4
@@ -7638,6 +7689,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointer: {fileID: 0}
+  targetPointPrefab: {fileID: 0}
+  affectedRigidbody: {fileID: 0}
+  range: 30
+  shootSpeed: 25
+  reelSpeed: 50
+  cannotShootMaterial: {fileID: 0}
+  canShootMaterial: {fileID: 0}
+  reelMaterial: {fileID: 0}
+  hand: 0
 --- !u!1 &1625906587
 GameObject:
   m_ObjectHideFlags: 0
@@ -7767,8 +7828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1667309342
 Animator:
   serializedVersion: 4
@@ -8053,6 +8115,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -7363382999065477798, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  m_DirectionalAnchorRotationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TranslateAnchorAction:
     m_UseReference: 1
     m_Action:
@@ -8264,6 +8338,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -5913262927076077117, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  m_DirectionalAnchorRotationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TranslateAnchorAction:
     m_UseReference: 1
     m_Action:
@@ -8344,10 +8430,20 @@ MonoBehaviour:
   m_RepeatDelay: 0.5
   m_RepeatRate: 0.1
   m_TrackedDeviceDragThresholdMultiplier: 1.4
+  m_ActiveInputMode: 0
   m_MaxTrackedDeviceRaycastDistance: 1000
   m_EnableXRInput: 1
   m_EnableMouseInput: 1
   m_EnableTouchInput: 1
+  m_PointAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_NavigateAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_EnableBuiltinActionsAsFallback: 1
   m_EnableGamepadInput: 1
   m_EnableJoystickInput: 1
   m_HorizontalAxis: Horizontal
@@ -8595,8 +8691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1927927889
 Animator:
   serializedVersion: 4
@@ -8710,8 +8807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &1934164092
 Animator:
   serializedVersion: 4
@@ -9230,8 +9328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 881641520}
-  speed: 0.0025
+  Player: {fileID: 881641520}
+  IsHostile: 0
+  Speed: 0.0025
 --- !u!95 &2109135529
 Animator:
   serializedVersion: 4

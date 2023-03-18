@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 7631990905767944271}
-  targetPointPrefab: {fileID: 5092091489911966117, guid: f808d92d2f1a241a4864e8ae38b657be,
+  targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   affectedRigidbody: {fileID: 7631990904182334706}
   range: 40
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 7631990904866439219}
-  targetPointPrefab: {fileID: 4254789858727475495, guid: 044ad030c4afc4455a0fc3bcbf3a6c1a,
+  targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   affectedRigidbody: {fileID: 7631990904182334706}
   range: 40
@@ -1414,10 +1414,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 24d13b48-265c-49cd-8107-cfbcc4b71e23
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []

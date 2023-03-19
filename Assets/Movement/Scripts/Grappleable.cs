@@ -118,6 +118,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
         if (Physics.Raycast(pointer.position, pointer.forward, out hit, range)){
             targetPoint.SetActive(true);
             targetPoint.transform.position = hit.point;
+            targetPoint.transform.rotation = Quaternion.LookRotation(hit.normal);
             targetPos = targetPoint.transform.position;
             if (checkForShoot()) ChangeState(GrappleState.Shooting);
 
@@ -176,7 +177,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     }
 
     void OnDisable() {
-        targetPoint.SetActive(false);
+        if (targetPoint) targetPoint.SetActive(false);
     }
 
     void OnEnable() {

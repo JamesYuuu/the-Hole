@@ -9,7 +9,7 @@ public class UnderwaterAI : MonoBehaviour
     [SerializeField] private static bool Debug = false;
     [SerializeField] private GameObject Player;
 
-    public static bool IsHostile = true;
+    public static bool IsHostile = false;
     [SerializeField] private float Speed = 0.0025f;
     [SerializeField] private int MinSteps = 1000;
     [SerializeField] private int MaxSteps = 2000;

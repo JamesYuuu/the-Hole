@@ -57,10 +57,11 @@ public static class PlayerData
     // .Remove(Item i),
     // .Inventory[key] // to get the value
 
-    public static void AddTresure(GameObject treasureObject)
+    public static void AddTreasure(GameObject treasureObject)
     {
         Treasure.item = treasureObject;
         AddItem(Treasure, 1);
+        UnderwaterAI.IsHostile = true;
     }
 
     /// <summary>

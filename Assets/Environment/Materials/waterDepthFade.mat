@@ -36,11 +36,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fade: 0.01
-    - _High: 8
+    - _High: 7
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Albedo: {r: 1, g: 1, b: 1, a: 0}
+    - _Albedo: {r: 0.2896938, g: 0.5354268, b: 0.5849056, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1127514416287321942
 MonoBehaviour:

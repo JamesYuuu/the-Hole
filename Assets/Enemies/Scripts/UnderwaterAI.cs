@@ -10,17 +10,21 @@ public class UnderwaterAI : MonoBehaviour
     [SerializeField] private GameObject Player;
 
     public static bool IsHostile = false;
-    [SerializeField] private float Speed = 0.0025f;
-    [SerializeField] private int MinSteps = 1000;
-    [SerializeField] private int MaxSteps = 2000;
+    [SerializeField] private float Speed = 0.005f;
+    [SerializeField] private int MinSteps = 500;
+    [SerializeField] private int MaxSteps = 1000;
     private int Steps = -1;
 
-    [SerializeField] private int MaxTurns = 2000;
+    [SerializeField] private int MaxTurns = 1000;
     [SerializeField] private float TurnX = 0.001f;
-    [SerializeField] private float TurnY = 0.0001f;
+    private float TurnY = 0f;
     [SerializeField] private float TurnZ = 0.001f;
     private int Turns = 0;
     private Vector3 TurnAmount = new(0, 0, 0);
+
+    private int ReturnRadius = 35;
+    private int SpawnBase = 0;
+    private int SpawnHeight = 100;
 
     void Start()
     {
@@ -32,16 +36,22 @@ public class UnderwaterAI : MonoBehaviour
 
     private void Update()
     {
-        if (IsHostile)
-        {
-            UpdateHostile();
-        } else
-        {
-            UpdatePeaceful();
-        }
+        Vector3 loc = gameObject.transform.position;
         if (Debug)
         {
             UpdateDebug();
+        }
+        else if (!IsLocationWithinHole(loc))
+        {
+            gameObject.transform.Rotate(new(0f, -0.15f, 0f));
+        }
+        else if (IsHostile)
+        {
+            UpdateHostile();
+        }
+        else
+        {
+            UpdatePeaceful();
         }
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed;
     }
@@ -67,7 +77,7 @@ public class UnderwaterAI : MonoBehaviour
             Steps = Random.Range(MinSteps, MaxSteps);
         }
 
-        if (Steps == 0)
+        if (Steps == 0 && Turns == 0)
         {
             Turns = -1;
             UpdatePeacefulTurn();
@@ -122,5 +132,22 @@ public class UnderwaterAI : MonoBehaviour
 
         gameObject.transform.forward = new(forwardX, forwardY, forwardZ);
         gameObject.transform.forward.Normalize();
+    }
+    private bool IsLocationWithinHole(Vector3 loc)
+    {
+        if (FindDistance(loc.x, 0, loc.z) > ReturnRadius)
+        {
+            return false;
+        }
+        if (loc.y < SpawnBase || loc.y > SpawnBase + SpawnHeight)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private float FindDistance(float x, float y, float z)
+    {
+        return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2));
     }
 }

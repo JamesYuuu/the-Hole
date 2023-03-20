@@ -34,7 +34,6 @@ public class Player_Health : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
         // Decrease Oxygen when colliding with water
         if (other.gameObject.tag == "water")
         {
@@ -63,7 +62,7 @@ public class Player_Health : MonoBehaviour
     {
         // Update Wirst Display
         watch.GetComponent<WatchUIManager>().ChangeScore((int)currenOxygen);
-        print(currenOxygen);
+        // print(currenOxygen);
         drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
         if (currenOxygen <= 10f)
         {

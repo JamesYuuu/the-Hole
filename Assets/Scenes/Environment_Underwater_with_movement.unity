@@ -148,12 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &18157448
 Animator:
@@ -269,12 +268,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &83238212
 Animator:
@@ -574,12 +572,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &170889968
 Animator:
@@ -626,12 +623,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &178473798
 Animator:
@@ -986,11 +982,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 881641520}
-  poolSize: 20
-  activeSize: 10
-  spawnDistance: 50
-  viewDistance: 75
-  pooledEnemies:
+  PoolSize: 20
+  ActiveSize: 10
+  SpawnDistance: 100
+  viewDistance: 150
+  DespawnTime: 1000
+  PooledEnemies:
   - {fileID: 1161978636}
   - {fileID: 565685554}
   - {fileID: 836632857}
@@ -1011,7 +1008,7 @@ MonoBehaviour:
   - {fileID: 1267246649}
   - {fileID: 18157445}
   - {fileID: 1567762576}
-  activeEnemies: []
+  ActiveEnemies: []
 --- !u!4 &240915348
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,12 +1290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &439867680
 Animator:
@@ -1450,12 +1446,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &565685557
 Animator:
@@ -2240,12 +2235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &836632860
 Animator:
@@ -2446,12 +2440,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &863470844
 Animator:
@@ -2882,12 +2875,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &945921596
 Animator:
@@ -3305,12 +3297,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1036010947
 Animator:
@@ -3357,12 +3348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1040929606
 Animator:
@@ -3701,12 +3691,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1122463384
 Animator:
@@ -3815,12 +3804,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1161978639
 Animator:
@@ -3941,12 +3929,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1267246652
 Animator:
@@ -7014,12 +7001,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1446120615
 Animator:
@@ -7269,7 +7255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
+  pointer: {fileID: 1939940082}
   targetPointPrefab: {fileID: 0}
   affectedRigidbody: {fileID: 0}
   range: 30
@@ -7719,12 +7705,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1567762578
 Animator:
@@ -7902,7 +7887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
+  pointer: {fileID: 194063813}
   targetPointPrefab: {fileID: 0}
   affectedRigidbody: {fileID: 0}
   range: 30
@@ -8042,12 +8027,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1667309342
 Animator:
@@ -8158,7 +8142,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814562326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8336,10 +8320,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 88fe0043-af3a-4334-8447-f78521993219
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8559,10 +8543,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 263acf13-78eb-488e-94c1-410ebdefc905
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8703,17 +8687,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d7a6b6dbff2e86b4094fa34ad2e0c9bd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7a6b6dbff2e86b4094fa34ad2e0c9bd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7a6b6dbff2e86b4094fa34ad2e0c9bd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d7a6b6dbff2e86b4094fa34ad2e0c9bd,
         type: 3}
@@ -8910,12 +8894,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1927927889
 Animator:
@@ -9031,12 +9014,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &1934164092
 Animator:
@@ -9557,12 +9539,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 881641520}
-  Speed: 0.0025
-  MinSteps: 1000
-  MaxSteps: 2000
-  MaxTurns: 2000
+  Speed: 0.005
+  MinSteps: 500
+  MaxSteps: 1000
+  MaxTurns: 1000
   TurnX: 0.001
-  TurnY: 0.0001
   TurnZ: 0.001
 --- !u!95 &2109135529
 Animator:

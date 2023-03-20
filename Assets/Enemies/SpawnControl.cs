@@ -4,19 +4,26 @@ using UnityEngine;
 public class SpawnControl : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private int poolSize = 20;
-    [SerializeField] private int activeSize = 10;
-    [SerializeField] private float spawnDistance = 100f;
-    public float viewDistance = 150f;
+    [SerializeField] private int PoolSize = 20;
+    [SerializeField] private int ActiveSize = 10;
+    [SerializeField] private float SpawnDistance = 150f;
+    [SerializeField] private float viewDistance = 175f;
+    [SerializeField] private int DespawnTime = 1000;
 
-    [SerializeField] private List<GameObject> pooledEnemies = new();
-    [SerializeField] private List<GameObject> activeEnemies = new();
+    /** Spawn volume settings */
+    private int SpawnRadius = 33;
+    private int SpawnBase = 0;
+    private int SpawnHeight = 100;
+
+    [SerializeField] private List<GameObject> PooledEnemies = new();
+    [SerializeField] private List<GameObject> ActiveEnemies = new();
+    [SerializeField] private Dictionary<GameObject, int> DespawnTimes = new();
 
     void Awake()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < PoolSize; i++)
         {
-            pooledEnemies[i].SetActive(false);
+            PooledEnemies[i].SetActive(false);
         }
     }
 
@@ -27,60 +34,95 @@ public class SpawnControl : MonoBehaviour
 
     void Update()
     {
-        while (CanSpawn())
+        // make it so that each update cycle only spawns 1 fish
+        if (CanSpawn())
         {
-            GameObject fish = ActivatePooledEnemy();
-            TransformPooledEnemy(fish);
+            ActivatePooledEnemy();
         }
-        foreach (GameObject enemy in activeEnemies)
+        foreach (GameObject enemy in ActiveEnemies)
         {
-            if (FindDistanceToPlayer(enemy) > viewDistance)
+            if (FindDistanceToPlayer(enemy) <= viewDistance)
+            {
+                DespawnTimes[enemy] = -1;
+                continue;
+            }
+            if (DespawnTimes[enemy] == 0)
             {
                 DeactivatePoolEnemy(enemy);
+                continue;
             }
+            if (DespawnTimes[enemy] == -1)
+            {
+                StartDespawnTimer(enemy);
+                continue;
+            }
+            TickDespawnTimer(enemy);
         }
     }
 
-    public GameObject ActivatePooledEnemy()
+    private GameObject ActivatePooledEnemy()
     {
         print("[LOG][SC] Activating pooled enemy...");
-        int remaining = pooledEnemies.Count;
+        int remaining = PooledEnemies.Count;
         if (remaining == 0)
         {
             return null;
         }
         int picked = Random.Range(0, remaining);
-        GameObject pickedEnemy = pooledEnemies[picked];
+        GameObject pickedEnemy = PooledEnemies[picked];
 
-        pooledEnemies.Remove(pickedEnemy);
-        activeEnemies.Add(pickedEnemy);
+        Vector3 loc = TransformPooledEnemyLoc(pickedEnemy);
+
+        if (!IsLocationWithinHole(loc))
+        {
+            print("[LOG][SC] Transformed enemy location out of spawn volume. Cancelling...");
+            return null;
+        }
+
+        TransformPooledEnemyRot(pickedEnemy, loc);
+
+        PooledEnemies.Remove(pickedEnemy);
+        ActiveEnemies.Add(pickedEnemy);
+        DespawnTimes.Add(pickedEnemy, -1);
         pickedEnemy.SetActive(true);
 
-        print("[LOG][SC] Activated pooled enemy. Current active enemies: " + activeEnemies.Count);
+        print("[LOG][SC] Activated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
         return pickedEnemy;
     }
 
-    public void DeactivatePoolEnemy(GameObject activeEnemy)
+    private void DeactivatePoolEnemy(GameObject activeEnemy)
     {
         print("[LOG][SC] Deactivating pooled enemy...");
         activeEnemy.SetActive(false);
-        activeEnemies.Remove(activeEnemy);
-        pooledEnemies.Add(activeEnemy);
-        print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + activeEnemies.Count);
+        ActiveEnemies.Remove(activeEnemy);
+        DespawnTimes.Remove(activeEnemy);
+        PooledEnemies.Add(activeEnemy);
+        print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
     }
 
-    public bool CanSpawn()
+    private void StartDespawnTimer(GameObject activeEnemy)
     {
-        int remaining = pooledEnemies.Count;
+        print("[LOG][SC] Pooled enemy out of range. Starting despawn timer...");
+        DespawnTimes[activeEnemy] = DespawnTime;
+    }
+
+    private void TickDespawnTimer(GameObject activeEnemy)
+    {
+        --DespawnTimes[activeEnemy];
+    }
+
+    private bool CanSpawn()
+    {
+        int remaining = PooledEnemies.Count;
         if (remaining == 0)
         {
             return false;
         }
-        int active = activeEnemies.Count;
-        return active < activeSize;
+        int active = ActiveEnemies.Count;
+        return active < ActiveSize;
     }
 
-    private void TransformPooledEnemy(GameObject activeEnemy)
+    private Vector3 TransformPooledEnemyLoc(GameObject activeEnemy)
     {
         float randX = Random.Range(-1f, 1f);
         float randY = Random.Range(-1f, 1f);
@@ -88,7 +130,7 @@ public class SpawnControl : MonoBehaviour
 
         float randDist = FindDistance(randX, randY, randZ);
 
-        float scale = (viewDistance - spawnDistance) / randDist;
+        float scale = (viewDistance - SpawnDistance) / randDist;
 
         float dispX = randX * scale;
         float dispY = randY * scale;
@@ -100,24 +142,46 @@ public class SpawnControl : MonoBehaviour
 
         Vector3 loc = new(locX, locY, locZ);
 
-        float forwardX = player.transform.position.x - locX;
+        activeEnemy.transform.position = loc;
+
+        print("[LOG][SC] Transformed pooled enemy location: " + locX + "," + locY + "," + locZ);
+        return loc;
+    }
+
+    private Vector3 TransformPooledEnemyRot(GameObject activeEnemy, Vector3 loc)
+    {
+        float forwardX = player.transform.position.x - loc.x;
         float forwardY = 0;
-        float forwardZ = player.transform.position.z - locZ;
+        float forwardZ = player.transform.position.z - loc.z;
 
         Vector3 forward = new(forwardX, forwardY, forwardZ);
         forward.Normalize();
 
-        print("Spawning fish at " + locX + "," + locY + "," + locZ);
-
-        activeEnemy.transform.position = loc;
         activeEnemy.transform.forward = forward;
+
+        print("[LOG][SC] Transformed pooled enemy rotation: " + forwardX + "," + forwardZ);
+        return forward;
     }
+
+    private bool IsLocationWithinHole(Vector3 loc)
+    {
+        if (FindDistance(loc.x, 0, loc.z) > SpawnRadius)
+        {
+            return false;
+        }
+        if (loc.y < SpawnBase || loc.y > SpawnBase + SpawnHeight)
+        {
+            return false;
+        }
+        return true;
+    }
+
     private float FindDistance(float x, float y, float z)
     {
         return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2));
     }
 
-    public float FindDistanceToPlayer(GameObject fish)
+    private float FindDistanceToPlayer(GameObject fish)
     {
         float dispX = fish.transform.position.x - player.transform.position.x;
         float dispY = fish.transform.position.y - player.transform.position.y;

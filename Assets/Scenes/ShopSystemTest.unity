@@ -3095,7 +3095,7 @@ RectTransform:
   m_GameObject: {fileID: 725940067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.00001335144}
-  m_LocalScale: {x: 0.5725427, y: 0.49797872, z: 0.68499005}
+  m_LocalScale: {x: 0.6642641, y: 0.5777549, z: 0.7947255}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 402303066}
@@ -3433,43 +3433,6 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 2
-  m_VelocityDamping: 1
-  m_VelocityScale: 1
-  m_AngularVelocityDamping: 1
-  m_AngularVelocityScale: 1
-  m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 5
-  m_TightenPosition: 0.5
-  m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 5
-  m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.25
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1
-  m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
-  m_AttachPointCompatibilityMode: 0
   item: {fileID: 752725859}
 --- !u!1 &801974344
 GameObject:
@@ -3574,8 +3537,8 @@ RectTransform:
   m_GameObject: {fileID: 837482980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.00001335144}
-  m_LocalScale: {x: 0.83612174, y: 0.727231, z: 1.0003359}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76577044, y: 0.6660418, z: 0.9161677}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1038542637}
   m_RootOrder: 0
@@ -4787,7 +4750,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 593084293b5c00e409e7c117e4f42bf3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.04
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 593084293b5c00e409e7c117e4f42bf3,
         type: 3}
@@ -4797,7 +4760,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 593084293b5c00e409e7c117e4f42bf3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.2
+      value: 3.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 593084293b5c00e409e7c117e4f42bf3,
         type: 3}

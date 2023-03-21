@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpawnControl : MonoBehaviour
 {
+    private static SpawnControl Instance = null;
+
     [SerializeField] private GameObject player;
     [SerializeField] private int PoolSize = 20;
     [SerializeField] private int ActiveSize = 10;
@@ -11,13 +13,42 @@ public class SpawnControl : MonoBehaviour
     [SerializeField] private int DespawnTime = 1000;
 
     /** Spawn volume settings */
-    private int SpawnRadius = 33;
-    private int SpawnBase = 0;
-    private int SpawnHeight = 100;
+    private readonly int SpawnRadius = 33;
+    private readonly int SpawnBase = 0;
+    private readonly int SpawnHeight = 100;
+    private static readonly int FreefallBase = 120;
+    private static readonly int FreefallHeight = 150;
 
     [SerializeField] private List<GameObject> PooledEnemies = new();
     [SerializeField] private List<GameObject> ActiveEnemies = new();
     [SerializeField] private Dictionary<GameObject, int> DespawnTimes = new();
+
+    private static readonly List<Vector3> TransferActivePosition = new();
+    public static bool IsFreefall = false;
+
+    public static void ChangeScene()
+    {
+        print("[LOG][SC] Changing scenes, saving active fish positions...");
+        IsFreefall = true;
+        foreach (GameObject fish in Instance.ActiveEnemies)
+        {
+            TransferActivePosition.Add(fish.transform.position);
+        }
+    }
+    
+    private static void ChangeSceneTransform()
+    {
+        print("[LOG][SC] Scene changed. Respawning fish for shooting...");
+        for (int i = 0; i < Instance.ActiveSize; i++)
+        {
+            GameObject fish = Instance.PooledEnemies[i];
+            fish.SetActive(true);
+            fish.transform.position = TransferActivePosition[i];
+            fish.transform.forward = new(0, 1, 0);
+            int newY = Random.Range(FreefallBase, FreefallHeight);
+            fish.transform.position = new(fish.transform.position.x, newY, fish.transform.position.z);
+        }
+    }
 
     void Awake()
     {
@@ -29,11 +60,24 @@ public class SpawnControl : MonoBehaviour
 
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        if (IsFreefall)
+        {
+            Instance = this;
+            ChangeSceneTransform();
+        }
         print("[LOG][SC] Player at " + player.transform.position.x + "," + player.transform.position.y + "," + player.transform.position.z);
     }
 
     void Update()
     {
+        if (IsFreefall)
+        {
+            return;
+        }
         // make it so that each update cycle only spawns 1 fish
         if (CanSpawn())
         {

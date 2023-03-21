@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -267,6 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -571,6 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -622,6 +628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -1289,6 +1297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -1445,6 +1455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -2234,6 +2246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -2439,6 +2453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -2874,6 +2890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -3114,7 +3132,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31574
+  m_Name: pb_Mesh31578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3296,6 +3314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -3347,6 +3367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -3690,6 +3712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -3803,6 +3827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -3928,6 +3954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -7000,6 +7028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -7704,6 +7734,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -8026,6 +8058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -8893,6 +8927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -9013,6 +9049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500
@@ -9538,6 +9576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a134b08ffc582704f9848268bf958636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 5
   Player: {fileID: 881641520}
   Speed: 0.005
   MinSteps: 500

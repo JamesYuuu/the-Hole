@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
     public float maxDistance = 10;
     
     // action to take to destroy bullet
-    private Action<Bullet> _destroyAction;
+    private ObjectPool<Bullet> _pool;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +34,12 @@ public class Bullet : MonoBehaviour
         _normDirection = Vector3.Normalize(_direction);
         _maxTravelPoint = _origin + _normDirection * maxDistance;
         hitEverything = tagsToHit.Length == 0;
-        _destroyAction = Destroy;
     }
 
-    public void Init(int damage, Vector3 direction, float travelSpeed, float maxDistance, string[] tagsToHit, Action<Bullet> destroyAction)
+    public void Init(int damage, Vector3 startPosition, Vector3 direction, float travelSpeed, float maxDistance, string[] tagsToHit, ObjectPool<Bullet> objectPool = null)
     {
-        _origin = transform.position;
+        _origin = startPosition;
+        transform.position = startPosition;
 
         this.damage = damage;
         
@@ -47,6 +48,8 @@ public class Bullet : MonoBehaviour
         // recalculate normalized direction
         _normDirection = Vector3.Normalize(this._direction);
         
+        transform.rotation = Quaternion.LookRotation(direction);
+
         this.travelSpeed = travelSpeed;
         
         this.maxDistance = maxDistance;
@@ -57,7 +60,7 @@ public class Bullet : MonoBehaviour
         this.tagsToHit = tagsToHit;
         hitEverything = tagsToHit.Length == 0;
 
-        _destroyAction = destroyAction;
+        _pool = objectPool;
     }
     
     // Update is called once per frame
@@ -69,7 +72,7 @@ public class Bullet : MonoBehaviour
         // if bullet has reached its maximum travel point, destroy it
         if (Vector3.Distance(_origin, _maxTravelPoint) <= Vector3.Distance(_origin, transform.position))
         {
-            _destroyAction(this);
+            _pool.Release(this);
         }
     }
 
@@ -103,6 +106,6 @@ public class Bullet : MonoBehaviour
             damageable.Damage(damage);
         }
 
-        _destroyAction(this);
+        _pool.Release(this);
     }
 }

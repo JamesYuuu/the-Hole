@@ -30,6 +30,7 @@ public class Level_Changer : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex) 
     {
+        SpawnControl.ChangeScene();
         // Play Animation
         animator.SetTrigger("Fade_Out");
         // Wait

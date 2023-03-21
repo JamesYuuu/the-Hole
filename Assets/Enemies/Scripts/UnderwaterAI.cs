@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnderwaterAI : MonoBehaviour
+public class UnderwaterAI : AbstractAI
 {
     /// <summary>
     /// Debug flag. Set to true to force fish to move back to test despawning.
@@ -26,7 +26,7 @@ public class UnderwaterAI : MonoBehaviour
     private int SpawnBase = 0;
     private int SpawnHeight = 100;
 
-    void Start()
+    public override void Start()
     {
         if (Debug)
         {
@@ -34,8 +34,12 @@ public class UnderwaterAI : MonoBehaviour
         }
     }
 
-    private void Update()
+    public override void Update()
     {
+        if (SpawnControl.IsFreefall)
+        {
+            return;
+        }
         Vector3 loc = gameObject.transform.position;
         if (Debug)
         {

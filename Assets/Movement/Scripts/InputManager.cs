@@ -20,7 +20,6 @@ public class InputManager : MonoBehaviour
         }
 
         playerControls = new PlayerControls();
-
     }
 
     private void OnEnable() {

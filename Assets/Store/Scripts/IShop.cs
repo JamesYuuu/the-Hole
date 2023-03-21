@@ -2,10 +2,6 @@ namespace Store.Scripts
 {
     public interface IShop
     {
-        /// <summary>
-        /// Enables grabbing on all the items
-        /// </summary>
-        public void EnableGrab();
         
         /// <summary>
         /// Displays the UI panels for the item's
@@ -21,7 +17,7 @@ namespace Store.Scripts
         /// 
         /// Triggered by item entering shopping cart
         /// </summary>
-        public void AddToCart(Item item);
+        public void AddToCart();
         
         /// <summary>
         /// Remove an item from the shopping cart, remove its cost from the
@@ -29,7 +25,7 @@ namespace Store.Scripts
         ///
         /// Triggered by item leaving shopping cart
         /// </summary>
-        public void RemoveFromCart(Item item);
+        public void RemoveFromCart();
 
         /// <summary>
         /// Add all the items to the player's inventory and

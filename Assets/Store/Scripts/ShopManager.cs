@@ -4,6 +4,7 @@ using Store.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// Implements the IShop interface, letting the player
@@ -23,41 +24,63 @@ public class ShopManager : MonoBehaviour, IShop
     [SerializeField] private GameObject ShopItemDescriptionPanel, ShopItemPricePanel, ShopItemNamePanel;
     [SerializeField] private GameObject ShopCartTotalPanel, ShopPlayerMoneyPanel;
 
+    [SerializeField] private Button AddCart,RemoveCart,CashRegister,Leave;
+
     public static ShopManager _instance;
     private int TotalPrice, PlayerMoney;
+
+    private Item CurrentSelectedItem;
 
     private void Awake()
     {
         _instance = this;
+        SetPlayerMoney();
+        SetTotalMoney(0);
+        AddCart.onClick.AddListener(AddToCart);
+        RemoveCart.onClick.AddListener(RemoveFromCart);
+        CashRegister.onClick.AddListener(CheckOut);
     }
 
     /// <summary>
     /// Refer to IShop.cs for all function descriptions
     /// </summary>
-    public void EnableGrab()
-    {
-        ItemsForSale.ForEach(item => item.gameObject.SetActive(true)); // replace this with making it grabbable
-    }
 
     public void ShowPanels(Item GrabbedItem)
     {
         ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = GrabbedItem.GetDescription();
         ShopItemPricePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetPrice().ToString() + 'G';
         ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.name;
+        CurrentSelectedItem = GrabbedItem;
     }
 
-    public void AddToCart(Item item)
+    public void AddToCart()
     {
-        ItemsInCart.Add(item);
-        SetTotalMoney(item.GetPrice());
+        ItemsInCart.Add(CurrentSelectedItem);
+        SetTotalMoney(CurrentSelectedItem.GetPrice());
     }
 
-    public void RemoveFromCart(Item item)
+    public void RemoveFromCart()
     {
-        ItemsInCart.Remove(item);
-        SetTotalMoney(-item.GetPrice());
+        ItemsInCart.Remove(CurrentSelectedItem);
+        SetTotalMoney(-CurrentSelectedItem.GetPrice());
     }
 
+    public void CheckOut()
+    {
+        if (Checkout())
+        {
+            foreach (Item item in ItemsInCart)
+            {
+                print(item.name);
+            }
+            ItemsInCart.Clear();
+        }
+        else 
+        {
+            print("no money");
+            // prompt ui to show you have not enough money
+        }
+    }
     public bool Checkout()
     {
         CheckoutEvent.Invoke();

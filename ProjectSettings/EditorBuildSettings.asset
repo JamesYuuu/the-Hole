@@ -20,9 +20,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Environment_Underwater_with_movement.unity
     guid: 038d37359e5de8d4981573beeed6e459
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Environment_Island.unity
     guid: 4ecea6c98ff74d84dabfd027a9ba4996
+  - enabled: 1
+    path: Assets/Scenes/Environment_Island_alpha.unity
+    guid: dc9e7d3dd4df03a48abd555f21e155d6
   - enabled: 1
     path: Assets/Scenes/Environment_stylized_water.unity
     guid: 4ad4973641d562948a6256e830cc2a13

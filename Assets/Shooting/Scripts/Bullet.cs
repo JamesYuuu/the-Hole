@@ -81,11 +81,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {   
-        FreefallAI damageable;
+        FreefallAI damageable = null;
 
         if (hitEverything) 
         {
-            damageable = other.gameObject.GetComponent(typeof(FreefallAI));
+            damageable = other.gameObject.GetComponent<FreefallAI>();
         }
         else
         {
@@ -93,7 +93,7 @@ public class Bullet : MonoBehaviour
             {
                 if (other.CompareTag(t))
                 {
-                    damageable = other.gameObject.GetComponent(typeof(FreefallAI));
+                    damageable = other.gameObject.GetComponent<FreefallAI>();
                 }
             }
         }

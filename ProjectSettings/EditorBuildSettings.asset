@@ -20,12 +20,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Environment_Underwater_with_movement.unity
     guid: 038d37359e5de8d4981573beeed6e459
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Environment_Island.unity
     guid: 4ecea6c98ff74d84dabfd027a9ba4996
   - enabled: 1
+    path: Assets/Scenes/Environment_Island_alpha.unity
+    guid: dc9e7d3dd4df03a48abd555f21e155d6
+  - enabled: 1
     path: Assets/Scenes/Environment_stylized_water.unity
     guid: 4ad4973641d562948a6256e830cc2a13
+  - enabled: 1
+    path: Assets/Scenes/Environement_shooting.unity
+    guid: 0605694608e569549ab0724d0caaee77
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

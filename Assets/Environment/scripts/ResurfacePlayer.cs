@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
-public class GetPlayerToHole : MonoBehaviour
+public class ResurfacePlayer : MonoBehaviour
 {
     public GameObject target1;
     public GameObject target2;
     public GameObject target3;
 
-    public float runningSpeed = 10;
-    public float jumpSpeed = 20;
-    public float fallingSpeed = 20;
+    public float Speed1 = 10;
+    public float Speed2 = 20;
+    public float Speed3 = 20;
+
+    public int shootingSceneNum = 2;
     private float speed;
-    private bool isDiving = false;
+    private int triggerNum = 0;
+    private bool isSurfacing = false;
     private GameObject player;
     private Rigidbody rb;
     private Vector3 targetPosition;
@@ -25,23 +30,25 @@ public class GetPlayerToHole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDiving)
+        if (isSurfacing)
         {
             if (player.transform.position == target1.transform.position)
             {
                 targetPosition = target2.transform.position;
-                speed = jumpSpeed;
+                speed = Speed2;
             }
             else if (player.transform.position == target2.transform.position)
             {
                 targetPosition = target3.transform.position;
-                speed = fallingSpeed;
+                speed = Speed3;
             }
             else if (player.transform.position == target3.transform.position)
             {
-                isDiving = false;
+                SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
+                isSurfacing = false;
                 rb.useGravity = true;
-                speed = runningSpeed;
+                speed = Speed1;
+                triggerNum = 0;
             }
             else
             {
@@ -51,16 +58,24 @@ public class GetPlayerToHole : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (isDiving == false)
+        if (isSurfacing == false)
         {
             player = collision.gameObject;
             if (player.CompareTag("Player"))
             {
-                isDiving = true;
-                speed = runningSpeed;
-                targetPosition = target1.transform.position;
-                rb = player.GetComponent<Rigidbody>();
-                rb.useGravity = false;
+                if (triggerNum == 0)
+                {
+                    triggerNum ++;
+                }
+                else
+                {
+                    isSurfacing = true;
+                    speed = Speed1;
+                    targetPosition = target1.transform.position;
+                    rb = player.GetComponent<Rigidbody>();
+                    rb.useGravity = false;
+                }
+
 
             }
         }

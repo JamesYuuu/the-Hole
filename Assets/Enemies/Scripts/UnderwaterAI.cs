@@ -9,7 +9,7 @@ public class UnderwaterAI : AbstractAI
     [SerializeField] private static bool Debug = false;
     [SerializeField] private GameObject Player;
 
-    public static bool IsHostile = false;
+    public static bool IsHostile = true;
     [SerializeField] private float Speed = 0.005f;
     [SerializeField] private int MinSteps = 500;
     [SerializeField] private int MaxSteps = 1000;
@@ -25,6 +25,8 @@ public class UnderwaterAI : AbstractAI
     private int ReturnRadius = 35;
     private int SpawnBase = 0;
     private int SpawnHeight = 100;
+
+    private bool IsColliding = false;
 
     public override void Start()
     {
@@ -45,7 +47,7 @@ public class UnderwaterAI : AbstractAI
         {
             UpdateDebug();
         }
-        else if (!IsLocationWithinHole(loc))
+        else if (!IsHostile && !IsLocationWithinHole(loc))
         {
             gameObject.transform.Rotate(new(0f, -0.15f, 0f));
         }
@@ -58,6 +60,28 @@ public class UnderwaterAI : AbstractAI
             UpdatePeaceful();
         }
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed;
+        if (IsColliding)
+        {
+            Player_Health healthManager = Player.GetComponent<Player_Health>();
+            healthManager.changeOxygen(-0.05f);
+            print("FUCK YOU");
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IsColliding = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IsColliding = false;
+        }
     }
 
     private void UpdateDebug()

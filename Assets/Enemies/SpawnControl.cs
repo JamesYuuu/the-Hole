@@ -4,20 +4,21 @@ using UnityEngine;
 public class SpawnControl : MonoBehaviour
 {
     private static SpawnControl Instance = null;
+    [SerializeField] private static bool Debug = false;
 
     [SerializeField] private GameObject player;
     [SerializeField] private int PoolSize = 20;
     [SerializeField] private int ActiveSize = 10;
     [SerializeField] private float SpawnDistance = 150f;
     [SerializeField] private float viewDistance = 175f;
-    [SerializeField] private int DespawnTime = 1000;
+    [SerializeField] private int DespawnTime = 100;
 
     /** Spawn volume settings */
     private readonly int SpawnRadius = 33;
-    private readonly int SpawnBase = 0;
-    private readonly int SpawnHeight = 100;
-    private static readonly int FreefallBase = 120;
-    private static readonly int FreefallHeight = 150;
+    private readonly int SpawnBase = -90;
+    private readonly int SpawnHeight = 50;
+    private static readonly int FreefallBase = 90;
+    private static readonly int FreefallHeight = 120;
 
     [SerializeField] private List<GameObject> PooledEnemies = new();
     [SerializeField] private List<GameObject> ActiveEnemies = new();
@@ -28,7 +29,10 @@ public class SpawnControl : MonoBehaviour
 
     public static void ChangeScene()
     {
-        print("[LOG][SC] Changing scenes, saving active fish positions...");
+        if (Debug)
+        {
+            print("[LOG][SC] Changing scenes, saving active fish positions...");
+        }
         IsFreefall = true;
         foreach (GameObject fish in Instance.ActiveEnemies)
         {
@@ -38,7 +42,10 @@ public class SpawnControl : MonoBehaviour
     
     private static void ChangeSceneTransform()
     {
-        print("[LOG][SC] Scene changed. Respawning fish for shooting...");
+        if (Debug)
+        {
+            print("[LOG][SC] Scene changed. Respawning fish for shooting...");
+        }
         for (int i = 0; i < Instance.ActiveSize; i++)
         {
             GameObject fish = Instance.PooledEnemies[i];
@@ -69,7 +76,10 @@ public class SpawnControl : MonoBehaviour
             Instance = this;
             ChangeSceneTransform();
         }
-        print("[LOG][SC] Player at " + player.transform.position.x + "," + player.transform.position.y + "," + player.transform.position.z);
+        if (Debug)
+        {
+            print("[LOG][SC] Player at " + player.transform.position.x + "," + player.transform.position.y + "," + player.transform.position.z);
+        }
     }
 
     void Update()
@@ -106,7 +116,10 @@ public class SpawnControl : MonoBehaviour
 
     private GameObject ActivatePooledEnemy()
     {
-        print("[LOG][SC] Activating pooled enemy...");
+        if (Debug)
+        {
+            print("[LOG][SC] Activating pooled enemy...");
+        }
         int remaining = PooledEnemies.Count;
         if (remaining == 0)
         {
@@ -119,7 +132,10 @@ public class SpawnControl : MonoBehaviour
 
         if (!IsLocationWithinHole(loc))
         {
-            print("[LOG][SC] Transformed enemy location out of spawn volume. Cancelling...");
+            if (Debug)
+            {
+                print("[LOG][SC] Transformed enemy location out of spawn volume. Cancelling...");
+            }
             return null;
         }
 
@@ -130,23 +146,35 @@ public class SpawnControl : MonoBehaviour
         DespawnTimes.Add(pickedEnemy, -1);
         pickedEnemy.SetActive(true);
 
-        print("[LOG][SC] Activated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
+        if (Debug)
+        {
+            print("[LOG][SC] Activated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
+        }
         return pickedEnemy;
     }
 
     private void DeactivatePoolEnemy(GameObject activeEnemy)
     {
-        print("[LOG][SC] Deactivating pooled enemy...");
+        if (Debug)
+        {
+            print("[LOG][SC] Deactivating pooled enemy...");
+        }
         activeEnemy.SetActive(false);
         ActiveEnemies.Remove(activeEnemy);
         DespawnTimes.Remove(activeEnemy);
         PooledEnemies.Add(activeEnemy);
-        print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
+        if (Debug)
+        {
+            print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + ActiveEnemies.Count);
+        }
     }
 
     private void StartDespawnTimer(GameObject activeEnemy)
     {
-        print("[LOG][SC] Pooled enemy out of range. Starting despawn timer...");
+        if (Debug)
+        {
+            print("[LOG][SC] Pooled enemy out of range. Starting despawn timer...");
+        }
         DespawnTimes[activeEnemy] = DespawnTime;
     }
 
@@ -188,7 +216,10 @@ public class SpawnControl : MonoBehaviour
 
         activeEnemy.transform.position = loc;
 
-        print("[LOG][SC] Transformed pooled enemy location: " + locX + "," + locY + "," + locZ);
+        if (Debug)
+        {
+            print("[LOG][SC] Transformed pooled enemy location: " + locX + "," + locY + "," + locZ);
+        }
         return loc;
     }
 
@@ -203,7 +234,10 @@ public class SpawnControl : MonoBehaviour
 
         activeEnemy.transform.forward = forward;
 
-        print("[LOG][SC] Transformed pooled enemy rotation: " + forwardX + "," + forwardZ);
+        if (Debug)
+        {
+            print("[LOG][SC] Transformed pooled enemy rotation: " + forwardX + "," + forwardZ);
+        }
         return forward;
     }
 

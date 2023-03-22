@@ -23,11 +23,11 @@ public class InputManager : MonoBehaviour
     }
 
     private void OnEnable() {
-        playerControls.Enable();    
+        if (playerControls != null) playerControls.Enable();    
     }
 
     private void OnDisable() {
-        playerControls.Disable();
+        if (playerControls != null) playerControls.Disable();
     }
 
     public Vector2 GetCameraDelta() {

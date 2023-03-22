@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player_Health : MonoBehaviour
 {
     public float maxOxygen = 100;
-    public float currenOxygen;
+    public float currentOxygen;
     public Animator animator;
     public float OxygenDecreasePerSecond;
 
@@ -25,7 +25,7 @@ public class Player_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currenOxygen = maxOxygen;
+        currentOxygen = maxOxygen;
         OxygenDecreasePerSecond = 1f;
         drowning = false;
         watch = GameObject.Find("Watch");
@@ -39,14 +39,14 @@ public class Player_Health : MonoBehaviour
         {
             print("Under Water");
 
-            currenOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
+            currentOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
         }
         // Increase Oxygen 2 times when colliding with air
         if (other.gameObject.tag == "air")
         {
             print("Not Under Water");
-            if (currenOxygen < 100)
-                currenOxygen += OxygenDecreasePerSecond * 5 * Time.deltaTime;
+            if (currentOxygen < 100)
+                currentOxygen += OxygenDecreasePerSecond * 5 * Time.deltaTime;
         }
         
     }
@@ -54,21 +54,21 @@ public class Player_Health : MonoBehaviour
     // Call this function to increase/decrease Oxygen
     public void changeOxygen(float val)
     {
-        currenOxygen += val;
+        currentOxygen += val;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Update Wirst Display
-        watch.GetComponent<WatchUIManager>().ChangeScore((int)currenOxygen);
+        //watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
         // print(currenOxygen);
-        drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
-        if (currenOxygen <= 10f)
+        //drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
+        if (currentOxygen <= 10f)
         {
             // Update Drowning Screen
-            drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(currenOxygen);
-            if (currenOxygen < 0f)
+            //drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(currentOxygen);
+            if (currentOxygen < 0f)
             {
                 print("Dead");
                 SceneManager.LoadScene(1);

@@ -56,10 +56,12 @@ public class ResurfacePlayer : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (isSurfacing == false)
         {
+            SpawnControl.ChangeScene();
             player = collision.gameObject;
             if (player.CompareTag("Player"))
             {
@@ -75,8 +77,6 @@ public class ResurfacePlayer : MonoBehaviour
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
                 }
-
-
             }
         }
     }

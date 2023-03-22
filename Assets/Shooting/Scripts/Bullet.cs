@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     private ObjectPool<Bullet> _pool;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _origin = transform.position;

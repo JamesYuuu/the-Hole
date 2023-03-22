@@ -3349,7 +3349,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38294
+  m_Name: pb_Mesh52160
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7241,6 +7241,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 146978417}
     m_Modifications:
+    - target: {fileID: 3730505115782005720, guid: 8d0aae6c9d52f6e479abe23cf80932e6,
+        type: 3}
+      propertyPath: m_Size.y
+<<<<<<< Updated upstream
+      value: 192.18568
+=======
+      value: 161.22864
+>>>>>>> Stashed changes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730505115782005720, guid: 8d0aae6c9d52f6e479abe23cf80932e6,
+        type: 3}
+      propertyPath: m_Center.y
+<<<<<<< Updated upstream
+      value: -96.09284
+=======
+      value: -80.61432
+>>>>>>> Stashed changes
+      objectReference: {fileID: 0}
     - target: {fileID: 3730505115782005721, guid: 8d0aae6c9d52f6e479abe23cf80932e6,
         type: 3}
       propertyPath: m_RootOrder

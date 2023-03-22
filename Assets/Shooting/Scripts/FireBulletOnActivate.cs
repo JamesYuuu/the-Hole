@@ -43,12 +43,12 @@ public class FireBulletOnActivate : MonoBehaviour
         return spawnedBullet.GetComponent<Bullet>();
     }
 
-    void GetBulletFromPool(Bullet bullet) {
+    public void GetBulletFromPool(Bullet bullet) {
         bullet.gameObject.SetActive(true);
         bullet.Init(bulletDamage, spawnPoint.position, spawnPoint.forward, bulletSpeed, maxBulletDist, tagsToHit, this.pool);
     }
 
-    void ReleaseBulletToPool(Bullet bullet) {
+    public void ReleaseBulletToPool(Bullet bullet) {
         bullet.gameObject.SetActive(false);
     }
 

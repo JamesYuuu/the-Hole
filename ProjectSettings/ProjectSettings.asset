@@ -161,9 +161,14 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+<<<<<<< HEAD
   - {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
   - {fileID: -6517218471499782410, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
   - {fileID: -4714059988567951967, guid: f633e6e86ee51b240a73b50e97ffa805, type: 2}
+=======
+  - {fileID: -8196854396901781169, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
+  - {fileID: -772612864154717492, guid: 40bb67f6c9d19447b8278a0b41e3aa11, type: 2}
+>>>>>>> 487f9dd (feat!(shooting): add rigidbody to bullet)
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1

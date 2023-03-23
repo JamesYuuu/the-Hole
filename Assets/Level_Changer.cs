@@ -24,10 +24,10 @@ public class Level_Changer : MonoBehaviour
 
     public void LoadNextLevel() 
     {
-        StartCoroutine(LoadLevel(levelToLoad));
+        StartCoroutine(LoadLevel());
     }
 
-    IEnumerator LoadLevel(string level) 
+    IEnumerator LoadLevel() 
     {
         // TODO: Call this when loading shooting scene
         // SpawnControl.ChangeScene();
@@ -38,6 +38,6 @@ public class Level_Changer : MonoBehaviour
         // Wait
         yield return new WaitForSeconds(transitionTime);
         // Load Scene
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(levelToLoad);
     }
 }

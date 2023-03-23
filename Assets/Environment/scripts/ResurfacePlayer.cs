@@ -59,10 +59,9 @@ public class ResurfacePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        player = collision.gameObject;
         if (isSurfacing == false)
         {
-            SpawnControl.ChangeScene();
-            player = collision.gameObject;
             if (player.CompareTag("Player"))
             {
                 if (triggerNum == 0)
@@ -77,6 +76,13 @@ public class ResurfacePlayer : MonoBehaviour
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
                 }
+            }
+        }
+        else
+        {
+            if (player.CompareTag("Player"))
+            {
+                SpawnControl.LoadFreeFall();
             }
         }
     }

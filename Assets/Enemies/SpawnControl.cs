@@ -15,7 +15,7 @@ public class SpawnControl : MonoBehaviour
 
     /** Spawn volume settings */
     private readonly int SpawnRadius = 33;
-    private readonly int SpawnBase = 0;
+    private readonly int SpawnBase = -90;
     private readonly int SpawnHeight = 50;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
@@ -27,7 +27,7 @@ public class SpawnControl : MonoBehaviour
     private static readonly List<Vector3> TransferActivePosition = new();
     public static bool IsFreefall = false;
 
-    public static void ChangeScene()
+    public static void LoadFreeFall()
     {
         if (Debug)
         {

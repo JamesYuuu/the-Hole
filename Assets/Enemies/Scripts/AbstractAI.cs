@@ -8,10 +8,6 @@ public abstract class AbstractAI : MonoBehaviour
     [SerializeField] private int Reward = 5;
     [SerializeField] protected float Attack = 0.0025f;
 
-    public abstract void Start();
-
-    public abstract void Update();
-
     public void Damage(int damage)
     {
         if (damage >= Health)

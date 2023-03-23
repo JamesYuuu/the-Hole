@@ -28,7 +28,7 @@ public class UnderwaterAI : AbstractAI
 
     private bool IsColliding = false;
 
-    public override void Start()
+    public void Start()
     {
         if (Debug)
         {
@@ -36,7 +36,7 @@ public class UnderwaterAI : AbstractAI
         }
     }
 
-    public override void Update()
+    public void FixedUpdate()
     {
         if (SpawnControl.IsFreefall)
         {

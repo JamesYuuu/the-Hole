@@ -39,7 +39,15 @@ public class SpawnControl : MonoBehaviour
             TransferActivePosition.Add(fish.transform.position);
         }
     }
-    
+    public static void ResetScene()
+    {
+        if (Debug)
+        {
+            print("[LOG][SC] Resetting scene...");
+        }
+        IsFreefall = false;
+    }
+
     private static void ChangeSceneTransform()
     {
         if (Debug)

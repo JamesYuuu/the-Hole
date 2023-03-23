@@ -30,7 +30,10 @@ public class Level_Changer : MonoBehaviour
 
     IEnumerator LoadLevel(int levelIndex) 
     {
+        // TODO: Call this when loading shooting scene
         SpawnControl.ChangeScene();
+        // TODO: Call this when loading underwater scene
+        SpawnControl.ResetScene();
         // Play Animation
         animator.SetTrigger("Fade_Out");
         // Wait

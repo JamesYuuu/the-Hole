@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Ian ShopSystemTest.unity
+    guid: 02dc0129424333f42bf1ae99e7cdf0e4
+  - enabled: 1
     path: Assets/Scenes/Environment_Island_alpha.unity
     guid: dc9e7d3dd4df03a48abd555f21e155d6
   - enabled: 1

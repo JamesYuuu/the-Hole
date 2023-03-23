@@ -99,6 +99,7 @@ namespace Dialog.Scripts
         }
 
         /// <summary>
+        /// deprecated.
         /// Displays the new sum of the cart's cost.
         /// Called by shopmanager when item enters cart
         /// </summary>
@@ -110,6 +111,7 @@ namespace Dialog.Scripts
         }
         
         /// <summary>
+        /// deprecated.
         /// Displays the item's attributes in the shop ui.
         /// Called when an item is picked up by player.
         /// </summary>

@@ -15,7 +15,7 @@ public class SpawnControl : MonoBehaviour
 
     /** Spawn volume settings */
     private readonly int SpawnRadius = 33;
-    private readonly int SpawnBase = -90;
+    private readonly int SpawnBase = 0;
     private readonly int SpawnHeight = 50;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
@@ -34,6 +34,8 @@ public class SpawnControl : MonoBehaviour
             print("[LOG][SC] Changing scenes, saving active fish positions...");
         }
         IsFreefall = true;
+        if (!Instance) return;
+            
         foreach (GameObject fish in Instance.ActiveEnemies)
         {
             TransferActivePosition.Add(fish.transform.position);

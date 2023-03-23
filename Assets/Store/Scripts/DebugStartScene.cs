@@ -11,5 +11,10 @@ using UnityEngine;
 public class DebugStartScene : MonoBehaviour
 {
     public ShopDialogBehaviour sdb;
-    void Start() { sdb.StartDialog(); }
+
+    void Start()
+    {
+        sdb.StartDialog(); 
+        PlayerData.AddMoney(3000);
+    }
 }

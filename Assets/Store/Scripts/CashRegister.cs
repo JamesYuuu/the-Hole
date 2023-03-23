@@ -14,7 +14,7 @@ public class CashRegister : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Item i = other.gameObject.GetComponent<Item>();
-        ShopManager._instance.AddToCart(i);
+        if (i != null) ShopManager._instance.AddToCart(i);
     }
     
     /// <summary>
@@ -24,6 +24,6 @@ public class CashRegister : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Item i = other.gameObject.GetComponent<Item>();
-        ShopManager._instance.RemoveFromCart(i);
+        if (i != null) ShopManager._instance.RemoveFromCart(i);
     }
 }

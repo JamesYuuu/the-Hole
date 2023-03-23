@@ -48,7 +48,7 @@ namespace Dialog.Scripts
             
             if (next)
             {
-                ShowNextSpeech();
+                FinishSpeaking();
                 next = !next;
             }
         }
@@ -61,7 +61,7 @@ namespace Dialog.Scripts
         public void StartDialog()
         {
             displayGroup.SetActive(true); // open dialog panel
-            speeches = dialogParser.ParseTextFile(convoTextFile);
+            speeches = dialogParser.ParseTextFileAsQueue(convoTextFile);
             StartCoroutine(nameof(TypeCurrSpeech));
         }
         
@@ -73,7 +73,7 @@ namespace Dialog.Scripts
         ///
         /// Triggered by Continue input action.
         /// </summary>
-        public void ShowNextSpeech()
+        public void FinishSpeaking()
         {
             if (speeches.Count == 0)
             {

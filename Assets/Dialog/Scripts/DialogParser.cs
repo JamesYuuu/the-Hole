@@ -38,7 +38,7 @@ namespace Dialog.Scripts
         /// </summary>
         /// <param name="source">The text file.</param>
         /// <returns>A Queue of (Speed, speech) tuples.</returns>
-        public Queue<(TextSpeed speed, string speech)> ParseTextFile(TextAsset source)
+        public Queue<(TextSpeed speed, string speech)> ParseTextFileAsQueue(TextAsset source)
         {
             var result = new Queue<(TextSpeed speed, string speech)>();
             
@@ -63,6 +63,12 @@ namespace Dialog.Scripts
                 result.Enqueue((spd, spchTxt));
             }
             return result;
+        }
+
+        public List<(TextSpeed speed, string speech)> ParseTextFileAsList(TextAsset source)
+        {
+            return new List<(TextSpeed speed, string speech)>(
+                ParseTextFileAsQueue(source));
         }
     }
 }

@@ -373,7 +373,6 @@ Transform:
   - {fileID: 543450653188093236}
   - {fileID: 243870858}
   - {fileID: 1665869341}
-  - {fileID: 486212147}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -723,9 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Torch
+  price: 20
+  description: I heard that fish are attracted to this light.
 --- !u!65 &243870862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1001,7 +1000,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 402303068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &402303068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,12 +1970,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 158720551}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7615541c152a48243bea99a3904b15de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615541c152a48243bea99a3904b15de,
         type: 3}
@@ -2043,12 +2054,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ac14ecea57234bf4a90555d9e52394f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7615541c152a48243bea99a3904b15de, type: 3}
---- !u!4 &486212147 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7615541c152a48243bea99a3904b15de,
-    type: 3}
-  m_PrefabInstance: {fileID: 486212146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &486212148 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7615541c152a48243bea99a3904b15de,
@@ -2258,7 +2263,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632035225
 GameObject:
@@ -3272,7 +3277,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -3438,9 +3443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Diving Equipment
+  price: 1000
+  description: We haven't actually thought of a use for this item.
 --- !u!1 &725940067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,8 +3696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: O2 Tank
   price: 50
-  description: (Single Use) This is the finest oxygen in all of the seorim empire.
-    I use it to breathe when my friend farts.
+  description: (Single Dive) Doubles your oxygen level. This is the finest oxygen
+    in all of the seorim empire. I use it when my friend farts.
 --- !u!4 &752725860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a1a532394530364598ff11ee27631dc,
@@ -4692,15 +4697,15 @@ MonoBehaviour:
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
   dialogParser: {fileID: 1119341252}
-  greetingTextFile: {fileID: 0}
-  farewellTextFile: {fileID: 0}
-  UiPanelsTalking: {fileID: 0}
-  UiPanelsShopInfo: {fileID: 0}
+  greetingTextFile: {fileID: 4900000, guid: 1dc9d10993e802244838b5f9982d9a2c, type: 3}
+  farewellTextFile: {fileID: 4900000, guid: e6344997b320d20478d4b8d9905fc7aa, type: 3}
+  UiPanelsTalking: {fileID: 1229037669}
+  UiPanelsShopInfo: {fileID: 1525217973}
   itemNameDisplay: {fileID: 897295433}
   priceDisplay: {fileID: 144352037}
   descDisplay: {fileID: 680554469}
-  cashDisplay: {fileID: 0}
-  cartTotalDisplay: {fileID: 0}
+  cashDisplay: {fileID: 1587245749}
+  cartTotalDisplay: {fileID: 419756844}
   EnableGrab:
     m_PersistentCalls:
       m_Calls: []
@@ -4716,7 +4721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sdb: {fileID: 0}
+  sdb: {fileID: 1119341249}
 --- !u!4 &1119341251
 Transform:
   m_ObjectHideFlags: 0
@@ -4730,7 +4735,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1119341252
 MonoBehaviour:
@@ -5885,7 +5890,7 @@ Transform:
   m_Children:
   - {fileID: 1418859567}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 153.35, z: 0}
 --- !u!1 &1525217973
 GameObject:
@@ -6198,9 +6203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Diving Mask
+  price: 300
+  description: See further with this anti-fog diving mask!
 --- !u!1 &1587245747
 GameObject:
   m_ObjectHideFlags: 0
@@ -6934,9 +6939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Fins
+  price: 200
+  description: Swim 50% faster with these professional fins!
 --- !u!1 &1682863145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7079,7 +7084,7 @@ PrefabInstance:
     - target: {fileID: 2864652124188253222, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2864652124188253222, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
@@ -7832,9 +7837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: White Monster Energy
+  price: 100
+  description: This energy drink makes you swim super fast for 10 seconds!
 --- !u!65 &1902409379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8031,9 +8036,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Monster Energy Drink
+  price: 50
+  description: This energy drink makes you swim quickly for 5 seconds!
 --- !u!1 &1996682499
 GameObject:
   m_ObjectHideFlags: 0
@@ -8044,7 +8049,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1996682501}
   - component: {fileID: 1996682500}
-  - component: {fileID: 1996682502}
   m_Layer: 0
   m_Name: ShopManager
   m_TagString: Untagged
@@ -8078,21 +8082,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1996682502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996682499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sdb: {fileID: 0}
 --- !u!1 &2039753192
 GameObject:
   m_ObjectHideFlags: 0
@@ -8350,9 +8341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Shotgun
+  price: 500
+  description: Upgrade your gun to hit more fish at one time!
 --- !u!114 &2127403834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8747,9 +8738,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  price: 0
-  description: 
+  displayName: Diving Helmet
+  price: 300
+  description: Prevent fishes from getting into your head and living in your nightmares.
 --- !u!23 &2624100564275035688
 MeshRenderer:
   m_ObjectHideFlags: 0

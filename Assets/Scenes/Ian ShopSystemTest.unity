@@ -7148,6 +7148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2864652124188253241, guid: 51ad18ca7d1e707409bc323bb4d92d25,
+        type: 3}
+      propertyPath: levelToLoad
+      value: Environment_Island_alpha
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ad18ca7d1e707409bc323bb4d92d25, type: 3}
 --- !u!114 &1683504237 stripped

@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Level_Changer : MonoBehaviour
 {
     public Animator animator;
-    public int levelToLoad;
+    public string levelToLoad;
     public float transitionTime = 1f;
     // Start is called before the first frame update
     void Start()
@@ -25,20 +24,20 @@ public class Level_Changer : MonoBehaviour
 
     public void LoadNextLevel() 
     {
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(levelToLoad));
     }
 
-    IEnumerator LoadLevel(int levelIndex) 
+    IEnumerator LoadLevel(string level) 
     {
         // TODO: Call this when loading shooting scene
-        SpawnControl.ChangeScene();
+        // SpawnControl.ChangeScene();
         // TODO: Call this when loading underwater scene
         SpawnControl.ResetScene();
         // Play Animation
         animator.SetTrigger("Fade_Out");
         // Wait
         yield return new WaitForSeconds(transitionTime);
-        // Load Scen
-        SceneManager.LoadScene(levelIndex);
+        // Load Scene
+        SceneManager.LoadScene(level);
     }
 }

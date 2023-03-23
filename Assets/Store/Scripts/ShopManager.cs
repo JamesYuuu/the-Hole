@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Implements the IShop interface, letting the player
 /// buy items and talk with the shopkeeper
-/// TODO: send james the interaction sequence
+/// TODO: decouple ui and shop manager operations
 /// </summary>
 public class ShopManager : MonoBehaviour, IShop
 {
@@ -34,6 +34,7 @@ public class ShopManager : MonoBehaviour, IShop
     private void Awake()
     {
         _instance = this;
+        PlayerData.AddMoney(2340);
         SetPlayerMoney();
         SetTotalMoney(0);
         //AddCart.onClick.AddListener(AddToCart);
@@ -49,7 +50,7 @@ public class ShopManager : MonoBehaviour, IShop
     {
         ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = GrabbedItem.GetDescription();
         ShopItemPricePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetPrice().ToString() + 'G';
-        ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.name;
+        ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetName();
         CurrentSelectedItem = GrabbedItem;
     }
 
@@ -73,12 +74,13 @@ public class ShopManager : MonoBehaviour, IShop
             PlayerData.RemoveMoney(TotalPrice);
             CheckoutEvent.Invoke();
             ItemsInCart.ForEach(item => upgrade(item));
+            SetTotalMoney(0);
+            SetPlayerMoney();
             ItemsInCart.Clear();
         }
         else
         {
             // prompt ui to show you have not enough money
-            
         }
     }
 

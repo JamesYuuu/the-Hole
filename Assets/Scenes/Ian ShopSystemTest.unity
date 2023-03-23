@@ -1001,13 +1001,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1683504237}
+        m_TargetAssemblyTypeName: Level_Changer, Assembly-CSharp
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1942,10 +1942,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 0a2ce7cc-2b0e-4b02-b045-c48e4a7cddbf
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -2819,10 +2819,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: fdef2f4e-9243-455a-b9b6-b86338a893af
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -7025,7 +7025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1682863148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1996682502}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Checkout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1682863148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7079,7 +7091,7 @@ PrefabInstance:
     - target: {fileID: 2864652124188253220, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2864652124188253222, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
@@ -7138,6 +7150,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ad18ca7d1e707409bc323bb4d92d25, type: 3}
+--- !u!114 &1683504237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2864652124188253241, guid: 51ad18ca7d1e707409bc323bb4d92d25,
+    type: 3}
+  m_PrefabInstance: {fileID: 1683504236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a8bcae4d2a110448137e17ce6f99af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691427986
 GameObject:
   m_ObjectHideFlags: 0
@@ -8048,7 +8072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1996682501}
-  - component: {fileID: 1996682500}
+  - component: {fileID: 1996682502}
   m_Layer: 0
   m_Name: ShopManager
   m_TagString: Untagged
@@ -8056,19 +8080,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1996682500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996682499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91195e4cd66db094b807b560c8c21b6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Items: []
 --- !u!4 &1996682501
 Transform:
   m_ObjectHideFlags: 0
@@ -8084,6 +8095,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1996682502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996682499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b41e61603b3264997b602acbed67ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheckoutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogBehaviour: {fileID: 1119341249}
+  ItemsForSale: []
+  ItemsInCart: []
+  ShopItemDescriptionPanel: {fileID: 680554467}
+  ShopItemPricePanel: {fileID: 144352035}
+  ShopItemNamePanel: {fileID: 897295431}
+  ShopCartTotalPanel: {fileID: 419756842}
+  ShopPlayerMoneyPanel: {fileID: 1587245747}
+  AddCart: {fileID: 1038542638}
+  RemoveCart: {fileID: 2039753194}
+  CashRegister: {fileID: 1682863147}
+  Leave: {fileID: 402303067}
 --- !u!1 &2039753192
 GameObject:
   m_ObjectHideFlags: 0

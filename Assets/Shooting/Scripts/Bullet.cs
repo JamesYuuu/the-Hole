@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
     public int damage = 1;
@@ -13,11 +14,13 @@ public class Bullet : MonoBehaviour
     
     public float travelSpeed;
 
+    private Rigidbody _rb;
+
     public bool ignoreIFrames = false;
 
     private Vector3 _direction = Vector3.forward;
     private Vector3 _normDirection;
-
+    private Vector3 _velocity = Vector3.forward;
     private Vector3 _origin;
 
     private Vector3 _maxTravelPoint;
@@ -28,15 +31,16 @@ public class Bullet : MonoBehaviour
     private ObjectPool<Bullet> _pool;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         _origin = transform.position;
         _normDirection = Vector3.Normalize(_direction);
         _maxTravelPoint = _origin + _normDirection * maxDistance;
         hitEverything = tagsToHit.Length == 0;
     }
 
-    public void Init(int damage, Vector3 startPosition, Vector3 direction, float travelSpeed, float maxDistance, string[] tagsToHit, ObjectPool<Bullet> objectPool = null)
+    public void Init(int damage, Vector3 startPosition, Vector3 direction, float travelSpeed, float maxDistance, string[] tagsToHit, ObjectPool<Bullet> objectPool)
     {
         _origin = startPosition;
         transform.position = startPosition;
@@ -52,6 +56,10 @@ public class Bullet : MonoBehaviour
 
         this.travelSpeed = travelSpeed;
         
+        // set bullet velocity
+        _velocity = _normDirection * this.travelSpeed;
+        _rb.velocity = _velocity;
+
         this.maxDistance = maxDistance;
         
         // recalculate max travel point
@@ -66,14 +74,17 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move bullet in direction of travel
-        transform.position += travelSpeed * Time.deltaTime * _normDirection;
-        
         // if bullet has reached its maximum travel point, destroy it
         if (Vector3.Distance(_origin, _maxTravelPoint) <= Vector3.Distance(_origin, transform.position))
         {
             _pool.Release(this);
         }
+    }
+
+    void FixedUpdate() 
+    {
+        // move bullet in direction of travel
+        _rb.velocity = _velocity;
     }
 
     private void OnDrawGizmos()
@@ -82,13 +93,18 @@ public class Bullet : MonoBehaviour
         Debug.DrawLine(position, position + _normDirection * 10, Color.magenta);
     }
 
+    void OnDisable() 
+    {
+        _rb.velocity = Vector3.zero;    
+    }
+
     void OnTriggerEnter(Collider other)
     {   
-        FreefallAI damageable = null;
+        AbstractAI damageable = null;
 
         if (hitEverything) 
         {
-            damageable = other.gameObject.GetComponent<FreefallAI>();
+            damageable = other.gameObject.GetComponent<AbstractAI>();
         }
         else
         {
@@ -96,7 +112,7 @@ public class Bullet : MonoBehaviour
             {
                 if (other.CompareTag(t))
                 {
-                    damageable = other.gameObject.GetComponent<FreefallAI>();
+                    damageable = other.gameObject.GetComponent<AbstractAI>();
                 }
             }
         }

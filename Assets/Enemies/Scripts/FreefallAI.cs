@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class FreefallAI : AbstractAI
 {
-    private float FallSpeed = 0.005f;
+    private float FallSpeed = 0.05f;
 
-    public override void Start()
-    {
-
-    }
-
-    public override void Update()
+    public void FixedUpdate()
     {
         if (!SpawnControl.IsFreefall)
         {

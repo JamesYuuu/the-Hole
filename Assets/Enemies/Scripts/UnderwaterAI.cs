@@ -9,7 +9,7 @@ public class UnderwaterAI : AbstractAI
     [SerializeField] private static bool Debug = false;
     [SerializeField] private GameObject Player;
 
-    public static bool IsHostile = true;
+    public static bool IsHostile = false;
     [SerializeField] private float Speed = 0.005f;
     [SerializeField] private int MinSteps = 500;
     [SerializeField] private int MaxSteps = 1000;
@@ -22,9 +22,9 @@ public class UnderwaterAI : AbstractAI
     private int Turns = 0;
     private Vector3 TurnAmount = new(0, 0, 0);
 
-    private int ReturnRadius = 35;
-    private int SpawnBase = 0;
-    private int SpawnHeight = 100;
+    private readonly int ReturnRadius = 33;
+    private readonly int SpawnBase = -90;
+    private readonly int SpawnHeight = 50;
 
     private bool IsColliding = false;
 
@@ -60,25 +60,24 @@ public class UnderwaterAI : AbstractAI
             UpdatePeaceful();
         }
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed;
-        if (IsColliding)
+        if (IsColliding && IsHostile)
         {
             Player_Health healthManager = Player.GetComponent<Player_Health>();
-            healthManager.changeOxygen(-0.05f);
-            print("FUCK YOU");
+            healthManager.changeOxygen(-Attack);
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.Equals(Player))
         {
             IsColliding = true;
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnTriggerExit(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.Equals(Player))
         {
             IsColliding = false;
         }

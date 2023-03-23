@@ -6,6 +6,7 @@ public abstract class AbstractAI : MonoBehaviour
 {
     [SerializeField] private int Health = 20;
     [SerializeField] private int Reward = 5;
+    [SerializeField] protected float Attack = 0.0025f;
 
     public abstract void Start();
 

@@ -48,7 +48,7 @@ public static class PlayerData
     /// <summary>
     /// Treasure item. Given to player upon pickup.
     /// </summary>
-    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1, null);
+    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1);
     // C# dictionary methods:
     // .Add(Item i, int qty),
     // .ContainsKey(Item i),
@@ -57,9 +57,8 @@ public static class PlayerData
     // .Remove(Item i),
     // .Inventory[key] // to get the value
 
-    public static void AddTreasure(GameObject treasureObject)
+    public static void AddTreasure()
     {
-        Treasure.item = treasureObject;
         AddItem(Treasure, 1);
         UnderwaterAI.IsHostile = true;
     }

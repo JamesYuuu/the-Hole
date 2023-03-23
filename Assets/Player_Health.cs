@@ -40,6 +40,7 @@ public class Player_Health : MonoBehaviour
             print("Under Water");
 
             currentOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
+            print(currentOxygen);
         }
         // Increase Oxygen 2 times when colliding with air
         if (other.gameObject.tag == "air")
@@ -61,9 +62,10 @@ public class Player_Health : MonoBehaviour
     void Update()
     {
         // Update Wirst Display
-        //watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
+        watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
         // print(currenOxygen);
-        //drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
+        print(drowning_Screen);
+        drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
         if (currentOxygen <= 10f)
         {
             // Update Drowning Screen

@@ -2511,7 +2511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOxygen: 100
-  currentOxygen: 20
+  currentOxygen: 100
   animator: {fileID: 0}
   OxygenDecreasePerSecond: 1
   watch: {fileID: 1755843175}
@@ -2538,7 +2538,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894718734}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2663,6 +2663,7 @@ GameObject:
   - component: {fileID: 905961010}
   - component: {fileID: 905961009}
   - component: {fileID: 905961008}
+  - component: {fileID: 905961012}
   m_Layer: 0
   m_Name: Attachpoint
   m_TagString: Untagged
@@ -2827,6 +2828,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905961006}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &905961012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905961006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa3184fe2d03ea499e605468aaf910a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &910439372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,7 +3171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh158574
+  m_Name: pb_Mesh31616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

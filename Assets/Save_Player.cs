@@ -6,6 +6,7 @@ public class Save_Player : MonoBehaviour
 {
     private void Start()
     {
+
         DontDestroyOnLoad(gameObject);
     }
 }

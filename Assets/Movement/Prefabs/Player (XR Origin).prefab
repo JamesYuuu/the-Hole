@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 7631990905856998634}
   - component: {fileID: 7631990905856998635}
   - component: {fileID: -4142849843579120790}
+  - component: {fileID: 6880297067089660307}
   m_Layer: 2
   m_Name: Player (XR Origin)
   m_TagString: Player
@@ -436,6 +437,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded26f795aec94bd0b1a0e81ea4d5736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6880297067089660307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631990904182334717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc20fe2eb123a41af9d2a13c330aeecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftGrapple: {fileID: 7631990904454797357}
+  rightGrapple: {fileID: 7631990903890648811}
 --- !u!1 &7631990904378478692
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,10 +653,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: a2b81119-31fc-4549-94f3-e42d834bc3a6
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []

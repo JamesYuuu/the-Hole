@@ -40,7 +40,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     private Vector3 reelDir;
     private Vector3 hookPos;
 
-    enum Hand {Left, Right}
+    public enum Hand {Left, Right}
     [Header("Left/Right Hand")]
     [SerializeField]
     private Hand hand;

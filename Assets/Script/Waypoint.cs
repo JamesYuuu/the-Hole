@@ -15,7 +15,7 @@ public class Waypoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var canvas = GameObject.Find("Waypoint_UI").transform;
+        var canvas = GameObject.Find("Waypoints").transform;
         waypoint = Instantiate(prefab, canvas);
         distance = waypoint.GetComponentInChildren<Text>();
         print(distance);
@@ -30,6 +30,8 @@ public class Waypoint : MonoBehaviour
         waypoint.position = screenPos;
 
         waypoint.gameObject.SetActive(screenPos.z > 0);
+
+        print(distance);
         
         distance.text = Vector3.Distance(player.position, transform.position).ToString("0") + " m";
     }

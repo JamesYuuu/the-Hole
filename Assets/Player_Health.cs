@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player_Health : MonoBehaviour
 {
-    public float maxOxygen = 100;
+    public float maxOxygen;
     public float currentOxygen;
     public Animator animator;
     public float OxygenDecreasePerSecond;
@@ -40,8 +40,9 @@ public class Player_Health : MonoBehaviour
             print("Under Water");
 
             currentOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
+            // print(currentOxygen);
         }
-        // Increase Oxygen 2 times when colliding with air
+        // Increase Oxygen 5 times when colliding with air
         if (other.gameObject.tag == "air")
         {
             print("Not Under Water");
@@ -61,13 +62,13 @@ public class Player_Health : MonoBehaviour
     void Update()
     {
         // Update Wirst Display
-        //watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
-        // print(currenOxygen);
-        //drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
+        watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
+        print(currentOxygen);
+        drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
         if (currentOxygen <= 10f)
         {
             // Update Drowning Screen
-            //drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(currentOxygen);
+            drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(currentOxygen);
             if (currentOxygen < 0f)
             {
                 print("Dead");

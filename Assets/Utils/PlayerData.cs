@@ -79,7 +79,7 @@ public static class PlayerData
     /// <param name="item">Item to be added to the player's inventory.</param>
     /// <param name="amount">Amount of the item to be added to the player's inventory.</param>
     /// <returns>Whether the item has been added successfully.</returns>
-    private static bool AddItem(Item item, int amount)
+    public static bool AddItem(Item item, int amount)
     {
         int currAmount = 0;
         if (Inventory.ContainsKey(item))
@@ -102,7 +102,7 @@ public static class PlayerData
     /// <param name="item">Item to be removed from the player's inventory.</param>
     /// <param name="amount">Amount of the item to be removed from the player's inventory.</param>
     /// <returns>Whether the item has been removed successfully.</returns>
-    private static bool RemoveItem(Item item, int amount)
+    public static bool RemoveItem(Item item, int amount)
     {
         if (!Inventory.ContainsKey(item))
         {

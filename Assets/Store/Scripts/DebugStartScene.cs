@@ -16,5 +16,6 @@ public class DebugStartScene : MonoBehaviour
     {
         sdb.StartDialog(); 
         PlayerData.AddMoney(3000);
+       // PlayerData.AddItem()
     }
 }

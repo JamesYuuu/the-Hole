@@ -3349,7 +3349,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh620944
+  m_Name: pb_Mesh48618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7320,6 +7320,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UnderWaterEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730505115782005722, guid: 8d0aae6c9d52f6e479abe23cf80932e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d0aae6c9d52f6e479abe23cf80932e6, type: 3}

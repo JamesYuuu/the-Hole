@@ -4841,6 +4841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterSubs
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11f173c04c6977140b41cc7d33c86c5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f173c04c6977140b41cc7d33c86c5d, type: 3}
 --- !u!4 &1155698439 stripped
@@ -5502,6 +5507,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SodaCan
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d6ca8dd8380213544985c7268731d4dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1403689302663331686, guid: d6ca8dd8380213544985c7268731d4dd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5818,6 +5828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterSubsZero
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63ff56c1670c7ae40a7cdb921a64f3fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ff56c1670c7ae40a7cdb921a64f3fa, type: 3}

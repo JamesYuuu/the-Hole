@@ -30,30 +30,14 @@ public class ResurfacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSurfacing)
+        if (isSurfacing && UnderwaterAI.IsHostile == true)
         {
-            if (player.transform.position == target1.transform.position)
+            if (UnderwaterAI.IsHostile == true)
             {
-                targetPosition = target2.transform.position;
-                speed = Speed2;
+                teleport_to_shooting();
             }
-            else if (player.transform.position == target2.transform.position)
-            {
-                targetPosition = target3.transform.position;
-                speed = Speed3;
-            }
-            else if (player.transform.position == target3.transform.position)
-            {
-                SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
-                isSurfacing = false;
-                rb.useGravity = true;
-                speed = Speed1;
-                triggerNum = 0;
-            }
-            else
-            {
-                player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
-            }
+                // resupply oxygen
+
         }
     }
 
@@ -68,13 +52,18 @@ public class ResurfacePlayer : MonoBehaviour
                 {
                     triggerNum ++;
                 }
-                else
+                else if(UnderwaterAI.IsHostile == true)
                 {
                     isSurfacing = true;
                     speed = Speed1;
                     targetPosition = target1.transform.position;
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
+                }
+                else
+                {
+                    triggerNum = 0;
+                    // resupply oxygen
                 }
             }
         }
@@ -84,6 +73,32 @@ public class ResurfacePlayer : MonoBehaviour
             {
                 SpawnControl.LoadFreeFall();
             }
+        }
+    }
+
+    void teleport_to_shooting()
+    {
+        if (player.transform.position == target1.transform.position)
+        {
+            targetPosition = target2.transform.position;
+            speed = Speed2;
+        }
+        else if (player.transform.position == target2.transform.position)
+        {
+            targetPosition = target3.transform.position;
+            speed = Speed3;
+        }
+        else if (player.transform.position == target3.transform.position)
+        {
+            SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
+            isSurfacing = false;
+            rb.useGravity = true;
+            speed = Speed1;
+            triggerNum = 0;
+        }
+        else
+        {
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
         }
     }
 }

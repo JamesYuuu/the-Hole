@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public interface IGrappleable
 {
@@ -21,6 +22,14 @@ public class Grappleable : MonoBehaviour, IGrappleable
     public Transform pointer;
     public GameObject targetPointPrefab;
     public Rigidbody affectedRigidbody;
+
+    [Header("Haptics")]
+    public XRBaseController xrController;
+    [Range(0,1)]
+    public float shootVibrationAmplitude = 0.3f;
+    public float shootVibrationDuration = 0.05f;
+    public float reelVibrationAmplitude = 0.1f;
+    public float reelVibrationSpeed = 2;
     
     [Header("Variables")]
     public float range = 30f;
@@ -102,6 +111,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
                 hookPos = pointer.position;
                 break;
             case GrappleState.Shooting:
+                xrController.SendHapticImpulse(shootVibrationAmplitude, shootVibrationAmplitude);
                 hookPos = pointer.position;
                 break;
             case GrappleState.Reeling:
@@ -135,6 +145,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     void ReelHook() {
         if (!checkForShoot()) ChangeState(GrappleState.Aiming);
+        if (affectedRigidbody.velocity.magnitude > reelVibrationSpeed) xrController.SendHapticImpulse(reelVibrationAmplitude, 0.1f);
         reelDir = Vector3.Normalize(targetPos - pointer.position);
         affectedRigidbody.AddForce(reelDir * reelSpeed);
     }
@@ -174,6 +185,12 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
         // Set the positions in the Line Renderer Component
         lineRenderer.SetPositions(lineVertices);
+    }
+
+    public void SetValues(float range, float shootSpeed, float reelSpeed) {
+        this.range = range;
+        this.shootSpeed = shootSpeed;
+        this.reelSpeed = reelSpeed;
     }
 
     void OnDisable() {

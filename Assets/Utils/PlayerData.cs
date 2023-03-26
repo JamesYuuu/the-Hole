@@ -15,6 +15,24 @@ public static class PlayerData
     public static Dictionary<Item, int> Inventory { get; private set; } = new();
     private static readonly Dictionary<Item, int> InventoryMax = new();
 
+    private static Dictionary<string, bool> ItemsForsale = new()
+    {
+        {"Shotgun", true},
+        {"O2 Tank", true},
+        {"Diving Mask", true},
+        {"Monster Energy Drink", true},
+        {"Diving Equipment", true},
+        {"Diving Helmet", true},
+        {"Fins", true},
+    };
+
+    public static bool LeftHandGrapple = false;
+    public static float GrappingHookSpeed = 50.0f;
+    public static float Oxygen = 100;
+
+    public static bool IsEnergyDrinkBought = false;
+    public static bool IsO2TankBought = false;
+
     // C# Dictionary == Java's HashMap
     // an element can be (Item = SodaCan, quantity = 3)
     // we need a way to limit some items to be only bought once
@@ -124,5 +142,25 @@ public static class PlayerData
     }
     #endregion
 
+    #region ShopItems
+    public static bool IsItemForSale(string itemName)
+    {
+        return ItemsForsale[itemName];
+    }
+    public static void RemoveItemForSale(string itemName)
+    {
+        ItemsForsale[itemName] = false;
+    }
 
+    public static void AddOxygen(int amount)
+    {
+        Oxygen += amount;
+    }
+
+    public static void AddGrappingSpeed(float amount)
+    {
+        GrappingHookSpeed += amount;
+    }
+
+    #endregion
 }

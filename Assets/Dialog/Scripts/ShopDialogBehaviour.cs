@@ -56,7 +56,7 @@ namespace Dialog.Scripts
             farewells = dialogParser.ParseTextFileAsList(farewellTextFile);
             
             // testing, remove for production
-            ShowShopInterface();
+            // ShowShopInterface();
         }
 
         // only for debugging test

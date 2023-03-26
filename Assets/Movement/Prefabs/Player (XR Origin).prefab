@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7631990903890648809}
   - component: {fileID: 7631990903890648811}
   - component: {fileID: 7631990903890648812}
-  - component: {fileID: 7631990903890648813}
   m_Layer: 2
   m_Name: Grappling HookR
   m_TagString: Untagged
@@ -50,6 +49,11 @@ MonoBehaviour:
   targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   affectedRigidbody: {fileID: 7631990904182334706}
+  xrController: {fileID: 7631990905041024445}
+  shootVibrationAmplitude: 0.3
+  shootVibrationDuration: 0.05
+  reelVibrationAmplitude: 0.1
+  reelVibrationSpeed: 2
   range: 40
   shootSpeed: 25
   reelSpeed: 40
@@ -156,20 +160,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &7631990903890648813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631990903890648340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 171359aa7ba96453d818e7d7f2783b0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensity: 0.5
-  duration: 2
 --- !u!1 &7631990904029706036
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,9 +732,9 @@ MonoBehaviour:
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
   m_AllowHoverAudioWhileSelecting: 1
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.5
+  m_HapticSelectEnterDuration: 0.05
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -752,8 +742,8 @@ MonoBehaviour:
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
   m_PlayHapticsOnHoverEntered: 0
-  m_HapticHoverEnterIntensity: 0
-  m_HapticHoverEnterDuration: 0
+  m_HapticHoverEnterIntensity: 0.2
+  m_HapticHoverEnterDuration: 0.1
   m_PlayHapticsOnHoverExited: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
@@ -823,6 +813,11 @@ MonoBehaviour:
   targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   affectedRigidbody: {fileID: 7631990904182334706}
+  xrController: {fileID: 7631990904378478694}
+  shootVibrationAmplitude: 0.3
+  shootVibrationDuration: 0.05
+  reelVibrationAmplitude: 0.1
+  reelVibrationSpeed: 2
   range: 40
   shootSpeed: 25
   reelSpeed: 40
@@ -1541,9 +1536,9 @@ MonoBehaviour:
   m_PlayAudioClipOnHoverCanceled: 0
   m_AudioClipForOnHoverCanceled: {fileID: 0}
   m_AllowHoverAudioWhileSelecting: 1
-  m_PlayHapticsOnSelectEntered: 0
-  m_HapticSelectEnterIntensity: 0
-  m_HapticSelectEnterDuration: 0
+  m_PlayHapticsOnSelectEntered: 1
+  m_HapticSelectEnterIntensity: 0.5
+  m_HapticSelectEnterDuration: 0.05
   m_PlayHapticsOnSelectExited: 0
   m_HapticSelectExitIntensity: 0
   m_HapticSelectExitDuration: 0
@@ -1551,8 +1546,8 @@ MonoBehaviour:
   m_HapticSelectCancelIntensity: 0
   m_HapticSelectCancelDuration: 0
   m_PlayHapticsOnHoverEntered: 0
-  m_HapticHoverEnterIntensity: 0
-  m_HapticHoverEnterDuration: 0
+  m_HapticHoverEnterIntensity: 0.2
+  m_HapticHoverEnterDuration: 0.1
   m_PlayHapticsOnHoverExited: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0

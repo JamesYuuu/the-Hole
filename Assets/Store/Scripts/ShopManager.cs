@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// Implements the IShop interface, letting the player
@@ -18,13 +19,16 @@ public class ShopManager : MonoBehaviour, IShop
 
     // can use PlayerData.Money, .AddMoney() and .RemoveMoney() for money operations.
     [SerializeField] private List<Item> ItemsForSale = new List<Item>();
+
     [SerializeField] private List<Item> ItemsInCart = new List<Item>();
 
     // UI elements
     [SerializeField] private GameObject ShopItemDescriptionPanel, ShopItemPricePanel, ShopItemNamePanel;
     [SerializeField] private GameObject ShopCartTotalPanel, ShopPlayerMoneyPanel;
 
-    [SerializeField] private Button AddCart,RemoveCart,CashRegister,Leave;
+    [SerializeField] private GameObject ItemInfo, CartTotal, PlayerCash, CheckoutPanel, LeftHandController, RightHandController;
+
+    [SerializeField] private Button CashRegister,Leave;
 
     public static ShopManager _instance;
     private int TotalPrice, PlayerMoney;
@@ -34,20 +38,41 @@ public class ShopManager : MonoBehaviour, IShop
     private void Awake()
     {
         _instance = this;
-        PlayerData.AddMoney(2340);
-        SetPlayerMoney();
-        SetTotalMoney(0);
-        //AddCart.onClick.AddListener(AddToCart);
-        //RemoveCart.onClick.AddListener(RemoveFromCart);
         CashRegister.onClick.AddListener(Checkout);
+        ItemsForSale.ForEach(item => SetActive(item));
+    }
+
+    public void SetActive(Item item)
+    {
+        if (PlayerData.IsItemForSale(item.GetName()))
+        {
+            item.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
     /// Refer to IShop.cs for all function descriptions
     /// </summary>
 
+    public void EnableGrab()
+    {
+        Invoke("EnableGrabbing", 3f);
+    }   
+    
+    private void EnableGrabbing()
+    {
+        CartTotal.SetActive(true);
+        PlayerCash.SetActive(true);
+        CheckoutPanel.SetActive(true);
+        SetPlayerMoney();
+        SetTotalMoney(0);
+        LeftHandController.GetComponent<XRRayInteractor>().enabled=true;
+        RightHandController.GetComponent<XRRayInteractor>().enabled=true;
+    }
+
     public void ShowPanels(Item GrabbedItem)
     {
+        ItemInfo.SetActive(true);
         ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = GrabbedItem.GetDescription();
         ShopItemPricePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetPrice().ToString() + 'G';
         ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetName();
@@ -74,19 +99,23 @@ public class ShopManager : MonoBehaviour, IShop
             PlayerData.RemoveMoney(TotalPrice);
             CheckoutEvent.Invoke();
             ItemsInCart.ForEach(item => upgrade(item));
-            SetTotalMoney(0);
-            SetPlayerMoney();
             ItemsInCart.Clear();
+            SetTotalMoney(-TotalPrice);
+            SetPlayerMoney();
         }
         else
         {
-            // prompt ui to show you have not enough money
+            ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = "Sorry, you don't have enough money!";
         }
     }
 
     public void upgrade(Item item)
     {
-        
+        item.gameObject.SetActive(false);
+        if (item.GetName()!="Monster Energy Drink" || item.GetName()!="O2 Tank")
+        {
+            PlayerData.RemoveItemForSale(item.GetName());
+        }
     }
     public void SetPlayerMoney()
     {

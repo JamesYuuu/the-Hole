@@ -551,6 +551,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torchlight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b8d69dd6ae02d545aa3c9e8ffebfefb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b8d69dd6ae02d545aa3c9e8ffebfefb, type: 3}
 --- !u!4 &243870858 stripped
@@ -5497,6 +5502,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SodaCan
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d6ca8dd8380213544985c7268731d4dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1403689302663331686, guid: d6ca8dd8380213544985c7268731d4dd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5813,6 +5823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterSubsZero
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63ff56c1670c7ae40a7cdb921a64f3fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ff56c1670c7ae40a7cdb921a64f3fa, type: 3}

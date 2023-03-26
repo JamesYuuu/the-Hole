@@ -40,6 +40,16 @@ public class ShopManager : MonoBehaviour, IShop
         _instance = this;
         CashRegister.onClick.AddListener(Checkout);
         ItemsForSale.ForEach(item => SetActive(item));
+        if (PlayerData.IsEnergyDrinkBought)
+        {
+            PlayerData.AddGrappingSpeed(-10.0f);
+            PlayerData.IsEnergyDrinkBought = false;
+        }
+        if (PlayerData.IsO2TankBought)
+        {
+            PlayerData.AddOxygen(-100);
+            PlayerData.IsO2TankBought = false;
+        }
     }
 
     public void SetActive(Item item)
@@ -115,6 +125,31 @@ public class ShopManager : MonoBehaviour, IShop
         if (item.GetName()!="Monster Energy Drink" || item.GetName()!="O2 Tank")
         {
             PlayerData.RemoveItemForSale(item.GetName());
+        }
+        switch (item.GetName()){
+            case "Shotgun":
+                PlayerData.LeftHandGrapple = true;
+                break;
+            case "O2 Tank":
+                PlayerData.AddOxygen(100);
+                PlayerData.IsO2TankBought = true;
+                break;
+            case "Diving Mask":
+                PlayerData.AddOxygen(100);
+                break;
+            case "Monster Energy Drink":
+                PlayerData.AddGrappingSpeed(10.0f);
+                PlayerData.IsEnergyDrinkBought = true;
+                break;
+            case "Diving Equipment":
+                PlayerData.AddOxygen(100);
+                break;
+            case "Diving Helmet":
+                PlayerData.AddOxygen(100);
+                break;
+            case "Fins":
+                PlayerData.AddGrappingSpeed(10.0f);
+                break;
         }
     }
     public void SetPlayerMoney()

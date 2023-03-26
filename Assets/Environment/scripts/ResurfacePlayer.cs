@@ -21,8 +21,10 @@ public class ResurfacePlayer : MonoBehaviour
     private GameObject player;
     private Rigidbody rb;
     private Vector3 targetPosition;
+    private GrappleController grappleController;
+
     // Start is called before the first frame update
-    //void Start()
+    //void start()
     //{
 
     //}
@@ -59,6 +61,11 @@ public class ResurfacePlayer : MonoBehaviour
                     targetPosition = target1.transform.position;
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
+                    grappleController = player.GetComponent<GrappleController>();
+                    grappleController.SetGrappleActive(Grappleable.Hand.Left, false);
+                    grappleController.SetGrappleActive(Grappleable.Hand.Right, false);
+
+
                 }
                 else
                 {

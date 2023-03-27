@@ -63,7 +63,7 @@ public class Player_Health : MonoBehaviour
     {
         // Update Wirst Display
         watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
-        print(currentOxygen);
+        
         drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
         if (currentOxygen <= 10f)
         {

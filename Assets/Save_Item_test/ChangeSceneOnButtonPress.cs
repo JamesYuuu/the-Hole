@@ -3,9 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class ChangeSceneOnButtonPress : MonoBehaviour
 {
+
     public string sceneName; // The name of the scene to change to
 
     private bool isPressed = false;
+
+
+    private void Start()
+    {
+
+    }
 
     private void Update()
     {

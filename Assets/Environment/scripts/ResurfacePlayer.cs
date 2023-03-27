@@ -14,20 +14,14 @@ public class ResurfacePlayer : MonoBehaviour
     public float Speed2 = 20;
     public float Speed3 = 20;
 
-    public int shootingSceneNum = 2;
+    public int shootingSceneNum = 3;
     private float speed;
     private int triggerNum = 0;
     private bool isSurfacing = false;
     private GameObject player;
     private Rigidbody rb;
     private Vector3 targetPosition;
-    // Start is called before the first frame update
-    //void Start()
-    //{
 
-    //}
-
-    // Update is called once per frame
     void Update()
     {
         if (isSurfacing)
@@ -44,6 +38,8 @@ public class ResurfacePlayer : MonoBehaviour
             }
             else if (player.transform.position == target3.transform.position)
             {
+                Debug.Log("Ian: Resurface Update target3 triggered");
+                SpawnControl.LoadFreeFall();
                 SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
                 isSurfacing = false;
                 rb.useGravity = true;
@@ -76,13 +72,6 @@ public class ResurfacePlayer : MonoBehaviour
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
                 }
-            }
-        }
-        else
-        {
-            if (player.CompareTag("Player"))
-            {
-                SpawnControl.LoadFreeFall();
             }
         }
     }

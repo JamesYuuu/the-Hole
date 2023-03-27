@@ -37,7 +37,7 @@ public class Player_Health : MonoBehaviour
         // Decrease Oxygen when colliding with water
         if (other.gameObject.tag == "water")
         {
-            print("Under Water");
+            // print("Under Water");
 
             currentOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
             // print(currentOxygen);

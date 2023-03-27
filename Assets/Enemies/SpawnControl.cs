@@ -26,6 +26,7 @@ public class SpawnControl : MonoBehaviour
 
     private static readonly List<Vector3> TransferActivePosition = new();
     public static bool IsFreefall = false;
+    private static bool IsFreefallTransformed = false;
 
     public static void LoadFreeFall()
     {
@@ -35,7 +36,7 @@ public class SpawnControl : MonoBehaviour
         }
         IsFreefall = true;
         if (!Instance) return;
-            
+
         foreach (GameObject fish in Instance.ActiveEnemies)
         {
             TransferActivePosition.Add(fish.transform.position);
@@ -56,7 +57,12 @@ public class SpawnControl : MonoBehaviour
         {
             print("[LOG][SC] Scene changed. Respawning fish for shooting...");
         }
-        for (int i = 0; i < Instance.ActiveSize; i++)
+
+        int x = TransferActivePosition.Count;
+        print("change scene: ");
+        print(x);
+        // for (int i = 0; i < Instance.ActiveSize; i++) // had 1 fish but gave index OOB
+        for (int i = 0; i < TransferActivePosition.Count; i++)
         {
             GameObject fish = Instance.PooledEnemies[i];
             fish.SetActive(true);
@@ -84,7 +90,6 @@ public class SpawnControl : MonoBehaviour
         if (IsFreefall)
         {
             Instance = this;
-            ChangeSceneTransform();
         }
         if (Debug)
         {
@@ -96,6 +101,11 @@ public class SpawnControl : MonoBehaviour
     {
         if (IsFreefall)
         {
+            if (!IsFreefallTransformed)
+            {
+                ChangeSceneTransform();
+                IsFreefallTransformed = true;
+            }
             return;
         }
         // make it so that each update cycle only spawns 1 fish
@@ -103,6 +113,7 @@ public class SpawnControl : MonoBehaviour
         {
             ActivatePooledEnemy();
         }
+        List<GameObject> ToDeactivate = new();
         foreach (GameObject enemy in ActiveEnemies)
         {
             if (FindDistanceToPlayer(enemy) <= viewDistance)
@@ -112,7 +123,7 @@ public class SpawnControl : MonoBehaviour
             }
             if (DespawnTimes[enemy] == 0)
             {
-                DeactivatePoolEnemy(enemy);
+                ToDeactivate.Add(enemy);
                 continue;
             }
             if (DespawnTimes[enemy] == -1)
@@ -122,6 +133,7 @@ public class SpawnControl : MonoBehaviour
             }
             TickDespawnTimer(enemy);
         }
+        ToDeactivate.ForEach(DeactivatePoolEnemy);
     }
 
     private GameObject ActivatePooledEnemy()

@@ -42,7 +42,7 @@ public class ShopManager : MonoBehaviour, IShop
         ItemsForSale.ForEach(item => SetActive(item));
         if (PlayerData.IsEnergyDrinkBought)
         {
-            PlayerData.AddGrappingSpeed(-10.0f);
+            PlayerData.AddGrapplingReelSpeed(-10.0f);
             PlayerData.IsEnergyDrinkBought = false;
         }
         if (PlayerData.IsO2TankBought)
@@ -138,7 +138,7 @@ public class ShopManager : MonoBehaviour, IShop
                 PlayerData.AddOxygen(100);
                 break;
             case "Monster Energy Drink":
-                PlayerData.AddGrappingSpeed(10.0f);
+                PlayerData.AddGrapplingReelSpeed(10.0f);
                 PlayerData.IsEnergyDrinkBought = true;
                 break;
             case "Diving Equipment":
@@ -148,7 +148,7 @@ public class ShopManager : MonoBehaviour, IShop
                 PlayerData.AddOxygen(100);
                 break;
             case "Fins":
-                PlayerData.AddGrappingSpeed(10.0f);
+                PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
         }
     }

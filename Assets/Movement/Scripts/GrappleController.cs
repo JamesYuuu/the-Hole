@@ -7,10 +7,16 @@ public class GrappleController : MonoBehaviour
     public Grappleable leftGrapple;
     public Grappleable rightGrapple;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool forceActiveLeftGrapple = false;
+    public bool overrideStaticVariables = false;
+    void Awake()
     {
-        
+        if (!overrideStaticVariables)
+        {
+            leftGrapple.SetValues(PlayerData.GrapplingRange, PlayerData.GrapplingShootSpeed, PlayerData.GrapplingReelSpeed);
+            rightGrapple.SetValues(PlayerData.GrapplingRange, PlayerData.GrapplingShootSpeed, PlayerData.GrapplingReelSpeed);
+        }
+        SetGrappleActive(Grappleable.Hand.Left, PlayerData.LeftHandGrapple || forceActiveLeftGrapple);
     }
 
     // Update is called once per frame

@@ -48,6 +48,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     private Vector3 targetPos;
     private Vector3 reelDir;
     private Vector3 hookPos;
+    private float playerMass;
 
     public enum Hand {Left, Right}
     [Header("Left/Right Hand")]
@@ -68,7 +69,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
         lineRenderer = GetComponent<LineRenderer>();
         targetPoint = Instantiate(targetPointPrefab);
         targetPoint.SetActive(false);
-
+        playerMass = affectedRigidbody.mass;
         if (hand == Hand.Left) {
             checkForShoot = inputManager.PlayerHoldingTriggerL;
         } else {
@@ -147,7 +148,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
         if (!checkForShoot()) ChangeState(GrappleState.Aiming);
         if (affectedRigidbody.velocity.magnitude > reelVibrationSpeed) xrController.SendHapticImpulse(reelVibrationAmplitude, 0.1f);
         reelDir = Vector3.Normalize(targetPos - pointer.position);
-        affectedRigidbody.AddForce(reelDir * reelSpeed);
+        affectedRigidbody.AddForce(reelDir * reelSpeed * playerMass);
     }
 
     void RenderReelLine() {

@@ -441,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrapple: {fileID: 7631990904454797357}
   rightGrapple: {fileID: 7631990903890648811}
+  forceActiveLeftGrapple: 0
 --- !u!1 &7631990904378478692
 GameObject:
   m_ObjectHideFlags: 0

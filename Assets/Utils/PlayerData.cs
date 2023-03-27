@@ -27,7 +27,9 @@ public static class PlayerData
     };
 
     public static bool LeftHandGrapple = false;
-    public static float GrappingHookSpeed = 50.0f;
+    public static float GrapplingShootSpeed = 25.0f;
+    public static float GrapplingReelSpeed = 40.0f;
+    public static float GrapplingRange = 40;
     public static float Oxygen = 100;
 
     public static bool IsEnergyDrinkBought = false;
@@ -157,9 +159,17 @@ public static class PlayerData
         Oxygen += amount;
     }
 
-    public static void AddGrappingSpeed(float amount)
+    public static void AddGrapplingShootSpeed(float amount)
     {
-        GrappingHookSpeed += amount;
+        GrapplingShootSpeed += amount;
+    }
+    public static void AddGrapplingReelSpeed(float amount)
+    {
+        GrapplingReelSpeed += amount;
+    }
+    public static void AddGrapplingRange(float amount)
+    {
+        GrapplingRange += amount;
     }
 
     #endregion

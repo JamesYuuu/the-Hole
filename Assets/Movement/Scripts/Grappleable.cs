@@ -5,10 +5,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public interface IGrappleable
 {
-    
+
 }
 
-public enum GrappleState {
+public enum GrappleState
+{
     Aiming,
     Shooting,
     Reeling
@@ -25,12 +26,12 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     [Header("Haptics")]
     public XRBaseController xrController;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float shootVibrationAmplitude = 0.3f;
     public float shootVibrationDuration = 0.05f;
     public float reelVibrationAmplitude = 0.1f;
     public float reelVibrationSpeed = 2;
-    
+
     [Header("Variables")]
     public float range = 30f;
     public float shootSpeed = 25f;
@@ -50,7 +51,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     private Vector3 hookPos;
     private float playerMass;
 
-    public enum Hand {Left, Right}
+    public enum Hand { Left, Right }
     [Header("Left/Right Hand")]
     [SerializeField]
     private Hand hand;
@@ -70,9 +71,12 @@ public class Grappleable : MonoBehaviour, IGrappleable
         targetPoint = Instantiate(targetPointPrefab);
         targetPoint.SetActive(false);
         playerMass = affectedRigidbody.mass;
-        if (hand == Hand.Left) {
+        if (hand == Hand.Left)
+        {
             checkForShoot = inputManager.PlayerHoldingTriggerL;
-        } else {
+        }
+        else
+        {
             checkForShoot = inputManager.PlayerHoldingTriggerR;
         }
     }
@@ -80,7 +84,8 @@ public class Grappleable : MonoBehaviour, IGrappleable
     // Update is called once per frame
     void Update()
     {
-        switch (state) {
+        switch (state)
+        {
             case GrappleState.Aiming:
                 AimHook();
                 break;
@@ -98,16 +103,19 @@ public class Grappleable : MonoBehaviour, IGrappleable
         Debug.DrawLine(pointer.position, pointer.position + pointer.forward * range, Color.cyan); // Debug line showing pointer direction
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         // ReelHook logic is in fixed update because it involves physics
         if (state == GrappleState.Reeling) ReelHook();
-    } 
+    }
 
-    void ChangeState(GrappleState newState) {
+    void ChangeState(GrappleState newState)
+    {
 
         targetPoint.SetActive(false);
 
-        switch (newState) {
+        switch (newState)
+        {
             case GrappleState.Aiming:
                 hookPos = pointer.position;
                 break;
@@ -124,44 +132,55 @@ public class Grappleable : MonoBehaviour, IGrappleable
         state = newState;
     }
 
-    void AimHook() {
+    void AimHook()
+    {
         RaycastHit hit;
-        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range)){
+        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
+        {
             targetPoint.SetActive(true);
             targetPoint.transform.position = hit.point;
             targetPoint.transform.rotation = Quaternion.LookRotation(hit.normal);
             targetPos = targetPoint.transform.position;
             if (checkForShoot()) ChangeState(GrappleState.Shooting);
 
-        } else {
+        }
+        else
+        {
             targetPoint.SetActive(false);
         }
     }
 
-    void ShootHook() {
+    void ShootHook()
+    {
         if (!checkForShoot()) ChangeState(GrappleState.Aiming);
         hookPos = Vector3.MoveTowards(hookPos, targetPos, shootSpeed * Time.deltaTime);
         if (Vector3.Distance(hookPos, targetPos) < float.Epsilon) state = GrappleState.Reeling;
     }
 
-    void ReelHook() {
+    void ReelHook()
+    {
         if (!checkForShoot()) ChangeState(GrappleState.Aiming);
         if (affectedRigidbody.velocity.magnitude > reelVibrationSpeed) xrController.SendHapticImpulse(reelVibrationAmplitude, 0.1f);
         reelDir = Vector3.Normalize(targetPos - pointer.position);
         affectedRigidbody.AddForce(reelDir * reelSpeed * playerMass);
     }
 
-    void RenderReelLine() {
+    void RenderReelLine()
+    {
         // lineVertices[0] is the far end of the line
-        switch (state) {
+        switch (state)
+        {
             case GrappleState.Aiming:
                 lineRenderer.enabled = true;
-                if (targetPoint.activeInHierarchy) {
+                if (targetPoint.activeInHierarchy)
+                {
                     // if target point is active, it means player can shoot
                     lineRenderer.material = canShootMaterial;
                     // set far end of line to target position
                     lineVertices[0] = targetPos;
-                } else {
+                }
+                else
+                {
                     // if target point is not active, it means player cannot shoot
                     lineRenderer.material = cannotShootMaterial;
                     // set far end of line to <range> distance away from pointer
@@ -188,17 +207,20 @@ public class Grappleable : MonoBehaviour, IGrappleable
         lineRenderer.SetPositions(lineVertices);
     }
 
-    public void SetValues(float range, float shootSpeed, float reelSpeed) {
+    public void SetValues(float range, float shootSpeed, float reelSpeed)
+    {
         this.range = range;
         this.shootSpeed = shootSpeed;
         this.reelSpeed = reelSpeed;
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         if (targetPoint) targetPoint.SetActive(false);
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
     }
 
 }

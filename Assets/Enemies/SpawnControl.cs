@@ -9,13 +9,13 @@ public class SpawnControl : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private int PoolSize = 20;
     [SerializeField] private int ActiveSize = 10;
-    [SerializeField] private float SpawnDistance = 25;
-    [SerializeField] private float viewDistance = 50f;
+    [SerializeField] private float SpawnDistance = 150f;
+    [SerializeField] private float viewDistance = 175f;
     [SerializeField] private int DespawnTime = 100;
 
     /** Spawn volume settings */
     private readonly int SpawnRadius = 33;
-    private readonly int SpawnBase = -80;
+    private readonly int SpawnBase = -90;
     private readonly int SpawnHeight = 50;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
@@ -92,7 +92,7 @@ public class SpawnControl : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (IsFreefall)
         {
@@ -103,7 +103,6 @@ public class SpawnControl : MonoBehaviour
         {
             ActivatePooledEnemy();
         }
-        List<GameObject> deactivatedEnemies = new();
         foreach (GameObject enemy in ActiveEnemies)
         {
             if (FindDistanceToPlayer(enemy) <= viewDistance)
@@ -114,7 +113,6 @@ public class SpawnControl : MonoBehaviour
             if (DespawnTimes[enemy] == 0)
             {
                 DeactivatePoolEnemy(enemy);
-                deactivatedEnemies.Add(enemy);
                 continue;
             }
             if (DespawnTimes[enemy] == -1)
@@ -123,12 +121,6 @@ public class SpawnControl : MonoBehaviour
                 continue;
             }
             TickDespawnTimer(enemy);
-        }
-        foreach (GameObject enemy in deactivatedEnemies)
-        {
-            ActiveEnemies.Remove(enemy);
-            DespawnTimes.Remove(enemy);
-            PooledEnemies.Add(enemy);
         }
     }
 
@@ -178,6 +170,9 @@ public class SpawnControl : MonoBehaviour
             print("[LOG][SC] Deactivating pooled enemy...");
         }
         activeEnemy.SetActive(false);
+        ActiveEnemies.Remove(activeEnemy);
+        DespawnTimes.Remove(activeEnemy);
+        PooledEnemies.Add(activeEnemy);
         if (Debug)
         {
             print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + ActiveEnemies.Count);

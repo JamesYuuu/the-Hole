@@ -21,10 +21,8 @@ public class ResurfacePlayer : MonoBehaviour
     private GameObject player;
     private Rigidbody rb;
     private Vector3 targetPosition;
-    private GrappleController grappleController;
-
     // Start is called before the first frame update
-    //void start()
+    //void Start()
     //{
 
     //}
@@ -32,14 +30,30 @@ public class ResurfacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSurfacing && UnderwaterAI.IsHostile == true)
+        if (isSurfacing)
         {
-            if (UnderwaterAI.IsHostile == true)
+            if (player.transform.position == target1.transform.position)
             {
-                teleport_to_shooting();
+                targetPosition = target2.transform.position;
+                speed = Speed2;
             }
-                // resupply oxygen
-
+            else if (player.transform.position == target2.transform.position)
+            {
+                targetPosition = target3.transform.position;
+                speed = Speed3;
+            }
+            else if (player.transform.position == target3.transform.position)
+            {
+                SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
+                isSurfacing = false;
+                rb.useGravity = true;
+                speed = Speed1;
+                triggerNum = 0;
+            }
+            else
+            {
+                player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
+            }
         }
     }
 
@@ -54,23 +68,13 @@ public class ResurfacePlayer : MonoBehaviour
                 {
                     triggerNum ++;
                 }
-                else if(UnderwaterAI.IsHostile == true)
+                else
                 {
                     isSurfacing = true;
                     speed = Speed1;
                     targetPosition = target1.transform.position;
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;
-                    grappleController = player.GetComponent<GrappleController>();
-                    grappleController.SetGrappleActive(Grappleable.Hand.Left, false);
-                    grappleController.SetGrappleActive(Grappleable.Hand.Right, false);
-
-
-                }
-                else
-                {
-                    triggerNum = 0;
-                    // resupply oxygen
                 }
             }
         }
@@ -80,32 +84,6 @@ public class ResurfacePlayer : MonoBehaviour
             {
                 SpawnControl.LoadFreeFall();
             }
-        }
-    }
-
-    void teleport_to_shooting()
-    {
-        if (player.transform.position == target1.transform.position)
-        {
-            targetPosition = target2.transform.position;
-            speed = Speed2;
-        }
-        else if (player.transform.position == target2.transform.position)
-        {
-            targetPosition = target3.transform.position;
-            speed = Speed3;
-        }
-        else if (player.transform.position == target3.transform.position)
-        {
-            SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
-            isSurfacing = false;
-            rb.useGravity = true;
-            speed = Speed1;
-            triggerNum = 0;
-        }
-        else
-        {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
         }
     }
 }

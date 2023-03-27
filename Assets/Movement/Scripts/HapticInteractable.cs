@@ -11,8 +11,8 @@ public class HapticInteractable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        XRBaseInteractable interactable = GetComponent<XRBaseInteractable>();
-        interactable.activated.AddListener(TriggerHaptic);
+        //XRBaseInteractable interactable = GetComponent<XRBaseInteractable>();
+        //interactable.activated.AddListener(TriggerHaptic);
     }
 
     // Update is called once per frame

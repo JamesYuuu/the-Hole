@@ -8,6 +8,6 @@ public class ItemInteract : XRGrabInteractable
     protected override void OnHoverEntered(HoverEnterEventArgs args)
     {
         base.OnHoverEntered(args);
-        if (item != null) ShopManager._instance.ShowPanels(item);
+        if (item != null) ShopManager.Instance.ShowPanels(item);
     }
 }

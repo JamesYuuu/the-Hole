@@ -11,11 +11,11 @@ public static class PlayerData
     /// Amount of money that player has.
     /// Can be get from anywhere, but only set through methods.
     /// </summary>
-    public static int Money { get; private set; } = 0;
-    public static Dictionary<Item, int> Inventory { get; private set; } = new();
+    public static int money { get; private set; } = 0;
+    public static Dictionary<Item, int> inventory { get; private set; } = new();
     private static readonly Dictionary<Item, int> InventoryMax = new();
 
-    private static Dictionary<string, bool> ItemsForsale = new()
+    private static Dictionary<string, bool> _itemsForsale = new()
     {
         {"Shotgun", true},
         {"O2 Tank", true},
@@ -50,16 +50,16 @@ public static class PlayerData
     #region Money
     public static void AddMoney(int amount)
     {
-        Money += amount;
+        money += amount;
     }
 
     public static bool RemoveMoney(int amount)
     {
-        if (Money < amount)
+        if (money < amount)
         {
             return false;
         }
-        Money -= amount;
+        money -= amount;
         return true;
     }
     #endregion
@@ -102,16 +102,16 @@ public static class PlayerData
     private static bool AddItem(Item item, int amount)
     {
         int currAmount = 0;
-        if (Inventory.ContainsKey(item))
+        if (inventory.ContainsKey(item))
         {
-            currAmount = Inventory[item];
+            currAmount = inventory[item];
         }
         int newAmount = currAmount + amount;
         if (newAmount > InventoryMax[item])
         {
             return false;
         }
-        Inventory[item] = newAmount;
+        inventory[item] = newAmount;
         return true;
     }
 
@@ -124,11 +124,11 @@ public static class PlayerData
     /// <returns>Whether the item has been removed successfully.</returns>
     private static bool RemoveItem(Item item, int amount)
     {
-        if (!Inventory.ContainsKey(item))
+        if (!inventory.ContainsKey(item))
         {
             return false;
         }
-        int currAmount = Inventory[item];
+        int currAmount = inventory[item];
         int newAmount = currAmount - amount;
         if (newAmount < 0)
         {
@@ -136,10 +136,10 @@ public static class PlayerData
         }
         if (newAmount == 0)
         {
-            Inventory.Remove(item);
+            inventory.Remove(item);
             return true;
         }
-        Inventory[item] = newAmount;
+        inventory[item] = newAmount;
         return true;
     }
     #endregion
@@ -147,11 +147,11 @@ public static class PlayerData
     #region ShopItems
     public static bool IsItemForSale(string itemName)
     {
-        return ItemsForsale[itemName];
+        return _itemsForsale[itemName];
     }
     public static void RemoveItemForSale(string itemName)
     {
-        ItemsForsale[itemName] = false;
+        _itemsForsale[itemName] = false;
     }
 
     public static void AddOxygen(int amount)

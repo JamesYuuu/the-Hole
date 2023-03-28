@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level_Changer : MonoBehaviour
+public class LevelChanger : MonoBehaviour
 {
     public Animator animator;
     public string levelToLoad;

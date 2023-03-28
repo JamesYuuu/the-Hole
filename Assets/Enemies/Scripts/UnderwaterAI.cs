@@ -1,24 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UnderwaterAI : AbstractAI
 {
     /// <summary>
     /// Debug flag. Set to true to force fish to move back to test despawning.
     /// </summary>
-    [SerializeField] private static bool Debug = false;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private static bool _debug = false;
+    [FormerlySerializedAs("Player")] [SerializeField] private GameObject player;
 
     public static bool IsHostile = false;
-    [SerializeField] private float Speed = 0.005f;
-    [SerializeField] private int MinSteps = 500;
-    [SerializeField] private int MaxSteps = 1000;
+    [FormerlySerializedAs("Speed")] [SerializeField] private float speed = 0.005f;
+    [FormerlySerializedAs("MinSteps")] [SerializeField] private int minSteps = 500;
+    [FormerlySerializedAs("MaxSteps")] [SerializeField] private int maxSteps = 1000;
     private int Steps = -1;
 
-    [SerializeField] private int MaxTurns = 1000;
-    [SerializeField] private float TurnX = 0.001f;
+    [FormerlySerializedAs("MaxTurns")] [SerializeField] private int maxTurns = 1000;
+    [FormerlySerializedAs("TurnX")] [SerializeField] private float turnX = 0.001f;
     private float TurnY = 0f;
-    [SerializeField] private float TurnZ = 0.001f;
+    [FormerlySerializedAs("TurnZ")] [SerializeField] private float turnZ = 0.001f;
     private int Turns = 0;
     private Vector3 TurnAmount = new(0, 0, 0);
 
@@ -30,9 +31,9 @@ public class UnderwaterAI : AbstractAI
 
     public void Start()
     {
-        if (Debug)
+        if (_debug)
         {
-            Speed = 0.075f;
+            speed = 0.075f;
         }
     }
 
@@ -43,7 +44,7 @@ public class UnderwaterAI : AbstractAI
             return;
         }
         Vector3 loc = gameObject.transform.position;
-        if (Debug)
+        if (_debug)
         {
             UpdateDebug();
         }
@@ -59,17 +60,17 @@ public class UnderwaterAI : AbstractAI
         {
             UpdatePeaceful();
         }
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed;
+        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * speed;
         if (IsColliding && IsHostile)
         {
-            Player_Health healthManager = Player.GetComponent<Player_Health>();
-            healthManager.changeOxygen(-Attack);
+            PlayerHealth healthManager = player.GetComponent<PlayerHealth>();
+            healthManager.ChangeOxygen(-attack);
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.Equals(Player))
+        if (collider.gameObject.Equals(player))
         {
             IsColliding = true;
         }
@@ -77,7 +78,7 @@ public class UnderwaterAI : AbstractAI
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.Equals(Player))
+        if (collider.gameObject.Equals(player))
         {
             IsColliding = false;
         }
@@ -89,9 +90,9 @@ public class UnderwaterAI : AbstractAI
         float locY = gameObject.transform.position.y;
         float locZ = gameObject.transform.position.z;
 
-        float forwardX = locX - Player.transform.position.x;
-        float forwardY = locY - Player.transform.position.y;
-        float forwardZ = locZ - Player.transform.position.z;
+        float forwardX = locX - player.transform.position.x;
+        float forwardY = locY - player.transform.position.y;
+        float forwardZ = locZ - player.transform.position.z;
 
         gameObject.transform.forward = new(forwardX, forwardY, forwardZ);
         gameObject.transform.forward.Normalize();
@@ -101,7 +102,7 @@ public class UnderwaterAI : AbstractAI
     {
         if (Steps == -1)
         {
-            Steps = Random.Range(MinSteps, MaxSteps);
+            Steps = Random.Range(minSteps, maxSteps);
         }
 
         if (Steps == 0 && Turns == 0)
@@ -129,17 +130,17 @@ public class UnderwaterAI : AbstractAI
     {
         if (Turns == -1)
         {
-            float turnX = Random.Range(-TurnX, TurnX);
+            float turnX = Random.Range(-this.turnX, this.turnX);
             float turnY = Random.Range(-TurnY, TurnY);
-            float turnZ = Random.Range(-TurnZ, TurnZ);
+            float turnZ = Random.Range(-this.turnZ, this.turnZ);
 
             TurnAmount = new(turnX, turnY, turnZ);
-            Turns = Random.Range(0, MaxTurns);
+            Turns = Random.Range(0, maxTurns);
         }
 
         if (Turns == 0)
         {
-            Steps = Random.Range(MinSteps, MaxSteps);
+            Steps = Random.Range(minSteps, maxSteps);
         }
 
         gameObject.transform.forward = gameObject.transform.forward + TurnAmount;
@@ -153,9 +154,9 @@ public class UnderwaterAI : AbstractAI
         float locY = gameObject.transform.position.y;
         float locZ = gameObject.transform.position.z;
 
-        float forwardX = Player.transform.position.x - locX;
-        float forwardY = Player.transform.position.y - locY;
-        float forwardZ = Player.transform.position.z - locZ;
+        float forwardX = player.transform.position.x - locX;
+        float forwardY = player.transform.position.y - locY;
+        float forwardZ = player.transform.position.z - locZ;
 
         gameObject.transform.forward = new(forwardX, forwardY, forwardZ);
         gameObject.transform.forward.Normalize();

@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
     {
         this.displayName = name;
         this.price = price;
-        isBought = PlayerData.Inventory.ContainsKey(this);
+        isBought = PlayerData.inventory.ContainsKey(this);
     }
 
     /// <summary>
@@ -41,11 +41,11 @@ public class Item : MonoBehaviour
     {
         if (isBought)
         {
-            PlayerData.Inventory[this]++;
+            PlayerData.inventory[this]++;
         }
         else
         {
-            PlayerData.Inventory.Add(this, 1);
+            PlayerData.inventory.Add(this, 1);
         }
     }
 
@@ -57,7 +57,7 @@ public class Item : MonoBehaviour
     {
         if (isBought)
         {
-            PlayerData.Inventory.Remove(this);
+            PlayerData.inventory.Remove(this);
             isBought = false;
         }
     }

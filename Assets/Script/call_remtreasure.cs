@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeScreen : MonoBehaviour
+public class CallRemtreasure : MonoBehaviour
 {
-    public float fadeDuration = 2;
-    public Color fadeColor;
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        print("calling_remove_treasure");
+        PlayerData.RemoveTreasure();
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Change_Alpha : MonoBehaviour
+public class ChangeAlpha : MonoBehaviour
 {
     [SerializeField] private Material myMaterial;
     [SerializeField] private Renderer myModel;

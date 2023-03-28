@@ -5,23 +5,23 @@ using System.IO;
 
 public static class Savemanager
 {
-    public static string directory = "/SaveData/";
-    public static string fileName = "MyData.txt";
+    public static string Directory = "/SaveData/";
+    public static string FileName = "MyData.txt";
 
     public static void Save(SaveObject so)
     {
-        string dir = Application.persistentDataPath + directory;
+        string dir = Application.persistentDataPath + Directory;
 
-        if (Directory.Exists(dir))
-            Directory.CreateDirectory(dir);
+        if (System.IO.Directory.Exists(dir))
+            System.IO.Directory.CreateDirectory(dir);
 
         string json = JsonUtility.ToJson(so);
-        File.WriteAllText(dir + fileName, json);
+        File.WriteAllText(dir + FileName, json);
     }
 
     public static SaveObject Load()
     {
-        string fullpath = Application.persistentDataPath + directory + fileName;
+        string fullpath = Application.persistentDataPath + Directory + FileName;
         SaveObject so = new SaveObject();
 
         if (File.Exists(fullpath))

@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class AbstractAI : MonoBehaviour
 {
-    [SerializeField] private int Health = 20;
-    [SerializeField] private int Reward = 5;
-    [SerializeField] protected float Attack = 0.0025f;
+    [FormerlySerializedAs("Health")] [SerializeField] private int health = 20;
+    [FormerlySerializedAs("Reward")] [SerializeField] private int reward = 5;
+    [FormerlySerializedAs("Attack")] [SerializeField] protected float attack = 0.0025f;
 
     public void Damage(int damage)
     {
-        if (damage >= Health)
+        if (damage >= health)
         {
             Die();
             return;
         }
-        Health -= damage;
+        health -= damage;
     }
 
     private void Die()
     {
         gameObject.SetActive(false);
-        PlayerData.AddMoney(Reward);
+        PlayerData.AddMoney(reward);
     }
 }

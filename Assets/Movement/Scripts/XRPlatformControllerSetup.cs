@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,17 +12,17 @@ namespace Unity.Template.VR
 {
     internal class XRPlatformControllerSetup : MonoBehaviour
     {
-        [SerializeField]
-        GameObject m_LeftController;
+        [FormerlySerializedAs("m_LeftController")] [SerializeField]
+        GameObject mLeftController;
 
-        [SerializeField]
-        GameObject m_RightController;
+        [FormerlySerializedAs("m_RightController")] [SerializeField]
+        GameObject mRightController;
         
-        [SerializeField]
-        GameObject m_LeftControllerOculusPackage;
+        [FormerlySerializedAs("m_LeftControllerOculusPackage")] [SerializeField]
+        GameObject mLeftControllerOculusPackage;
 
-        [SerializeField]
-        GameObject m_RightControllerOculusPackage;
+        [FormerlySerializedAs("m_RightControllerOculusPackage")] [SerializeField]
+        GameObject mRightControllerOculusPackage;
 
         void Start()
         {
@@ -35,10 +36,10 @@ namespace Unity.Template.VR
             {
                 if (loader.name.Equals("Oculus Loader"))
                 {
-                    m_RightController.SetActive(false);
-                    m_LeftController.SetActive(false);
-                    m_RightControllerOculusPackage.SetActive(true);
-                    m_LeftControllerOculusPackage.SetActive(true);
+                    mRightController.SetActive(false);
+                    mLeftController.SetActive(false);
+                    mRightControllerOculusPackage.SetActive(true);
+                    mLeftControllerOculusPackage.SetActive(true);
                 }
             }
         }

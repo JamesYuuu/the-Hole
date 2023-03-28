@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace Dialog.Scripts
@@ -31,8 +32,8 @@ namespace Dialog.Scripts
         private List<(TextSpeed speed, string speech)> farewells;
         
         
-        [SerializeField] private GameObject UiPanelsTalking;
-        [SerializeField] private GameObject UiPanelsShopInfo;
+        [FormerlySerializedAs("UiPanelsTalking")] [SerializeField] private GameObject uiPanelsTalking;
+        [FormerlySerializedAs("UiPanelsShopInfo")] [SerializeField] private GameObject uiPanelsShopInfo;
         [SerializeField] private TextMeshProUGUI itemNameDisplay;
         [SerializeField] private TextMeshProUGUI priceDisplay;
         [SerializeField] private TextMeshProUGUI descDisplay;
@@ -40,7 +41,7 @@ namespace Dialog.Scripts
         [SerializeField] private TextMeshProUGUI cartTotalDisplay;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
 
-        public UnityEvent EnableGrab;
+        [FormerlySerializedAs("EnableGrab")] public UnityEvent enableGrab;
         
         private (TextSpeed speed, string speech) currSpeech;
         private float currTextSpeed;
@@ -81,11 +82,11 @@ namespace Dialog.Scripts
         /// </summary>
         public void StartDialog()
         {
-            UiPanelsTalking.SetActive(true); // open dialog panel
+            uiPanelsTalking.SetActive(true); // open dialog panel
             int randInt = rand.Next(greetings.Count);
             StartCoroutine(TypeCurrSpeech(greetings[randInt].speech, 
                 descDisplay, greetings[randInt].speed));
-            EnableGrab.Invoke(); // triggers shopMgr::EnableGrab
+            enableGrab.Invoke(); // triggers shopMgr::EnableGrab
         }
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace Dialog.Scripts
         /// </summary>
         public void ShowShopInterface()
         {
-            UiPanelsShopInfo.SetActive(true);
+            uiPanelsShopInfo.SetActive(true);
             UpdateCartTotal(0);
         }
 
@@ -106,7 +107,7 @@ namespace Dialog.Scripts
         /// <param name="cartTotalPrice">The total value of the items in the cart.</param>
         public void UpdateCartTotal(int cartTotalPrice)
         {
-            StartCoroutine(TypeCurrSpeech(PlayerData.Money + "", cashDisplay));
+            StartCoroutine(TypeCurrSpeech(PlayerData.money + "", cashDisplay));
             StartCoroutine(TypeCurrSpeech(cartTotalPrice + "", cartTotalDisplay));
         }
         
@@ -143,7 +144,7 @@ namespace Dialog.Scripts
         /// </summary>
         public void EndDialog()
         {
-            UiPanelsTalking.SetActive(false);
+            uiPanelsTalking.SetActive(false);
             StopCoroutine(nameof(TypeCurrSpeech));
         }
         

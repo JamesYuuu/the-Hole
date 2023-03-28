@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class ResurfacePlayer : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class ResurfacePlayer : MonoBehaviour
     public GameObject target2;
     public GameObject target3;
 
-    public float Speed1 = 10;
-    public float Speed2 = 20;
-    public float Speed3 = 20;
+    [FormerlySerializedAs("Speed1")] public float speed1 = 10;
+    [FormerlySerializedAs("Speed2")] public float speed2 = 20;
+    [FormerlySerializedAs("Speed3")] public float speed3 = 20;
 
     public int shootingSceneNum = 3;
     private float speed;
@@ -29,12 +30,12 @@ public class ResurfacePlayer : MonoBehaviour
             if (player.transform.position == target1.transform.position)
             {
                 targetPosition = target2.transform.position;
-                speed = Speed2;
+                speed = speed2;
             }
             else if (player.transform.position == target2.transform.position)
             {
                 targetPosition = target3.transform.position;
-                speed = Speed3;
+                speed = speed3;
             }
             else if (player.transform.position == target3.transform.position)
             {
@@ -43,7 +44,7 @@ public class ResurfacePlayer : MonoBehaviour
                 SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
                 isSurfacing = false;
                 rb.useGravity = true;
-                speed = Speed1;
+                speed = speed1;
                 triggerNum = 0;
             }
             else
@@ -67,7 +68,7 @@ public class ResurfacePlayer : MonoBehaviour
                 else
                 {
                     isSurfacing = true;
-                    speed = Speed1;
+                    speed = speed1;
                     targetPosition = target1.transform.position;
                     rb = player.GetComponent<Rigidbody>();
                     rb.useGravity = false;

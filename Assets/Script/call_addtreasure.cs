@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class call_addtreasure : MonoBehaviour
+public class CallAddtreasure : MonoBehaviour
 {
    
     // Start is called before the first frame update

@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
-public class Player_Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public float maxOxygen;
     public float currentOxygen;
     public Animator animator;
-    public float OxygenDecreasePerSecond;
+    [FormerlySerializedAs("OxygenDecreasePerSecond")] public float oxygenDecreasePerSecond;
 
     // For updating watch display
     public GameObject watch;
     public WatchUIManager watchUIManager;
 
     // For smoother drowning transistion
-    public GameObject drowning_Screen;
-    public Change_Alpha change_Alpha;
+    [FormerlySerializedAs("drowning_Screen")] public GameObject drowningScreen;
+    [FormerlySerializedAs("change_Alpha")] public ChangeAlpha changeAlpha;
 
     private bool inWater;
     private bool drowning;
@@ -26,10 +27,10 @@ public class Player_Health : MonoBehaviour
     void Start()
     {
         currentOxygen = maxOxygen;
-        OxygenDecreasePerSecond = 1f;
+        oxygenDecreasePerSecond = 1f;
         drowning = false;
         watch = GameObject.Find("Watch");
-        drowning_Screen = GameObject.Find("Drowning Screen");
+        drowningScreen = GameObject.Find("Drowning Screen");
     }
 
     private void OnTriggerStay(Collider other)
@@ -39,7 +40,7 @@ public class Player_Health : MonoBehaviour
         {
             // print("Under Water");
 
-            currentOxygen -= OxygenDecreasePerSecond * Time.deltaTime;
+            currentOxygen -= oxygenDecreasePerSecond * Time.deltaTime;
             // print(currentOxygen);
         }
         // Increase Oxygen 5 times when colliding with air
@@ -47,13 +48,13 @@ public class Player_Health : MonoBehaviour
         {
             print("Not Under Water");
             if (currentOxygen < 100)
-                currentOxygen += OxygenDecreasePerSecond * 5 * Time.deltaTime;
+                currentOxygen += oxygenDecreasePerSecond * 5 * Time.deltaTime;
         }
         
     }
 
     // Call this function to increase/decrease Oxygen
-    public void changeOxygen(float val)
+    public void ChangeOxygen(float val)
     {
         currentOxygen += val;
     }
@@ -64,11 +65,11 @@ public class Player_Health : MonoBehaviour
         // Update Wirst Display
         watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
         
-        drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(10f);
+        drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(10f);
         if (currentOxygen <= 10f)
         {
             // Update Drowning Screen
-            drowning_Screen.GetComponent<Change_Alpha>().AlphaSlider(currentOxygen);
+            drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(currentOxygen);
             if (currentOxygen < 0f)
             {
                 print("Dead");

@@ -1,8 +1,10 @@
+using UnityEngine.Serialization;
+
 [System.Serializable]
 
 public class SaveObject
 {
     public float maxHealth;
     public int playerGold;
-    public string SavedObject;
+    [FormerlySerializedAs("SavedObject")] public string savedObject;
 }

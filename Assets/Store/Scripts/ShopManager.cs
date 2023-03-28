@@ -4,6 +4,7 @@ using Store.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -14,32 +15,41 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class ShopManager : MonoBehaviour, IShop
 {
-    public UnityEvent CheckoutEvent;
+    [FormerlySerializedAs("CheckoutEvent")] public UnityEvent checkoutEvent;
     [SerializeField] private ShopDialogBehaviour dialogBehaviour;
 
     // can use PlayerData.Money, .AddMoney() and .RemoveMoney() for money operations.
-    [SerializeField] private List<Item> ItemsForSale = new List<Item>();
+    [FormerlySerializedAs("ItemsForSale")] [SerializeField] private List<Item> itemsForSale = new List<Item>();
 
-    [SerializeField] private List<Item> ItemsInCart = new List<Item>();
+    [FormerlySerializedAs("ItemsInCart")] [SerializeField] private List<Item> itemsInCart = new List<Item>();
 
     // UI elements
-    [SerializeField] private GameObject ShopItemDescriptionPanel, ShopItemPricePanel, ShopItemNamePanel;
-    [SerializeField] private GameObject ShopCartTotalPanel, ShopPlayerMoneyPanel;
+    [FormerlySerializedAs("ShopItemDescriptionPanel")] [SerializeField] private GameObject shopItemDescriptionPanel;
+    [FormerlySerializedAs("ShopItemPricePanel")] [SerializeField] private GameObject shopItemPricePanel;
+    [FormerlySerializedAs("ShopItemNamePanel")] [SerializeField] private GameObject shopItemNamePanel;
+    [FormerlySerializedAs("ShopCartTotalPanel")] [SerializeField] private GameObject shopCartTotalPanel;
+    [FormerlySerializedAs("ShopPlayerMoneyPanel")] [SerializeField] private GameObject shopPlayerMoneyPanel;
 
-    [SerializeField] private GameObject ItemInfo, CartTotal, PlayerCash, CheckoutPanel, LeftHandController, RightHandController;
+    [FormerlySerializedAs("ItemInfo")] [SerializeField] private GameObject itemInfo;
+    [FormerlySerializedAs("CartTotal")] [SerializeField] private GameObject cartTotal;
+    [FormerlySerializedAs("PlayerCash")] [SerializeField] private GameObject playerCash;
+    [FormerlySerializedAs("CheckoutPanel")] [SerializeField] private GameObject checkoutPanel;
+    [FormerlySerializedAs("LeftHandController")] [SerializeField] private GameObject leftHandController;
+    [FormerlySerializedAs("RightHandController")] [SerializeField] private GameObject rightHandController;
 
-    [SerializeField] private Button CashRegister,Leave;
+    [FormerlySerializedAs("CashRegister")] [SerializeField] private Button cashRegister;
+    [FormerlySerializedAs("Leave")] [SerializeField] private Button leave;
 
-    public static ShopManager _instance;
+    public static ShopManager Instance;
     private int TotalPrice, PlayerMoney;
 
     private Item CurrentSelectedItem;
 
     private void Awake()
     {
-        _instance = this;
-        CashRegister.onClick.AddListener(Checkout);
-        ItemsForSale.ForEach(item => SetActive(item));
+        Instance = this;
+        cashRegister.onClick.AddListener(Checkout);
+        itemsForSale.ForEach(item => SetActive(item));
         if (PlayerData.IsEnergyDrinkBought)
         {
             PlayerData.AddGrapplingReelSpeed(-10.0f);
@@ -71,33 +81,33 @@ public class ShopManager : MonoBehaviour, IShop
     
     private void EnableGrabbing()
     {
-        CartTotal.SetActive(true);
-        PlayerCash.SetActive(true);
-        CheckoutPanel.SetActive(true);
+        cartTotal.SetActive(true);
+        playerCash.SetActive(true);
+        checkoutPanel.SetActive(true);
         SetPlayerMoney();
         SetTotalMoney(0);
-        LeftHandController.GetComponent<XRRayInteractor>().enabled=true;
-        RightHandController.GetComponent<XRRayInteractor>().enabled=true;
+        leftHandController.GetComponent<XRRayInteractor>().enabled=true;
+        rightHandController.GetComponent<XRRayInteractor>().enabled=true;
     }
 
-    public void ShowPanels(Item GrabbedItem)
+    public void ShowPanels(Item grabbedItem)
     {
-        ItemInfo.SetActive(true);
-        ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = GrabbedItem.GetDescription();
-        ShopItemPricePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetPrice().ToString() + 'G';
-        ShopItemNamePanel.GetComponent<TMP_Text>().text = GrabbedItem.GetName();
-        CurrentSelectedItem = GrabbedItem;
+        itemInfo.SetActive(true);
+        shopItemDescriptionPanel.GetComponent<TMP_Text>().text = grabbedItem.GetDescription();
+        shopItemPricePanel.GetComponent<TMP_Text>().text = grabbedItem.GetPrice().ToString() + 'G';
+        shopItemNamePanel.GetComponent<TMP_Text>().text = grabbedItem.GetName();
+        CurrentSelectedItem = grabbedItem;
     }
 
     public void AddToCart(Item item)
     {
-        ItemsInCart.Add(item);
+        itemsInCart.Add(item);
         SetTotalMoney(item.GetPrice());
     }
 
     public void RemoveFromCart(Item item)
     {
-        ItemsInCart.Remove(item);
+        itemsInCart.Remove(item);
         SetTotalMoney(-item.GetPrice());
     }
 
@@ -107,19 +117,19 @@ public class ShopManager : MonoBehaviour, IShop
         if (TotalPrice <= PlayerMoney)
         {
             PlayerData.RemoveMoney(TotalPrice);
-            CheckoutEvent.Invoke();
-            ItemsInCart.ForEach(item => upgrade(item));
-            ItemsInCart.Clear();
+            checkoutEvent.Invoke();
+            itemsInCart.ForEach(item => Upgrade(item));
+            itemsInCart.Clear();
             SetTotalMoney(-TotalPrice);
             SetPlayerMoney();
         }
         else
         {
-            ShopItemDescriptionPanel.GetComponent<TMP_Text>().text = "Sorry, you don't have enough money!";
+            shopItemDescriptionPanel.GetComponent<TMP_Text>().text = "Sorry, you don't have enough money!";
         }
     }
 
-    public void upgrade(Item item)
+    public void Upgrade(Item item)
     {
         item.gameObject.SetActive(false);
         if (item.GetName()!="Monster Energy Drink" || item.GetName()!="O2 Tank")
@@ -154,13 +164,13 @@ public class ShopManager : MonoBehaviour, IShop
     }
     public void SetPlayerMoney()
     {
-        PlayerMoney = PlayerData.Money;
-        ShopPlayerMoneyPanel.GetComponent<TMP_Text>().text = PlayerMoney.ToString() + 'G';
+        PlayerMoney = PlayerData.money;
+        shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = PlayerMoney.ToString() + 'G';
     }
     
-    public void SetTotalMoney(int AddedMoney)
+    public void SetTotalMoney(int addedMoney)
     {
-        TotalPrice += AddedMoney;
-        ShopCartTotalPanel.GetComponent<TMP_Text>().text = TotalPrice.ToString() + 'G';
+        TotalPrice += addedMoney;
+        shopCartTotalPanel.GetComponent<TMP_Text>().text = TotalPrice.ToString() + 'G';
     }
 }

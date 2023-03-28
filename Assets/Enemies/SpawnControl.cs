@@ -38,6 +38,8 @@ public class SpawnControl : MonoBehaviour
         IsFreefall = true;
         if (!_instance) return;
 
+        print("Transfer Count:" + _instance.activeEnemies.Count);
+
         foreach (var fish in _instance.activeEnemies) TransferActivePosition.Add(fish.transform.position);
     }
 
@@ -50,19 +52,14 @@ public class SpawnControl : MonoBehaviour
     private static void ChangeSceneTransform()
     {
         if (Debug) print("[LOG][SC] Scene changed. Respawning fish for shooting...");
-
-        var x = TransferActivePosition.Count;
-        print("change scene: ");
-        print(x);
-        // for (int i = 0; i < Instance.ActiveSize; i++) // had 1 fish but gave index OOB
+        print("Transferred Count:" + TransferActivePosition.Count);
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
             var fish = _instance.pooledEnemies[i];
             fish.SetActive(true);
-            fish.transform.position = TransferActivePosition[i];
             fish.transform.forward = new Vector3(0, 1, 0);
             var newY = Random.Range(FreefallBase, FreefallHeight);
-            fish.transform.position = new Vector3(fish.transform.position.x, newY, fish.transform.position.z);
+            fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
         }
     }
 
@@ -74,7 +71,6 @@ public class SpawnControl : MonoBehaviour
     private void Start()
     {
         if (_instance == null) _instance = this;
-        if (IsFreefall) _instance = this;
         if (Debug)
             print("[LOG][SC] Player at " + player.transform.position.x + "," + player.transform.position.y + "," +
                   player.transform.position.z);
@@ -86,6 +82,8 @@ public class SpawnControl : MonoBehaviour
         {
             if (!_isFreefalled)
             {
+                print("BRUH");
+                LoadFreeFall();
                 ChangeSceneTransform();
                 _isFreefalled = true;
             }

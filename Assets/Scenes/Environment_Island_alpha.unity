@@ -2331,9 +2331,9 @@ MonoBehaviour:
   target1: {fileID: 871439143}
   target2: {fileID: 767447784}
   target3: {fileID: 373525935}
-  Speed1: 20
-  Speed2: 20
-  Speed3: 20
+  speed1: 20
+  speed2: 20
+  speed3: 20
   shootingSceneNum: 3
 --- !u!1001 &718465320
 PrefabInstance:
@@ -3144,14 +3144,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e950bd031db26a34d941349f3c9f7329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOxygen: 100
-  currentOxygen: 100
+  maxOxygen: 20
+  currentOxygen: 20
   animator: {fileID: 0}
-  OxygenDecreasePerSecond: 0
+  oxygenDecreasePerSecond: 1
   watch: {fileID: 0}
   watchUIManager: {fileID: 0}
-  drowning_Screen: {fileID: 0}
-  change_Alpha: {fileID: 0}
+  drowningScreen: {fileID: 0}
+  changeAlpha: {fileID: 0}
 --- !u!135 &863898909
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4193,7 +4193,6 @@ GameObject:
   - component: {fileID: 1317422595}
   - component: {fileID: 1317422598}
   - component: {fileID: 1317422597}
-  - component: {fileID: 1317422596}
   m_Layer: 0
   m_Name: Drowning Screen
   m_TagString: Untagged
@@ -4216,20 +4215,6 @@ Transform:
   m_Father: {fileID: 1337850480}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1317422596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317422594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfd477e089cfd6b43964ca8f6d10b03f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMaterial: {fileID: 2100000, guid: 6b00772b09b51d34ebd99357591a31d0, type: 2}
-  myModel: {fileID: 1317422597}
 --- !u!23 &1317422597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4461,12 +4446,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1337850479}
-  PoolSize: 15
-  ActiveSize: 10
-  SpawnDistance: 25
+  poolSize: 15
+  activeSize: 10
+  spawnDistance: 25
   viewDistance: 50
-  DespawnTime: 100
-  PooledEnemies:
+  despawnTime: 100
+  pooledEnemies:
   - {fileID: 1113829}
   - {fileID: 920575665}
   - {fileID: 1099368364}
@@ -4482,7 +4467,7 @@ MonoBehaviour:
   - {fileID: 826802966}
   - {fileID: 827071082}
   - {fileID: 1266329771}
-  ActiveEnemies: []
+  activeEnemies: []
 --- !u!1 &1382665052
 GameObject:
   m_ObjectHideFlags: 0
@@ -5028,7 +5013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f67c05f6c5c4e48ad5059f451c081f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Display: {fileID: 266456963}
+  display: {fileID: 266456963}
 --- !u!1001 &1888346225
 PrefabInstance:
   m_ObjectHideFlags: 0

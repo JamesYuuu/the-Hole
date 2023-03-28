@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeAlpha : MonoBehaviour
+public class Change_Alpha : MonoBehaviour
 {
     [SerializeField] private Material myMaterial;
     [SerializeField] private Renderer myModel;
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame

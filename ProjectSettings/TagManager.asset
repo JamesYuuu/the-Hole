@@ -13,8 +13,8 @@ TagManager:
   - Underwater
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - CollideWithPlayer
   - 
   - 
   - 

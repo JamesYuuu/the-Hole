@@ -33,6 +33,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     public float reelVibrationSpeed = 2;
 
     [Header("Variables")]
+    public LayerMask ignoreLayers;
     public float range = 30f;
     public float shootSpeed = 25f;
     public float reelSpeed = 50f;
@@ -135,8 +136,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     void AimHook()
     {
         RaycastHit hit;
-        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range))
-        {
+        if (Physics.Raycast(pointer.position, pointer.forward, out hit, range, ~ignoreLayers)){
             targetPoint.SetActive(true);
             targetPoint.transform.position = hit.point;
             targetPoint.transform.rotation = Quaternion.LookRotation(hit.normal);

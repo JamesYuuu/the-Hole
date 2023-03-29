@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 175069299}
   - component: {fileID: 175069298}
   - component: {fileID: 175069297}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 231561664}
   - component: {fileID: 231561668}
   - component: {fileID: 231561669}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,9 +911,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231561666}
     m_Modifications:
+    - target: {fileID: 100000, guid: c1232b0a1b78ddf44bd877453fb7a84c, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c1232b0a1b78ddf44bd877453fb7a84c, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: c1232b0a1b78ddf44bd877453fb7a84c, type: 3}
       propertyPath: m_Name
       value: pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: c1232b0a1b78ddf44bd877453fb7a84c, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c1232b0a1b78ddf44bd877453fb7a84c, type: 3}
       propertyPath: m_RootOrder
@@ -979,7 +991,7 @@ GameObject:
   - component: {fileID: 531275627}
   - component: {fileID: 531275626}
   - component: {fileID: 531275625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,101 +1077,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531275623}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &619306369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7631990903890648340, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1392476405}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &619306374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619306369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_InteractionLayers:
-    m_Bits: 1
-  m_DistanceCalculationMode: 1
-  m_SelectMode: 0
-  m_CustomReticle: {fileID: 0}
-  m_AllowGazeInteraction: 0
-  m_AllowGazeSelect: 0
-  m_OverrideGazeTimeToSelect: 0
-  m_GazeTimeToSelect: 0.5
-  m_OverrideTimeToAutoDeselectGaze: 0
-  m_TimeToAutoDeselectGaze: 3
-  m_AllowGazeAssistance: 0
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
-  m_StartingInteractionStrengthFilters: []
-  m_OnFirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectCanceled:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &661042633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661042634}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet Spawnpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1200,8 +1117,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753303408}
-  m_Layer: 0
-  m_Name: Env
+  m_Layer: 7
+  m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1635,7 +1552,7 @@ GameObject:
   - component: {fileID: 1113633783}
   - component: {fileID: 1113633782}
   - component: {fileID: 1113633781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,7 +1680,7 @@ GameObject:
   - component: {fileID: 1233711358}
   - component: {fileID: 1233711357}
   - component: {fileID: 1233711356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2030,35 +1947,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 2096153958720417010, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: xrController
-      value: 
-      objectReference: {fileID: 1392476406}
-    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407782164193005467, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: reelVibrationSpeed
-      value: 2
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652112049862677537, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990903890648340, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: reelVibrationAmplitude
-      value: 0.1
+      propertyPath: ignoreLayers.m_Bits
+      value: 68
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 7631990904029706036, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: shootVibrationDuration
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: shootVibrationAmplitude
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631990903890648813, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7631990904182334704, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
@@ -2073,7 +1990,7 @@ PrefabInstance:
     - target: {fileID: 7631990904182334704, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.467
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 7631990904182334704, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
@@ -2120,57 +2037,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 7631990904182334717, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: xrController
-      value: 
-      objectReference: {fileID: 1392476407}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990904378478692, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: reelVibrationSpeed
+      propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 7631990904454797354, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: reelVibrationAmplitude
-      value: 0.1
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 7631990904480149857, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: shootVibrationDuration
-      value: 0.05
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+    - target: {fileID: 7631990904866439218, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
-      propertyPath: shootVibrationAmplitude
-      value: 0.3
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990905041024443, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990905767944270, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
---- !u!114 &1392476406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7631990905041024445, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1392476405}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1392476407 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7631990904378478694, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1392476405}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1611247883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,7 +2201,7 @@ GameObject:
   - component: {fileID: 1695135494}
   - component: {fileID: 1695135493}
   - component: {fileID: 1695135492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2392,7 +2295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1734514366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

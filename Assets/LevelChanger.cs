@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    public Animator animator;
     public string levelToLoad;
     public float transitionTime = 1f;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {

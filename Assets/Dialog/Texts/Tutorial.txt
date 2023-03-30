@@ -1,0 +1,87 @@
+// see how to structure line-by-line interaction
+
+Hey! [show continue tut img]
+
+hey you! check this out
+
+[flash light on grappling hook.]
+
+[show mvt tut img, if exit collider, light off]
+
+[enter collider, show grab tut img]
+
+[onGrab] it’s a grappling arm, you armless sea cucumber!
+
+I don’t know HOW HQ knew that you could use one, but they sent me alllllllll the way here to sell it to you.
+
+……??
+
+what do you mean you don’t know who I am?
+
+I’m NINA! Remember that name!
+
+You’re in my shop! Welcome to Nowhere Express!
+
+[load shop scene and daylight]
+
+We’re in Buraco village, on a tropical island in the southern part of the Seorim Empire.
+
+On the way here, I saw a beautiful blue hole in the middle of the island. The villagers told me they used to fish, play and swim there peacefully.
+
+Well, it WAS peaceful, until that day YOU went swimming in the hole.
+
+Actually, shouldn’t you be the one telling me all this? This is your village, your island! I’m just a travelling merchant! I just got here!
+
+Anyway, the villagers said that you saw 2 lights glowing in the water.
+
+You swam after it, and before you knew it,
+
+BAM! YOUR ARM WAS BITTEN OFF!!
+
+*muttering* honestly, skill issue
+
+So the villagers hauled you to the shore, barely escaping the fishes that had turned berserk.
+
+From that day on, no one dared to go swimming in the hole again. Not with those glowing things in the water.
+
+That was 3 years ago.
+
+So today, i’m glad you finally get your arm back. Here you go!
+
+[hint player to put it on attach point. on attach,]
+
+…and that will be 100000G.
+
+…what do you mean you don’t have enough?
+
+no no no, i can’t give you a discount. stop giving me those puppy eyes.
+
+hmm……
+
+oh!
+
+tell you what, i have a deal.
+
+on the way here, while getting out of the helicopter, the worst thing happened in my life.
+
+my chou chou dropped into the hole.
+
+I CANT LIVE WITHOUT MY CHOU CHOU!!! I GO EVERYWHERE WITH IT!! MY BED FEELS SO EMPTY!!!
+
+so, if you could hop in there and grab it for me, i’ll pay for your grappling hand.
+
+Deal?
+
+Okay the plot dictates that you have no choice haha
+
+oh, and there’s a HUGE market for Buraco fish meat. but the fish here are too ghostly to grab. I heard that it’s like grabbing the wind.
+
+But that’s alright. I’ll give you a gun to shoot them with once you return to the surface.
+
+I’ll collect the fish bits for sale and give you a commission for each fish! What a great boss I am!
+
+Right, that’s enough yapping from me. Time to snag that chou chou!
+
+Nowhere Express, Convenience in catastrophe!
+
+[highlight the door. player starts the game]

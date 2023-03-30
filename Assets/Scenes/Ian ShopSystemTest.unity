@@ -4820,22 +4820,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ffc7cc3ee36bd4983b381ecf331101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stDia: 0
   next: 0
-  item: {fileID: 0}
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
   dialogParser: {fileID: 1119341252}
-  greetingTextFile: {fileID: 4900000, guid: 1dc9d10993e802244838b5f9982d9a2c, type: 3}
-  farewellTextFile: {fileID: 4900000, guid: e6344997b320d20478d4b8d9905fc7aa, type: 3}
-  UiPanelsTalking: {fileID: 1229037669}
-  UiPanelsShopInfo: {fileID: 1525217973}
-  itemNameDisplay: {fileID: 897295433}
-  priceDisplay: {fileID: 144352037}
+  convoTextFile: {fileID: 0}
+  displayGroup: {fileID: 0}
+  textDisplay: {fileID: 0}
+  greetingTextFiles:
+  - {fileID: 4900000, guid: 99f8ed82f87fb1546b868640e71f6104, type: 3}
+  - {fileID: 4900000, guid: 630f0817102a41c438518f8f7c60e237, type: 3}
+  - {fileID: 4900000, guid: 4420a7b413297b84ea516b15394eb358, type: 3}
+  - {fileID: 4900000, guid: b952a580cb5ab8542b2ddb179ea02b9c, type: 3}
+  - {fileID: 4900000, guid: 694210bb5f9660047900a90dd15cdfe5, type: 3}
+  - {fileID: 4900000, guid: 6813da1a33a4e2647a1a862dd0f8fe2c, type: 3}
+  - {fileID: 4900000, guid: 0364a97b46443a847ad350333dcbb23f, type: 3}
+  - {fileID: 4900000, guid: da0feed069123b149be77ce54a4090be, type: 3}
+  - {fileID: 4900000, guid: 9197170f0c891f446acdc0511c65f03d, type: 3}
+  - {fileID: 4900000, guid: ccccc0249e35ee84a81a4a3be58c28f2, type: 3}
+  - {fileID: 4900000, guid: 8cdef39b3d265c64db6507295a0bac5f, type: 3}
+  farewellTextFiles:
+  - {fileID: 4900000, guid: 7f1b488e9482822458b0758de605766e, type: 3}
+  - {fileID: 4900000, guid: 7a5bd437bba9b8b40b4ff90398293b86, type: 3}
+  - {fileID: 4900000, guid: d2676e459fb7b254ebe451fb24c9ba44, type: 3}
+  - {fileID: 4900000, guid: 5a40279f4dee4a5418dc092b24e56a22, type: 3}
+  - {fileID: 4900000, guid: 5c53d096beb8acf4686a16e581e241d0, type: 3}
+  - {fileID: 4900000, guid: ffe299fcd0afb8246b98b3d1fc600252, type: 3}
+  - {fileID: 4900000, guid: 0af89b229e849074ca2796eea97ab835, type: 3}
+  - {fileID: 4900000, guid: 724a7b890e1a7bd4bb56005f919083c1, type: 3}
+  - {fileID: 4900000, guid: 3445edba4778cb44eb58dc652dedb8cd, type: 3}
+  - {fileID: 4900000, guid: 8611ea12872f373419270f23dc90b974, type: 3}
+  uiPanelsTalking: {fileID: 1229037669}
+  uiPanelsShopInfo: {fileID: 1525217973}
   descDisplay: {fileID: 680554469}
-  cashDisplay: {fileID: 1587245749}
-  cartTotalDisplay: {fileID: 419756844}
-  EnableGrab:
+  enableGrab:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1996682502}
@@ -7317,7 +7337,7 @@ PrefabInstance:
     - target: {fileID: 2864652124188253241, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
       propertyPath: levelToLoad
-      value: Environment_Island_alpha
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ad18ca7d1e707409bc323bb4d92d25, type: 3}
@@ -8278,11 +8298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b41e61603b3264997b602acbed67ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CheckoutEvent:
+  checkoutEvent:
     m_PersistentCalls:
       m_Calls: []
   dialogBehaviour: {fileID: 1119341249}
-  ItemsForSale:
+  itemsForSale:
   - {fileID: 2127403833}
   - {fileID: 752725859}
   - {fileID: 1560145493}
@@ -8290,20 +8310,20 @@ MonoBehaviour:
   - {fileID: 707638458}
   - {fileID: 919132149532766098}
   - {fileID: 1665869345}
-  ItemsInCart: []
-  ShopItemDescriptionPanel: {fileID: 680554467}
-  ShopItemPricePanel: {fileID: 144352035}
-  ShopItemNamePanel: {fileID: 897295431}
-  ShopCartTotalPanel: {fileID: 419756842}
-  ShopPlayerMoneyPanel: {fileID: 1587245747}
-  ItemInfo: {fileID: 1395925058}
-  CartTotal: {fileID: 405718191}
-  PlayerCash: {fileID: 382814000}
-  CheckoutPanel: {fileID: 1618821999}
-  LeftHandController: {fileID: 484237956}
-  RightHandController: {fileID: 632035225}
-  CashRegister: {fileID: 1682863147}
-  Leave: {fileID: 402303067}
+  itemsInCart: []
+  shopItemDescriptionPanel: {fileID: 680554467}
+  shopItemPricePanel: {fileID: 144352035}
+  shopItemNamePanel: {fileID: 897295431}
+  shopCartTotalPanel: {fileID: 419756842}
+  shopPlayerMoneyPanel: {fileID: 1587245747}
+  itemInfo: {fileID: 1395925058}
+  cartTotal: {fileID: 405718191}
+  playerCash: {fileID: 382814000}
+  checkoutPanel: {fileID: 1618821999}
+  leftHandController: {fileID: 484237956}
+  rightHandController: {fileID: 632035225}
+  cashRegister: {fileID: 1682863147}
+  leave: {fileID: 402303067}
 --- !u!1 &2039753192
 GameObject:
   m_ObjectHideFlags: 0

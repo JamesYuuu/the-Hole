@@ -1348,6 +1348,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7631990904378478712, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990904378478712, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990904378478712, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1337850479}
+    - target: {fileID: 7631990904378478712, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7631990904480149857, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_Layer
@@ -1396,6 +1416,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5982426040140656919, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
+--- !u!1 &1337850479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7631990904480149857, guid: 10617a2f4137d41afa1690341f8559d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1337850478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1337850480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7631990904480149860, guid: 10617a2f4137d41afa1690341f8559d5,

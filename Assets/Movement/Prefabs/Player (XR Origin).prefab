@@ -117,7 +117,7 @@ MonoBehaviour:
   reelVibrationSpeed: 2
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 68
+    m_Bits: 324
   range: 40
   shootSpeed: 25
   reelSpeed: 40
@@ -872,7 +872,7 @@ MonoBehaviour:
   reelVibrationSpeed: 2
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 68
+    m_Bits: 324
   range: 40
   shootSpeed: 25
   reelSpeed: 40

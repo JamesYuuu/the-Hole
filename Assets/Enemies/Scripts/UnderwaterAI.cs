@@ -8,7 +8,8 @@ public class UnderwaterAI : AbstractAI
     /// Debug flag. Set to true to force fish to move back to test despawning.
     /// </summary>
     [SerializeField] private static bool _debug = false;
-    [FormerlySerializedAs("Player")] [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerHealth playerHealth;
 
     public static bool IsHostile = false;
     [FormerlySerializedAs("Speed")] [SerializeField] private float speed = 0.005f;
@@ -63,8 +64,7 @@ public class UnderwaterAI : AbstractAI
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * speed;
         if (IsColliding && IsHostile)
         {
-            PlayerHealth healthManager = player.GetComponent<PlayerHealth>();
-            healthManager.ChangeOxygen(-attack);
+            playerHealth.ChangeOxygen(-attack);
         }
     }
 

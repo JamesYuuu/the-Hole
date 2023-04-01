@@ -78,7 +78,6 @@ namespace Dialog.Scripts
         public void ShowShopInterface()
         {
             uiPanelsShopInfo.SetActive(true);
-            // UpdateCartTotal(0);
         }
         
         /// <summary>

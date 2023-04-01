@@ -69,6 +69,46 @@ namespace Dialog.Scripts
             StartCoroutine(TypeCurrSpeech(_currSpeech.speech, textDisplay, _currSpeech.speed));
         }
         
+        
+        /// <summary>
+        /// Closes the text panel and stops talking.
+        ///
+        /// Triggered by Cancel input action.
+        /// </summary>
+        public virtual void EndDialog()
+        {
+            displayGroup.SetActive(false);
+            StopCoroutine(nameof(TypeCurrSpeech));
+        }
+        
+        /// <summary>
+        /// Adds the speech letter by letter to the display box.
+        /// </summary>
+        protected IEnumerator TypeCurrSpeech(string thisSentence, TextMeshProUGUI display, TextSpeed speed) 
+
+        {
+            display.text = "";
+            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
+            // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
+
+            // set the talking speed
+            var currTextSpeed = speed == TextSpeed.Normal
+                ? textSpeedNorm
+                : speed == TextSpeed.Slow
+                ? textSpeedSlow
+                : textSpeedFast;
+            
+            // add each letter to the display
+            foreach (char letter in thisSentence)
+            {
+                display.text += letter;
+                yield return new WaitForSeconds(currTextSpeed);
+            }
+
+            _doneTalking = true;
+            // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
+        }
+        
         /// <summary>
         /// When player wants to see the next page,
         /// if it is the end of the dialog, exit it.
@@ -77,7 +117,7 @@ namespace Dialog.Scripts
         ///
         /// Triggered by Continue input action.
         /// </summary>
-        public void FinishCurrSentence()
+        public virtual void FinishCurrSentence()
         {
             if (_convoQueue.Count == 0)
             {
@@ -102,43 +142,6 @@ namespace Dialog.Scripts
                 StartCoroutine(TypeCurrSpeech(_currSpeech.speech, textDisplay, _currSpeech.speed));
             }
         }
-        
-        /// <summary>
-        /// Closes the text panel and stops talking.
-        ///
-        /// Triggered by Cancel input action.
-        /// </summary>
-        public virtual void EndDialog()
-        {
-            displayGroup.SetActive(false);
-            StopCoroutine(nameof(TypeCurrSpeech));
-        }
-        
-        /// <summary>
-        /// Adds the speech letter by letter to the display box.
-        /// </summary>
-        protected IEnumerator TypeCurrSpeech(string thisSentence, TextMeshProUGUI display, TextSpeed speed = TextSpeed.Normal)
-        {
-            display.text = "";
-            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
-            // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
-            // set the talking speed
-            var currTextSpeed = speed == TextSpeed.Normal
-                ? textSpeedNorm
-                : speed == TextSpeed.Slow
-                ? textSpeedSlow
-                : textSpeedFast;
-            
-            // add each letter to the display
-            foreach (char letter in thisSentence)
-            {
-                display.text += letter;
-                yield return new WaitForSeconds(currTextSpeed);
-            }
-
-            _doneTalking = true;
-            // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
-        }
     }
 }

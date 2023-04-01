@@ -5,28 +5,32 @@ using UnityEngine.Serialization;
 public class SpawnControl : MonoBehaviour
 {
     private static SpawnControl _instance;
-    [SerializeField] private static readonly bool Debug = false;
+    private const bool Debug = false;
 
     [SerializeField] private GameObject player;
-    [FormerlySerializedAs("PoolSize")] [SerializeField] private int poolSize = 20;
-    [FormerlySerializedAs("ActiveSize")] [SerializeField] private int activeSize = 10;
-    [FormerlySerializedAs("SpawnDistance")] [SerializeField] private float spawnDistance = 150f;
+    [SerializeField] private int poolSize = 20;
+    [SerializeField] private int activeSize = 10;
+    [SerializeField] private float spawnDistance = 150f;
     [SerializeField] private float viewDistance = 175f;
-    [FormerlySerializedAs("DespawnTime")] [SerializeField] private int despawnTime = 100;
+    [SerializeField] private int despawnTime = 100;
 
     /**
      * Spawn volume settings
      */
-    private readonly int SpawnRadius = 33;
+    private readonly int _spawnRadius = 33;
 
-    private readonly int SpawnBase = -90;
-    private readonly int SpawnHeight = 50;
+    private readonly int _spawnBase = -90;
+    private readonly int _spawnHeight = 50;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
 
-    [FormerlySerializedAs("PooledEnemies")] [SerializeField] private List<GameObject> pooledEnemies = new();
-    [FormerlySerializedAs("ActiveEnemies")] [SerializeField] private List<GameObject> activeEnemies = new();
-    [SerializeField] private readonly Dictionary<GameObject, int> DespawnTimes = new();
+    [FormerlySerializedAs("PooledEnemies")] [SerializeField]
+    private List<GameObject> pooledEnemies = new();
+
+    [FormerlySerializedAs("ActiveEnemies")] [SerializeField]
+    private List<GameObject> activeEnemies = new();
+
+    private readonly Dictionary<GameObject, int> _despawnTimes = new();
 
     private static readonly List<Vector3> TransferActivePosition = new();
     public static bool IsFreefall;
@@ -34,7 +38,9 @@ public class SpawnControl : MonoBehaviour
 
     public static void LoadFreeFall()
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Changing scenes, saving active fish positions...");
+#pragma warning restore CS0162
         IsFreefall = true;
         if (!_instance) return;
 
@@ -45,13 +51,17 @@ public class SpawnControl : MonoBehaviour
 
     public static void ResetScene()
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Resetting scene...");
+#pragma warning restore CS0162
         IsFreefall = false;
     }
 
     private static void ChangeSceneTransform()
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Scene changed. Respawning fish for shooting...");
+#pragma warning restore CS0162
         print("Transferred Count:" + TransferActivePosition.Count);
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
@@ -71,9 +81,14 @@ public class SpawnControl : MonoBehaviour
     private void Start()
     {
         if (_instance == null) _instance = this;
+        // ReSharper disable once InvertIf
         if (Debug)
-            print("[LOG][SC] Player at " + player.transform.position.x + "," + player.transform.position.y + "," +
-                  player.transform.position.z);
+#pragma warning disable CS0162
+        {
+            var position = player.transform.position;
+            print("[LOG][SC] Player at " + position.x + "," + position.y + "," + position.z);
+        }
+#pragma warning restore CS0162
     }
 
     private void Update()
@@ -98,33 +113,34 @@ public class SpawnControl : MonoBehaviour
         {
             if (FindDistanceToPlayer(enemy) <= viewDistance)
             {
-                DespawnTimes[enemy] = -1;
+                _despawnTimes[enemy] = -1;
                 continue;
             }
 
-            if (DespawnTimes[enemy] == 0)
+            switch (_despawnTimes[enemy])
             {
-                toDeactivate.Add(enemy);
-                continue;
+                case 0:
+                    toDeactivate.Add(enemy);
+                    continue;
+                case -1:
+                    StartDespawnTimer(enemy);
+                    continue;
+                default:
+                    TickDespawnTimer(enemy);
+                    break;
             }
-
-            if (DespawnTimes[enemy] == -1)
-            {
-                StartDespawnTimer(enemy);
-                continue;
-            }
-
-            TickDespawnTimer(enemy);
         }
 
         toDeactivate.ForEach(DeactivatePoolEnemy);
     }
 
-    private GameObject ActivatePooledEnemy()
+    private void ActivatePooledEnemy()
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Activating pooled enemy...");
+#pragma warning restore CS0162
         var remaining = pooledEnemies.Count;
-        if (remaining == 0) return null;
+        if (remaining == 0) return;
         var picked = Random.Range(0, remaining);
         var pickedEnemy = pooledEnemies[picked];
 
@@ -132,40 +148,49 @@ public class SpawnControl : MonoBehaviour
 
         if (!IsLocationWithinHole(loc))
         {
+#pragma warning disable CS0162
             if (Debug) print("[LOG][SC] Transformed enemy location out of spawn volume. Cancelling...");
-            return null;
+#pragma warning restore CS0162
+            return;
         }
 
         TransformPooledEnemyRot(pickedEnemy, loc);
 
         pooledEnemies.Remove(pickedEnemy);
         activeEnemies.Add(pickedEnemy);
-        DespawnTimes.Add(pickedEnemy, -1);
+        _despawnTimes.Add(pickedEnemy, -1);
         pickedEnemy.SetActive(true);
 
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Activated pooled enemy. Current active enemies: " + activeEnemies.Count);
-        return pickedEnemy;
+#pragma warning restore CS0162
     }
 
     private void DeactivatePoolEnemy(GameObject activeEnemy)
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Deactivating pooled enemy...");
+#pragma warning restore CS0162
         activeEnemy.SetActive(false);
         activeEnemies.Remove(activeEnemy);
-        DespawnTimes.Remove(activeEnemy);
+        _despawnTimes.Remove(activeEnemy);
         pooledEnemies.Add(activeEnemy);
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Deactivated pooled enemy. Current active enemies: " + activeEnemies.Count);
+#pragma warning restore CS0162
     }
 
     private void StartDespawnTimer(GameObject activeEnemy)
     {
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Pooled enemy out of range. Starting despawn timer...");
-        DespawnTimes[activeEnemy] = despawnTime;
+#pragma warning restore CS0162
+        _despawnTimes[activeEnemy] = despawnTime;
     }
 
     private void TickDespawnTimer(GameObject activeEnemy)
     {
-        --DespawnTimes[activeEnemy];
+        --_despawnTimes[activeEnemy];
     }
 
     private bool CanSpawn()
@@ -190,50 +215,56 @@ public class SpawnControl : MonoBehaviour
         var dispY = randY * scale;
         var dispZ = randZ * scale;
 
-        var locX = player.transform.position.x + dispX;
-        var locY = player.transform.position.y + dispY;
-        var locZ = player.transform.position.z + dispZ;
+        var position = player.transform.position;
+        var locX = position.x + dispX;
+        var locY = position.y + dispY;
+        var locZ = position.z + dispZ;
 
         Vector3 loc = new(locX, locY, locZ);
 
         activeEnemy.transform.position = loc;
 
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Transformed pooled enemy location: " + locX + "," + locY + "," + locZ);
+#pragma warning restore CS0162
         return loc;
     }
 
-    private Vector3 TransformPooledEnemyRot(GameObject activeEnemy, Vector3 loc)
+    private void TransformPooledEnemyRot(GameObject activeEnemy, Vector3 loc)
     {
-        var forwardX = player.transform.position.x - loc.x;
-        float forwardY = 0;
-        var forwardZ = player.transform.position.z - loc.z;
+        var position = player.transform.position;
+        var forwardX = position.x - loc.x;
+        const float forwardY = 0;
+        var forwardZ = position.z - loc.z;
 
         Vector3 forward = new(forwardX, forwardY, forwardZ);
         forward.Normalize();
 
         activeEnemy.transform.forward = forward;
 
+#pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Transformed pooled enemy rotation: " + forwardX + "," + forwardZ);
-        return forward;
+#pragma warning restore CS0162
     }
 
     private bool IsLocationWithinHole(Vector3 loc)
     {
-        if (FindDistance(loc.x, 0, loc.z) > SpawnRadius) return false;
-        if (loc.y < SpawnBase || loc.y > SpawnBase + SpawnHeight) return false;
-        return true;
+        if (FindDistance(loc.x, 0, loc.z) > _spawnRadius) return false;
+        return !(loc.y < _spawnBase) && !(loc.y > _spawnBase + _spawnHeight);
     }
 
-    private float FindDistance(float x, float y, float z)
+    private static float FindDistance(float x, float y, float z)
     {
         return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2));
     }
 
     private float FindDistanceToPlayer(GameObject fish)
     {
-        var dispX = fish.transform.position.x - player.transform.position.x;
-        var dispY = fish.transform.position.y - player.transform.position.y;
-        var dispZ = fish.transform.position.z - player.transform.position.z;
+        var position = fish.transform.position;
+        var position1 = player.transform.position;
+        var dispX = position.x - position1.x;
+        var dispY = position.y - position1.y;
+        var dispZ = position.z - position1.z;
         return FindDistance(dispX, dispY, dispZ);
     }
 }

@@ -28,8 +28,8 @@ namespace Dialog.Scripts
         private TextAsset greetingTextFile; 
         [SerializeField] [Tooltip("Has a list of farewell messages picked at random, separated by @.")]
         private TextAsset farewellTextFile;
-        private List<(TextSpeed speed, string speech)> greetings;
-        private List<(TextSpeed speed, string speech)> farewells;
+        private List<(TextSpeed speed, string speech)> _greetings;
+        private List<(TextSpeed speed, string speech)> _farewells;
         
         
         [FormerlySerializedAs("UiPanelsTalking")] [SerializeField] private GameObject uiPanelsTalking;
@@ -43,18 +43,18 @@ namespace Dialog.Scripts
 
         [FormerlySerializedAs("EnableGrab")] public UnityEvent enableGrab;
         
-        private (TextSpeed speed, string speech) currSpeech;
-        private float currTextSpeed;
-        private bool doneTalking; // done showing all the text in the description
+        private (TextSpeed speed, string speech) _currSpeech;
+        private float _currTextSpeed;
+        private bool _doneTalking; // done showing all the text in the description
         // assumption: desc is always longer than name or price
-        private Random rand = new(); // used to pick greeting and farewell
+        private Random _rand = new(); // used to pick greeting and farewell
 
         private void Awake()
         {
-            doneTalking = true;
-            currTextSpeed = textSpeedNorm;
-            greetings = dialogParser.ParseTextFileAsList(greetingTextFile);
-            farewells = dialogParser.ParseTextFileAsList(farewellTextFile);
+            _doneTalking = true;
+            _currTextSpeed = textSpeedNorm;
+            _greetings = dialogParser.ParseTextFileAsList(greetingTextFile);
+            _farewells = dialogParser.ParseTextFileAsList(farewellTextFile);
             
             // testing, remove for production
             // ShowShopInterface();
@@ -83,9 +83,9 @@ namespace Dialog.Scripts
         public void StartDialog()
         {
             uiPanelsTalking.SetActive(true); // open dialog panel
-            int randInt = rand.Next(greetings.Count);
-            StartCoroutine(TypeCurrSpeech(greetings[randInt].speech, 
-                descDisplay, greetings[randInt].speed));
+            int randInt = _rand.Next(_greetings.Count);
+            StartCoroutine(TypeCurrSpeech(_greetings[randInt].speech, 
+                descDisplay, _greetings[randInt].speed));
             enableGrab.Invoke(); // triggers shopMgr::EnableGrab
         }
 
@@ -107,7 +107,7 @@ namespace Dialog.Scripts
         /// <param name="cartTotalPrice">The total value of the items in the cart.</param>
         public void UpdateCartTotal(int cartTotalPrice)
         {
-            StartCoroutine(TypeCurrSpeech(PlayerData.money + "", cashDisplay));
+            StartCoroutine(TypeCurrSpeech(PlayerData.Money + "", cashDisplay));
             StartCoroutine(TypeCurrSpeech(cartTotalPrice + "", cartTotalDisplay));
         }
         
@@ -131,9 +131,9 @@ namespace Dialog.Scripts
         /// </summary>
         public IEnumerator EndInteraction()
         {
-            int randInt = rand.Next(farewells.Count);
-            yield return StartCoroutine(TypeCurrSpeech(farewells[randInt].speech, 
-                descDisplay, farewells[randInt].speed));
+            int randInt = _rand.Next(_farewells.Count);
+            yield return StartCoroutine(TypeCurrSpeech(_farewells[randInt].speech, 
+                descDisplay, _farewells[randInt].speed));
             EndDialog();
         }
         
@@ -154,11 +154,11 @@ namespace Dialog.Scripts
         private IEnumerator TypeCurrSpeech(string currSpeech, TextMeshProUGUI display, TextSpeed speed = TextSpeed.Normal)
         {
             display.text = "";
-            doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
+            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
             // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
             // set the talking speed
-            currTextSpeed = speed == TextSpeed.Normal
+            _currTextSpeed = speed == TextSpeed.Normal
                 ? textSpeedNorm
                 : speed == TextSpeed.Slow
                 ? textSpeedSlow
@@ -168,10 +168,10 @@ namespace Dialog.Scripts
             foreach (char letter in currSpeech)
             {
                 display.text += letter;
-                yield return new WaitForSeconds(currTextSpeed);
+                yield return new WaitForSeconds(_currTextSpeed);
             }
 
-            doneTalking = true;
+            _doneTalking = true;
             // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
         }
         
@@ -182,11 +182,11 @@ namespace Dialog.Scripts
         /// </summary>
         public void FinishSpeaking()
         {
-            if (!doneTalking)
+            if (!_doneTalking)
             {
                 // show all remaining text in speech, stop typing
-                descDisplay.text = currSpeech.speech;
-                doneTalking = true;
+                descDisplay.text = _currSpeech.speech;
+                _doneTalking = true;
             }
             StopCoroutine(nameof(TypeCurrSpeech));
             // make the continue arrow bounce

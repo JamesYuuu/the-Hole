@@ -1,3 +1,4 @@
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
@@ -8,27 +9,28 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
     /// </summary>
     public class IncrementUIText : MonoBehaviour
     {
+        [FormerlySerializedAs("m_Text")]
         [SerializeField]
         [Tooltip("The Text component this behavior uses to display the incremented value.")]
-        Text m_Text;
+        Text mText;
 
         /// <summary>
         /// The Text component this behavior uses to display the incremented value.
         /// </summary>
-        public Text text
+        public Text Text
         {
-            get => m_Text;
-            set => m_Text = value;
+            get => mText;
+            set => mText = value;
         }
 
-        int m_Count;
+        int _mCount;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
         protected void Awake()
         {
-            if (m_Text == null)
+            if (mText == null)
                 Debug.LogWarning("Missing required Text component reference. Use the Inspector window to assign which Text component to increment.", this);
         }
 
@@ -37,9 +39,9 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
         /// </summary>
         public void IncrementText()
         {
-            m_Count += 1;
-            if (m_Text != null)
-                m_Text.text = m_Count.ToString();
+            _mCount += 1;
+            if (mText != null)
+                mText.text = _mCount.ToString();
         }
     }
 }

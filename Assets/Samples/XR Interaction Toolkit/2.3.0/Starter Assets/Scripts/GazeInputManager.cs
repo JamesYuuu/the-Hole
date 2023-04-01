@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 {
@@ -9,23 +10,24 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
     public class GazeInputManager : MonoBehaviour
     {
         // This is the name of the layout that is registered by EyeGazeInteraction in the OpenXR Plugin package
-        const string k_EyeGazeLayoutName = "EyeGaze";
+        const string KEyeGazeLayoutName = "EyeGaze";
 
+        [FormerlySerializedAs("m_FallbackIfEyeTrackingUnavailable")]
         [SerializeField]
         [Tooltip("Enable fallback to head tracking if eye tracking is unavailable.")]
-        bool m_FallbackIfEyeTrackingUnavailable = true;
+        bool mFallbackIfEyeTrackingUnavailable = true;
 
         /// <summary>
         /// Enable fallback to head tracking if eye tracking is unavailable.
         /// </summary>
-        public bool fallbackIfEyeTrackingUnavailable
+        public bool FallbackIfEyeTrackingUnavailable
         {
-            get => m_FallbackIfEyeTrackingUnavailable;
-            set => m_FallbackIfEyeTrackingUnavailable = value;
+            get => mFallbackIfEyeTrackingUnavailable;
+            set => mFallbackIfEyeTrackingUnavailable = value;
         }
 
 
-        bool m_EyeTrackingDeviceFound;
+        bool _mEyeTrackingDeviceFound;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
@@ -38,16 +40,16 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             if (inputDeviceList.Count > 0)
             {
                 Debug.Log("Eye tracking device found!", this);
-                m_EyeTrackingDeviceFound = true;
+                _mEyeTrackingDeviceFound = true;
                 return;
             }
 
             foreach (var device in InputSystem.InputSystem.devices)
             {
-                if (device.layout == k_EyeGazeLayoutName)
+                if (device.layout == KEyeGazeLayoutName)
                 {
                     Debug.Log("Eye gaze device found!", this);
-                    m_EyeTrackingDeviceFound = true;
+                    _mEyeTrackingDeviceFound = true;
                     return;
                 }
             }
@@ -57,7 +59,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             InputDevices.deviceConnected += OnDeviceConnected;
             InputSystem.InputSystem.onDeviceChange += OnDeviceChange;
 
-            gameObject.SetActive(m_FallbackIfEyeTrackingUnavailable);
+            gameObject.SetActive(mFallbackIfEyeTrackingUnavailable);
         }
 
         /// <summary>
@@ -71,23 +73,23 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
         void OnDeviceConnected(InputDevice inputDevice)
         {
-            if (m_EyeTrackingDeviceFound || !inputDevice.characteristics.HasFlag(InputDeviceCharacteristics.EyeTracking))
+            if (_mEyeTrackingDeviceFound || !inputDevice.characteristics.HasFlag(InputDeviceCharacteristics.EyeTracking))
                 return;
 
             Debug.Log("Eye tracking device found!", this);
-            m_EyeTrackingDeviceFound = true;
+            _mEyeTrackingDeviceFound = true;
             gameObject.SetActive(true);
         }
 
         void OnDeviceChange(InputSystem.InputDevice device, InputDeviceChange change)
         {
-            if (m_EyeTrackingDeviceFound || change != InputDeviceChange.Added)
+            if (_mEyeTrackingDeviceFound || change != InputDeviceChange.Added)
                 return;
 
-            if (device.layout == k_EyeGazeLayoutName)
+            if (device.layout == KEyeGazeLayoutName)
             {
                 Debug.Log("Eye gaze device found!", this);
-                m_EyeTrackingDeviceFound = true;
+                _mEyeTrackingDeviceFound = true;
                 gameObject.SetActive(true);
             }
         }

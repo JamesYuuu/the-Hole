@@ -41,9 +41,9 @@ public class ShopManager : MonoBehaviour, IShop
     [FormerlySerializedAs("Leave")] [SerializeField] private Button leave;
 
     public static ShopManager Instance;
-    private int TotalPrice, PlayerMoney;
+    private int _totalPrice, _playerMoney;
 
-    private Item CurrentSelectedItem;
+    private Item _currentSelectedItem;
 
     private void Awake()
     {
@@ -96,7 +96,7 @@ public class ShopManager : MonoBehaviour, IShop
         shopItemDescriptionPanel.GetComponent<TMP_Text>().text = grabbedItem.GetDescription();
         shopItemPricePanel.GetComponent<TMP_Text>().text = grabbedItem.GetPrice().ToString() + 'G';
         shopItemNamePanel.GetComponent<TMP_Text>().text = grabbedItem.GetName();
-        CurrentSelectedItem = grabbedItem;
+        _currentSelectedItem = grabbedItem;
     }
 
     public void AddToCart(Item item)
@@ -114,13 +114,13 @@ public class ShopManager : MonoBehaviour, IShop
     public void Checkout()
     {
         
-        if (TotalPrice <= PlayerMoney)
+        if (_totalPrice <= _playerMoney)
         {
-            PlayerData.RemoveMoney(TotalPrice);
+            PlayerData.RemoveMoney(_totalPrice);
             checkoutEvent.Invoke();
             itemsInCart.ForEach(item => Upgrade(item));
             itemsInCart.Clear();
-            SetTotalMoney(-TotalPrice);
+            SetTotalMoney(-_totalPrice);
             SetPlayerMoney();
         }
         else
@@ -164,13 +164,13 @@ public class ShopManager : MonoBehaviour, IShop
     }
     public void SetPlayerMoney()
     {
-        PlayerMoney = PlayerData.money;
-        shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = PlayerMoney.ToString() + 'G';
+        _playerMoney = PlayerData.Money;
+        shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = _playerMoney.ToString() + 'G';
     }
     
     public void SetTotalMoney(int addedMoney)
     {
-        TotalPrice += addedMoney;
-        shopCartTotalPanel.GetComponent<TMP_Text>().text = TotalPrice.ToString() + 'G';
+        _totalPrice += addedMoney;
+        shopCartTotalPanel.GetComponent<TMP_Text>().text = _totalPrice.ToString() + 'G';
     }
 }

@@ -24,7 +24,7 @@ namespace Dialog.Scripts
             // if there is another instance, destroy this. else make this the singleton
             if (_instance != null && _instance != this)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
             else
             {

@@ -26,15 +26,15 @@ namespace Dialog.Scripts
         [SerializeField] private TextMeshProUGUI textDisplay;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
-        private Queue<(TextSpeed speed, string speech)> speeches;
-        private (TextSpeed speed, string speech) currSpeech;
-        private float currTextSpeed;
-        private bool doneTalking; // done showing all the text in the current speech.
+        private Queue<(TextSpeed speed, string speech)> _speeches;
+        private (TextSpeed speed, string speech) _currSpeech;
+        private float _currTextSpeed;
+        private bool _doneTalking; // done showing all the text in the current speech.
 
         private void Awake()
         {
-            doneTalking = true;
-            currTextSpeed = textSpeedNorm;
+            _doneTalking = true;
+            _currTextSpeed = textSpeedNorm;
         }
 
         // only for debugging test
@@ -61,7 +61,7 @@ namespace Dialog.Scripts
         public void StartDialog()
         {
             displayGroup.SetActive(true); // open dialog panel
-            speeches = dialogParser.ParseTextFileAsQueue(convoTextFile);
+            _speeches = dialogParser.ParseTextFileAsQueue(convoTextFile);
             StartCoroutine(nameof(TypeCurrSpeech));
         }
         
@@ -75,18 +75,18 @@ namespace Dialog.Scripts
         /// </summary>
         public void FinishSpeaking()
         {
-            if (speeches.Count == 0)
+            if (_speeches.Count == 0)
             {
                 EndDialog();
                 return;
             }
 
-            if (!doneTalking)
+            if (!_doneTalking)
             {
                 // show all remaining text in speech, stop typing, prep next speech
-                textDisplay.text = currSpeech.speech;
+                textDisplay.text = _currSpeech.speech;
                 StopCoroutine(nameof(TypeCurrSpeech));
-                doneTalking = true;
+                _doneTalking = true;
                 // currSpeech = speeches.Dequeue();
                 
                 // make the continue arrow bounce
@@ -116,25 +116,25 @@ namespace Dialog.Scripts
         private IEnumerator TypeCurrSpeech()
         {
             textDisplay.text = "";
-            currSpeech = speeches.Dequeue();
-            doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
+            _currSpeech = _speeches.Dequeue();
+            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
             // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
             // set the talking speed
-            currTextSpeed = currSpeech.speed == TextSpeed.Normal
+            _currTextSpeed = _currSpeech.speed == TextSpeed.Normal
                 ? textSpeedNorm
-                : currSpeech.speed == TextSpeed.Slow
+                : _currSpeech.speed == TextSpeed.Slow
                 ? textSpeedSlow
                 : textSpeedFast;
             
             // add each letter to the display
-            foreach (char letter in currSpeech.speech)
+            foreach (char letter in _currSpeech.speech)
             {
                 textDisplay.text += letter;
-                yield return new WaitForSeconds(currTextSpeed);
+                yield return new WaitForSeconds(_currTextSpeed);
             }
 
-            doneTalking = true;
+            _doneTalking = true;
             // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
         }
     }

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FreefallAI : AbstractAI
 {
-    private float FallSpeed = 0.05f;
+    private const float FallSpeed = 0.05f;
 
     public void FixedUpdate()
     {
@@ -12,6 +10,10 @@ public class FreefallAI : AbstractAI
         {
             return;
         }
-        gameObject.transform.position = new(gameObject.transform.position.x, gameObject.transform.position.y - FallSpeed, gameObject.transform.position.z);
+
+        var o = gameObject;
+        var position = o.transform.position;
+        position = new Vector3(position.x, position.y - FallSpeed, position.z);
+        o.transform.position = position;
     }
 }

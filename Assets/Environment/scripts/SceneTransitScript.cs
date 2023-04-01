@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitScript : MonoBehaviour
 {
-    private Boolean isLoaded = false;
+    private Boolean _isLoaded = false;
     public int loadSceneNum = 1;
 
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (!isLoaded)
+            if (!_isLoaded)
             {
                 // SceneManager.LoadSceneAsync("Environment_Underwater", LoadSceneMode.Additive);
-                isLoaded = true;
+                _isLoaded = true;
                 SceneManager.LoadSceneAsync(loadSceneNum, LoadSceneMode.Additive);
             }
         }
@@ -25,6 +25,6 @@ public class SceneTransitScript : MonoBehaviour
     void Start()
     {
         SceneManager.LoadSceneAsync(loadSceneNum, LoadSceneMode.Additive);
-        isLoaded = true;
+        _isLoaded = true;
     }
 }

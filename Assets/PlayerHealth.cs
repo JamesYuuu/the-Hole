@@ -18,17 +18,17 @@ public class PlayerHealth : MonoBehaviour
 
     // For smoother drowning transistion
     [FormerlySerializedAs("drowning_Screen")] public GameObject drowningScreen;
-    [FormerlySerializedAs("change_Alpha")] public Change_Alpha changeAlpha;
+    [FormerlySerializedAs("change_Alpha")] public ChangeAlpha changeAlpha;
 
-    private bool inWater;
-    private bool drowning;
+    private bool _inWater;
+    private bool _drowning;
 
     // Start is called before the first frame update
     void Start()
     {
         currentOxygen = maxOxygen;
         oxygenDecreasePerSecond = 1f;
-        drowning = false;
+        _drowning = false;
         watch = GameObject.Find("Watch");
         drowningScreen = GameObject.Find("Drowning Screen");
     }
@@ -65,13 +65,13 @@ public class PlayerHealth : MonoBehaviour
         // Update Wirst Display
         watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
         
-        drowningScreen.GetComponent<Change_Alpha>().AlphaSlider(10f);
+        drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(10f);
         
         if (currentOxygen <= 10f)
         {
             print("lower");
             // Update Drowning Screen
-            drowningScreen.GetComponent<Change_Alpha>().AlphaSlider(currentOxygen);
+            drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(currentOxygen);
             if (currentOxygen < 0f)
             {
                 print("Dead");

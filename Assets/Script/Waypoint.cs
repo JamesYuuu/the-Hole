@@ -6,33 +6,33 @@ using UnityEngine.UI;
 public class Waypoint : MonoBehaviour
 {
     public RectTransform prefab;
-    private RectTransform waypoint;
-    private Transform player;
-    private Text distance;
+    private RectTransform _waypoint;
+    private Transform _player;
+    private Text _distance;
 
-    private Vector3 offset = new Vector3(0, 1.25f, 0);
+    private Vector3 _offset = new Vector3(0, 1.25f, 0);
 
     // Start is called before the first frame update
     void Start()
     {
         var canvas = GameObject.Find("Waypoints").transform;
-        waypoint = Instantiate(prefab, canvas);
-        distance = waypoint.GetComponentInChildren<Text>();
-        print(distance);
-        player = GameObject.Find("Main Camera").transform;
+        _waypoint = Instantiate(prefab, canvas);
+        _distance = _waypoint.GetComponentInChildren<Text>();
+        print(_distance);
+        _player = GameObject.Find("Main Camera").transform;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        var screenPos = Camera.main.WorldToScreenPoint(transform.position + offset);
-        waypoint.position = screenPos;
+        var screenPos = Camera.main.WorldToScreenPoint(transform.position + _offset);
+        _waypoint.position = screenPos;
 
-        waypoint.gameObject.SetActive(screenPos.z > 0);
+        _waypoint.gameObject.SetActive(screenPos.z > 0);
 
-        print(distance);
+        print(_distance);
         
-        distance.text = Vector3.Distance(player.position, transform.position).ToString("0") + " m";
+        _distance.text = Vector3.Distance(_player.position, transform.position).ToString("0") + " m";
     }
 }

@@ -24,13 +24,13 @@ public class Item : MonoBehaviour
         return description;
     }
 
-    public bool isBought { get; private set; }
+    public bool IsBought { get; private set; }
 
     public Item(string name, string description, int price)
     {
-        this.displayName = name;
+        displayName = name;
         this.price = price;
-        isBought = PlayerData.inventory.ContainsKey(this);
+        IsBought = PlayerData.Inventory.ContainsKey(this);
     }
 
     /// <summary>
@@ -39,13 +39,13 @@ public class Item : MonoBehaviour
     /// </summary>
     public void BuyItem()
     {
-        if (isBought)
+        if (IsBought)
         {
-            PlayerData.inventory[this]++;
+            PlayerData.Inventory[this]++;
         }
         else
         {
-            PlayerData.inventory.Add(this, 1);
+            PlayerData.Inventory.Add(this, 1);
         }
     }
 
@@ -55,10 +55,10 @@ public class Item : MonoBehaviour
     /// </summary>
     public void RemoveItem()
     {
-        if (isBought)
+        if (IsBought)
         {
-            PlayerData.inventory.Remove(this);
-            isBought = false;
+            PlayerData.Inventory.Remove(this);
+            IsBought = false;
         }
     }
 }

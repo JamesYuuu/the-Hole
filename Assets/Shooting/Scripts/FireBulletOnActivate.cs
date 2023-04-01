@@ -8,8 +8,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(XRGrabInteractable))]
 public class FireBulletOnActivate : MonoBehaviour
 {
-    private ObjectPool<Bullet> pool;
-    private AudioSource audioSource;
+    private ObjectPool<Bullet> _pool;
+    private AudioSource _audioSource;
 
     public int defaultObjectPoolSize = 50;
     public GameObject bulletPrefab;
@@ -22,8 +22,8 @@ public class FireBulletOnActivate : MonoBehaviour
     void Start()
     {
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
-        audioSource = GetComponent<AudioSource>();
-        pool = new ObjectPool<Bullet>(CreatePooledBullet, GetBulletFromPool, ReleaseBulletToPool, DestroyPooledBullet, false, defaultObjectPoolSize);
+        _audioSource = GetComponent<AudioSource>();
+        _pool = new ObjectPool<Bullet>(CreatePooledBullet, GetBulletFromPool, ReleaseBulletToPool, DestroyPooledBullet, false, defaultObjectPoolSize);
         grabbable.activated.AddListener(FireBullet);
     }
 
@@ -34,8 +34,8 @@ public class FireBulletOnActivate : MonoBehaviour
     }
 
     public void FireBullet(ActivateEventArgs arg) {
-        audioSource.PlayOneShot(audioSource.clip);
-        pool.Get();
+        _audioSource.PlayOneShot(_audioSource.clip);
+        _pool.Get();
     }
 
     Bullet CreatePooledBullet() {
@@ -45,7 +45,7 @@ public class FireBulletOnActivate : MonoBehaviour
 
     public void GetBulletFromPool(Bullet bullet) {
         bullet.gameObject.SetActive(true);
-        bullet.Init(bulletDamage, spawnPoint.position, spawnPoint.forward, bulletSpeed, maxBulletDist, tagsToHit, this.pool);
+        bullet.Init(bulletDamage, spawnPoint.position, spawnPoint.forward, bulletSpeed, maxBulletDist, tagsToHit, _pool);
     }
 
     public void ReleaseBulletToPool(Bullet bullet) {

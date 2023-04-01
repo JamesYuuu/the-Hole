@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public abstract class AbstractAI : MonoBehaviour
 {
     [SerializeField] private int health = 20;
     [SerializeField] private int reward = 5;
     [SerializeField] protected float attack = 0.0025f;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private new ParticleSystem particleSystem;
 
     public void Damage(int damage)
     {
@@ -17,6 +15,7 @@ public abstract class AbstractAI : MonoBehaviour
             Die();
             return;
         }
+
         health -= damage;
     }
 

@@ -6,12 +6,12 @@ using UnityEngine.Serialization;
 
 public class WatchUIManager : MonoBehaviour
 {
-    private int Oxygen;
+    private int _oxygen;
     [FormerlySerializedAs("Display")] public TextMeshProUGUI display;
     // Start is called before the first frame update
     void Start()
     {
-        this.Oxygen = 100;
+        _oxygen = 100;
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class WatchUIManager : MonoBehaviour
 
     public void ChangeScore(int num)
     {
-        this.Oxygen = num;
-        this.display.text = this.Oxygen.ToString("0");
+        _oxygen = num;
+        display.text = _oxygen.ToString("0");
     }
 }

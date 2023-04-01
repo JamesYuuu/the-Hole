@@ -16,62 +16,62 @@ public class ResurfacePlayer : MonoBehaviour
     [FormerlySerializedAs("Speed3")] public float speed3 = 20;
 
     public int shootingSceneNum = 3;
-    private float speed;
-    private int triggerNum = 0;
-    private bool isSurfacing = false;
-    private GameObject player;
-    private Rigidbody rb;
-    private Vector3 targetPosition;
+    private float _speed;
+    private int _triggerNum = 0;
+    private bool _isSurfacing = false;
+    private GameObject _player;
+    private Rigidbody _rb;
+    private Vector3 _targetPosition;
 
     void Update()
     {
-        if (isSurfacing)
+        if (_isSurfacing)
         {
-            if (player.transform.position == target1.transform.position)
+            if (_player.transform.position == target1.transform.position)
             {
-                targetPosition = target2.transform.position;
-                speed = speed2;
+                _targetPosition = target2.transform.position;
+                _speed = speed2;
             }
-            else if (player.transform.position == target2.transform.position)
+            else if (_player.transform.position == target2.transform.position)
             {
-                targetPosition = target3.transform.position;
-                speed = speed3;
+                _targetPosition = target3.transform.position;
+                _speed = speed3;
             }
-            else if (player.transform.position == target3.transform.position)
+            else if (_player.transform.position == target3.transform.position)
             {
                 Debug.Log("Ian: Resurface Update target3 triggered");
                 SpawnControl.LoadFreeFall();
                 SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
-                isSurfacing = false;
-                rb.useGravity = true;
-                speed = speed1;
-                triggerNum = 0;
+                _isSurfacing = false;
+                _rb.useGravity = true;
+                _speed = speed1;
+                _triggerNum = 0;
             }
             else
             {
-                player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, speed * Time.deltaTime);
+                _player.transform.position = Vector3.MoveTowards(_player.transform.position, _targetPosition, _speed * Time.deltaTime);
             }
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        player = collision.gameObject;
-        if (isSurfacing == false)
+        _player = collision.gameObject;
+        if (_isSurfacing == false)
         {
-            if (player.CompareTag("Player"))
+            if (_player.CompareTag("Player"))
             {
-                if (triggerNum == 0)
+                if (_triggerNum == 0)
                 {
-                    triggerNum ++;
+                    _triggerNum ++;
                 }
                 else
                 {
-                    isSurfacing = true;
-                    speed = speed1;
-                    targetPosition = target1.transform.position;
-                    rb = player.GetComponent<Rigidbody>();
-                    rb.useGravity = false;
+                    _isSurfacing = true;
+                    _speed = speed1;
+                    _targetPosition = target1.transform.position;
+                    _rb = _player.GetComponent<Rigidbody>();
+                    _rb.useGravity = false;
                 }
             }
         }

@@ -10,38 +10,38 @@ public class InputManager : MonoBehaviour
         return _instance;
     }
 
-    private PlayerControls playerControls;
+    private PlayerControls _playerControls;
     private void Awake() {
 
         if (_instance != null && _instance != this) {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         } else {
             _instance = this;
         }
 
-        playerControls = new PlayerControls();
+        _playerControls = new PlayerControls();
     }
 
     private void OnEnable() {
-        if (playerControls != null) playerControls.Enable();    
+        if (_playerControls != null) _playerControls.Enable();    
     }
 
     private void OnDisable() {
-        if (playerControls != null) playerControls.Disable();
+        if (_playerControls != null) _playerControls.Disable();
     }
 
     public Vector2 GetCameraDelta() {
-        return playerControls.VR.Direction.ReadValue<Vector2>();
+        return _playerControls.VR.Direction.ReadValue<Vector2>();
     }
 
     public bool PlayerHoldingTriggerL() {
-        return playerControls.VR.ShootL.IsPressed();
+        return _playerControls.VR.ShootL.IsPressed();
     }
     public bool PlayerHoldingTriggerR() {
-        return playerControls.VR.ShootR.IsPressed();
+        return _playerControls.VR.ShootR.IsPressed();
     }
     public bool PlayerHoldingPrimaryR() {
-        return playerControls.VR.Ascend.IsPressed();
+        return _playerControls.VR.Ascend.IsPressed();
     }
 
     // Start is called before the first frame update

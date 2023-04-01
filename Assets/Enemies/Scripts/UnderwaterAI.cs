@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,35 +6,49 @@ public class UnderwaterAI : AbstractAI
     /// <summary>
     /// Debug flag. Set to true to force fish to move back to test despawning.
     /// </summary>
-    [SerializeField] private static bool _debug = false;
+    private const bool Debug = false;
+
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerHealth playerHealth;
 
     public static bool IsHostile = false;
-    [FormerlySerializedAs("Speed")] [SerializeField] private float speed = 0.005f;
-    [FormerlySerializedAs("MinSteps")] [SerializeField] private int minSteps = 500;
-    [FormerlySerializedAs("MaxSteps")] [SerializeField] private int maxSteps = 1000;
-    private int Steps = -1;
 
-    [FormerlySerializedAs("MaxTurns")] [SerializeField] private int maxTurns = 1000;
-    [FormerlySerializedAs("TurnX")] [SerializeField] private float turnX = 0.001f;
-    private float TurnY = 0f;
-    [FormerlySerializedAs("TurnZ")] [SerializeField] private float turnZ = 0.001f;
-    private int Turns = 0;
-    private Vector3 TurnAmount = new(0, 0, 0);
+    [FormerlySerializedAs("Speed")] [SerializeField]
+    private float speed = 0.005f;
 
-    private readonly int ReturnRadius = 33;
-    private readonly int SpawnBase = -90;
-    private readonly int SpawnHeight = 50;
+    [FormerlySerializedAs("MinSteps")] [SerializeField]
+    private int minSteps = 500;
 
-    private bool IsColliding = false;
+    [FormerlySerializedAs("MaxSteps")] [SerializeField]
+    private int maxSteps = 1000;
+
+    private int _steps = -1;
+
+    [FormerlySerializedAs("MaxTurns")] [SerializeField]
+    private int maxTurns = 1000;
+
+    [FormerlySerializedAs("TurnX")] [SerializeField]
+    private float turnX = 0.001f;
+
+    private const float TurnY = 0f;
+
+    [FormerlySerializedAs("TurnZ")] [SerializeField]
+    private float turnZ = 0.001f;
+
+    private int _turns;
+    private Vector3 _turnAmount = new(0, 0, 0);
+
+    private const int ReturnRadius = 33;
+    private const int SpawnBase = -90;
+    private const int SpawnHeight = 50;
+
+    private bool _isColliding;
 
     public void Start()
     {
-        if (_debug)
-        {
-            speed = 0.075f;
-        }
+#pragma warning disable CS0162
+        if (Debug) speed = 0.075f;
+#pragma warning restore CS0162
     }
 
     public void FixedUpdate()
@@ -44,75 +57,82 @@ public class UnderwaterAI : AbstractAI
         {
             return;
         }
-        Vector3 loc = gameObject.transform.position;
-        if (_debug)
-        {
+
+        var loc = gameObject.transform.position;
+        if (Debug)
+#pragma warning disable CS0162
             UpdateDebug();
-        }
-        else if (!IsHostile && !IsLocationWithinHole(loc))
-        {
-            gameObject.transform.Rotate(new(0f, -0.15f, 0f));
-        }
-        else if (IsHostile)
-        {
-            UpdateHostile();
-        }
+#pragma warning restore CS0162
         else
-        {
-            UpdatePeaceful();
-        }
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * speed;
-        if (IsColliding && IsHostile)
+            switch (IsHostile)
+            {
+                case false when !IsLocationWithinHole(loc):
+                    gameObject.transform.Rotate(new(0f, -0.15f, 0f));
+                    break;
+                case true:
+                    UpdateHostile();
+                    break;
+                default:
+                    UpdatePeaceful();
+                    break;
+            }
+
+        var o = gameObject;
+        o.transform.position += o.transform.forward * speed;
+        if (_isColliding && IsHostile)
         {
             playerHealth.ChangeOxygen(-attack);
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider triggeredCollider)
     {
-        if (collider.gameObject.Equals(player))
+        if (triggeredCollider.gameObject.Equals(player))
         {
-            IsColliding = true;
+            _isColliding = true;
         }
     }
 
-    void OnTriggerExit(Collider collider)
+    private void OnTriggerExit(Collider triggeredCollider)
     {
-        if (collider.gameObject.Equals(player))
+        if (triggeredCollider.gameObject.Equals(player))
         {
-            IsColliding = false;
+            _isColliding = false;
         }
     }
 
     private void UpdateDebug()
     {
-        float locX = gameObject.transform.position.x;
-        float locY = gameObject.transform.position.y;
-        float locZ = gameObject.transform.position.z;
+        var o = gameObject;
+        var position = o.transform.position;
+        var locX = position.x;
+        var locY = position.y;
+        var locZ = position.z;
 
-        float forwardX = locX - player.transform.position.x;
-        float forwardY = locY - player.transform.position.y;
-        float forwardZ = locZ - player.transform.position.z;
+        var position1 = player.transform.position;
+        var forwardX = locX - position1.x;
+        var forwardY = locY - position1.y;
+        var forwardZ = locZ - position1.z;
 
-        gameObject.transform.forward = new(forwardX, forwardY, forwardZ);
+        o.transform.forward = new Vector3(forwardX, forwardY, forwardZ);
         gameObject.transform.forward.Normalize();
     }
 
     private void UpdatePeaceful()
     {
-        if (Steps == -1)
+        if (_steps == -1)
         {
-            Steps = Random.Range(minSteps, maxSteps);
+            _steps = Random.Range(minSteps, maxSteps);
         }
 
-        if (Steps == 0 && Turns == 0)
+        if (_steps == 0 && _turns == 0)
         {
-            Turns = -1;
+            _turns = -1;
             UpdatePeacefulTurn();
             return;
         }
 
-        if (Turns != 0)
+        if (_turns != 0)
         {
             UpdatePeacefulTurn();
             return;
@@ -123,54 +143,63 @@ public class UnderwaterAI : AbstractAI
 
     private void UpdatePeacefulMove()
     {
-        --Steps;
+        --_steps;
     }
 
     private void UpdatePeacefulTurn()
     {
-        if (Turns == -1)
+        if (_turns == -1)
         {
-            float turnX = Random.Range(-this.turnX, this.turnX);
-            float turnY = Random.Range(-TurnY, TurnY);
-            float turnZ = Random.Range(-this.turnZ, this.turnZ);
+            float randTurnX = Random.Range(-turnX, turnX);
+            float randTurnY = Random.Range(-TurnY, TurnY);
+            float randTurnZ = Random.Range(-turnZ, turnZ);
 
-            TurnAmount = new(turnX, turnY, turnZ);
-            Turns = Random.Range(0, maxTurns);
+            _turnAmount = new(randTurnX, randTurnY, randTurnZ);
+            _turns = Random.Range(0, maxTurns);
         }
 
-        if (Turns == 0)
+        if (_turns == 0)
         {
-            Steps = Random.Range(minSteps, maxSteps);
+            _steps = Random.Range(minSteps, maxSteps);
         }
 
-        gameObject.transform.forward = gameObject.transform.forward + TurnAmount;
-        gameObject.transform.forward.Normalize();
-        --Turns;
+        var o = gameObject;
+        var forward = o.transform.forward;
+        forward += _turnAmount;
+        o.transform.forward = forward;
+        forward.Normalize();
+        --_turns;
     }
 
     private void UpdateHostile()
     {
-        float locX = gameObject.transform.position.x;
-        float locY = gameObject.transform.position.y;
-        float locZ = gameObject.transform.position.z;
+        var o = gameObject;
+        var position = o.transform.position;
+        var locX = position.x;
+        var locY = position.y;
+        var locZ = position.z;
 
-        float forwardX = player.transform.position.x - locX;
-        float forwardY = player.transform.position.y - locY;
-        float forwardZ = player.transform.position.z - locZ;
+        var position1 = player.transform.position;
+        var forwardX = position1.x - locX;
+        var forwardY = position1.y - locY;
+        var forwardZ = position1.z - locZ;
 
-        gameObject.transform.forward = new(forwardX, forwardY, forwardZ);
+        o.transform.forward = new Vector3(forwardX, forwardY, forwardZ);
         gameObject.transform.forward.Normalize();
     }
+
     private bool IsLocationWithinHole(Vector3 loc)
     {
         if (FindDistance(loc.x, 0, loc.z) > ReturnRadius)
         {
             return false;
         }
+
         if (loc.y < SpawnBase || loc.y > SpawnBase + SpawnHeight)
         {
             return false;
         }
+
         return true;
     }
 

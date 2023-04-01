@@ -11,8 +11,8 @@ public static class PlayerData
     /// Amount of money that player has.
     /// Can be get from anywhere, but only set through methods.
     /// </summary>
-    public static int money { get; private set; } = 0;
-    public static Dictionary<Item, int> inventory { get; private set; } = new();
+    public static int Money { get; private set; } = 0;
+    public static Dictionary<Item, int> Inventory { get; private set; } = new();
     private static readonly Dictionary<Item, int> InventoryMax = new();
 
     private static Dictionary<string, bool> _itemsForsale = new()
@@ -50,16 +50,16 @@ public static class PlayerData
     #region Money
     public static void AddMoney(int amount)
     {
-        money += amount;
+        Money += amount;
     }
 
     public static bool RemoveMoney(int amount)
     {
-        if (money < amount)
+        if (Money < amount)
         {
             return false;
         }
-        money -= amount;
+        Money -= amount;
         return true;
     }
     #endregion
@@ -102,16 +102,16 @@ public static class PlayerData
     private static bool AddItem(Item item, int amount)
     {
         int currAmount = 0;
-        if (inventory.ContainsKey(item))
+        if (Inventory.ContainsKey(item))
         {
-            currAmount = inventory[item];
+            currAmount = Inventory[item];
         }
         int newAmount = currAmount + amount;
         if (newAmount > InventoryMax[item])
         {
             return false;
         }
-        inventory[item] = newAmount;
+        Inventory[item] = newAmount;
         return true;
     }
 
@@ -124,11 +124,11 @@ public static class PlayerData
     /// <returns>Whether the item has been removed successfully.</returns>
     private static bool RemoveItem(Item item, int amount)
     {
-        if (!inventory.ContainsKey(item))
+        if (!Inventory.ContainsKey(item))
         {
             return false;
         }
-        int currAmount = inventory[item];
+        int currAmount = Inventory[item];
         int newAmount = currAmount - amount;
         if (newAmount < 0)
         {
@@ -136,10 +136,10 @@ public static class PlayerData
         }
         if (newAmount == 0)
         {
-            inventory.Remove(item);
+            Inventory.Remove(item);
             return true;
         }
-        inventory[item] = newAmount;
+        Inventory[item] = newAmount;
         return true;
     }
     #endregion

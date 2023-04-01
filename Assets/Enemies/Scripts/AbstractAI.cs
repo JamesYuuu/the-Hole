@@ -5,9 +5,10 @@ using UnityEngine.Serialization;
 
 public abstract class AbstractAI : MonoBehaviour
 {
-    [FormerlySerializedAs("Health")] [SerializeField] private int health = 20;
-    [FormerlySerializedAs("Reward")] [SerializeField] private int reward = 5;
-    [FormerlySerializedAs("Attack")] [SerializeField] protected float attack = 0.0025f;
+    [SerializeField] private int health = 20;
+    [SerializeField] private int reward = 5;
+    [SerializeField] protected float attack = 0.0025f;
+    [SerializeField] private ParticleSystem particleSystem;
 
     public void Damage(int damage)
     {
@@ -23,5 +24,23 @@ public abstract class AbstractAI : MonoBehaviour
     {
         gameObject.SetActive(false);
         PlayerData.AddMoney(reward);
+        StartParticleSystem();
+    }
+
+    private void StartParticleSystem()
+    {
+        particleSystem.Play();
+        StartCoroutine(StopParticleSystemAfterTime(3f));
+    }
+
+    private void StopParticleSystem()
+    {
+        particleSystem.Clear();
+    }
+
+    IEnumerator StopParticleSystemAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        StopParticleSystem();
     }
 }

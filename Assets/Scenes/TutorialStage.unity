@@ -1015,10 +1015,13 @@ MonoBehaviour:
   convoTextFile: {fileID: 0}
   displayGroup: {fileID: 0}
   textDisplay: {fileID: 0}
-  eventTextFile: {fileID: 4900000, guid: 74b526e40480d424092852bac9454790, type: 3}
+  eventTextFile: {fileID: 4900000, guid: c2a87706940a21948a3e754643b57205, type: 3}
   eventKeys:
-  - fire
-  - off
+  - tutCont
+  - tutMove
+  - loadShop
+  - tutInventory
+  - onDoor
   eventTriggers:
   - m_PersistentCalls:
       m_Calls:
@@ -1033,6 +1036,48 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105254088}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105254088}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105254088}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
@@ -2094,7 +2139,7 @@ GameObject:
   - component: {fileID: 1776736096}
   - component: {fileID: 1776736095}
   m_Layer: 5
-  m_Name: DialogPanel
+  m_Name: DialogPanel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

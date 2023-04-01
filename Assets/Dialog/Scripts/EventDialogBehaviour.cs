@@ -99,6 +99,8 @@ namespace Dialog.Scripts
         /// </summary>
         public override void FinishCurrSentence()
         {
+            if (!letPlayerControlDialog) return;
+            
             if (convoQueueEvents.Count == 0)
             {
                 EndDialog();

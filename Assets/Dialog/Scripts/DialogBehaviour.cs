@@ -32,26 +32,37 @@ namespace Dialog.Scripts
         protected bool _doneTalking; // done showing all the text in the current speech.
         protected bool _isConvoOngoing; // player is reading through the queue of speeches
         // ^ can also be speeches.Count == 0;
+        protected bool letPlayerControlDialog = true;
+        protected InputManager inputManager;
 
         protected virtual void Awake() // virtual means able to be overridden
         {
             _doneTalking = true;
+inputManager = InputManager.GetInstance();
         }
 
-        // only for debugging test
         protected void Update()
         {
-            if (stDia)
-            {
-                StartDialog();
-                stDia = !stDia;
-            }
+            // call startDialog from separate scripts in scenes
             
-            if (next)
-            {
-                FinishCurrSentence();
-                next = !next;
-            }
+            if (letPlayerControlDialog
+                && inputManager.PlayerPressedPrimaryL()) FinishCurrSentence(); // to test
+        }
+
+        /// <summary>
+        /// Let the player's controller button trigger the next dialog
+        /// </summary>
+        public void EnablePlayerControl()
+        {
+            letPlayerControlDialog = true;
+        }
+        
+        /// <summary>
+        /// Called by text asset events to disable player continuation
+        /// </summary>
+        public void DisablePlayerControl()
+        {
+            letPlayerControlDialog = false;
         }
 
         /// <summary>
@@ -84,8 +95,7 @@ namespace Dialog.Scripts
         /// <summary>
         /// Adds the speech letter by letter to the display box.
         /// </summary>
-        protected IEnumerator TypeCurrSpeech(string thisSentence, TextMeshProUGUI display, TextSpeed speed) 
-
+        protected IEnumerator TypeCurrSpeech(string thisSentence, TextMeshProUGUI display, TextSpeed speed)
         {
             display.text = "";
             _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking

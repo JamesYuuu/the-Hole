@@ -30,7 +30,7 @@ public static class PlayerData
     public static float GrapplingShootSpeed = 25.0f;
     public static float GrapplingReelSpeed = 40.0f;
     public static float GrapplingRange = 40;
-    public static float Oxygen = 100;
+    public static float MaxOxygen = 100;
 
     public static bool IsEnergyDrinkBought = false;
     public static bool IsO2TankBought = false;
@@ -154,11 +154,6 @@ public static class PlayerData
         _itemsForsale[itemName] = false;
     }
 
-    public static void AddOxygen(int amount)
-    {
-        Oxygen += amount;
-    }
-
     public static void AddGrapplingShootSpeed(float amount)
     {
         GrapplingShootSpeed += amount;
@@ -170,6 +165,33 @@ public static class PlayerData
     public static void AddGrapplingRange(float amount)
     {
         GrapplingRange += amount;
+    }
+    public static void MultGrapplingShootSpeed(float amount)
+    {
+        GrapplingShootSpeed *= amount;
+    }
+    public static void MultGrapplingReelSpeed(float amount)
+    {
+        GrapplingReelSpeed *= amount;
+    }
+    public static void MultGrapplingRange(float amount)
+    {
+        GrapplingRange *= amount;
+    }
+
+    #endregion
+
+    #region Oxygen
+
+    
+    // TODO: ask gary to read from here for his PlayerHealth script
+    public static void AddMaxOxygen(int amount)
+    {
+        MaxOxygen += amount;
+    }
+    public static void MultMaxOxygen(int multiplier)
+    {
+        MaxOxygen *= multiplier;
     }
 
     #endregion

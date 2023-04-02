@@ -50,16 +50,6 @@ public class ShopManager : MonoBehaviour, IShop
         Instance = this;
         cashRegister.onClick.AddListener(Checkout);
         itemsForSale.ForEach(item => SetActive(item));
-        if (PlayerData.IsEnergyDrinkBought)
-        {
-            PlayerData.AddGrapplingReelSpeed(-10.0f);
-            PlayerData.IsEnergyDrinkBought = false;
-        }
-        if (PlayerData.IsO2TankBought)
-        {
-            PlayerData.AddOxygen(-100);
-            PlayerData.IsO2TankBought = false;
-        }
     }
 
     public void SetActive(Item item)
@@ -110,9 +100,12 @@ public class ShopManager : MonoBehaviour, IShop
         SetCartTotalMoney(-item.GetPrice());
     }
 
-    public static void DebugCheckout()
+    /// <summary>
+    /// Triggered by checkout button in shop scene.
+    /// Singleton method.
+    /// </summary>
+    public static void CheckoutStatic()
     {
-        Debug.Log("Static Checkout triggered!");
         Instance.Checkout();
     }
 
@@ -142,29 +135,35 @@ public class ShopManager : MonoBehaviour, IShop
             PlayerData.RemoveItemForSale(item.GetName());
         }
         switch (item.GetName()){
-            case "Shotgun":
+            case "Grappling Hook":
                 PlayerData.LeftHandGrapple = true;
                 break;
+            /*
             case "O2 Tank":
                 PlayerData.AddOxygen(100);
                 PlayerData.IsO2TankBought = true;
                 break;
-            case "Diving Mask":
-                PlayerData.AddOxygen(100);
+                */
+            case "Diving Helmet":
+                PlayerData.MultMaxOxygen(2);
                 break;
-            case "Monster Energy Drink":
-                PlayerData.AddGrapplingReelSpeed(10.0f);
-                PlayerData.IsEnergyDrinkBought = true;
+            case "Diving Mask":
+                PlayerData.MultMaxOxygen(2);
                 break;
             case "Diving Equipment":
-                PlayerData.AddOxygen(100);
-                break;
-            case "Diving Helmet":
-                PlayerData.AddOxygen(100);
+                PlayerData.MultGrapplingShootSpeed(1.5f);
+                PlayerData.MultGrapplingReelSpeed(1.5f);
+                PlayerData.MultGrapplingRange(1.5f);
                 break;
             case "Fins":
                 PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
+            /*
+            case "Monster Energy Drink":
+                PlayerData.AddGrapplingReelSpeed(10.0f);
+                PlayerData.IsEnergyDrinkBought = true;
+                break;
+                */
         }
     }
     public void SetPlayerMoney()

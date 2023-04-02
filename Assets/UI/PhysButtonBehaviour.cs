@@ -11,7 +11,7 @@ public class PhysButtonBehaviour : MonoBehaviour
     [SerializeField] private float followAngleThresholdDeg = 45;
     private Vector3 initialLocalPos;
     private Vector3 offset;
-    private Transform pokeAttachTransform;
+    private Transform baseAttachTransform;
     private XRBaseInteractable interactable;
     private bool isFollowing;
     private bool isFrozen;
@@ -33,7 +33,7 @@ public class PhysButtonBehaviour : MonoBehaviour
         if (isFollowing)
         {
             // Make the visual follow the hand, constrained to y axis
-            Vector3 localTargetPosition = visualTarget.InverseTransformPoint(pokeAttachTransform.position + offset);
+            Vector3 localTargetPosition = visualTarget.InverseTransformPoint(baseAttachTransform.position + offset);
             Vector3 constrainedLocalTargetPosition = Vector3.Project(localTargetPosition, localAxis);
 
             visualTarget.position = visualTarget.TransformPoint(constrainedLocalTargetPosition);
@@ -51,15 +51,15 @@ public class PhysButtonBehaviour : MonoBehaviour
     /// <param name="hover"></param>
     public void Follow(BaseInteractionEventArgs hover)
     {
-        if (hover.interactableObject is XRPokeInteractor)
+        if (hover.interactableObject is XRBaseInteractor)
         {
-            XRPokeInteractor interactor = (XRPokeInteractor) hover.interactorObject;
+            XRBaseInteractor interactor = (XRBaseInteractor) hover.interactorObject;
             isFollowing = true;
             isFrozen = false;
 
             // save the offset for the visual to follow the hand
-            pokeAttachTransform = interactor.attachTransform;
-            offset = visualTarget.position - pokeAttachTransform.position;
+            baseAttachTransform = interactor.attachTransform;
+            offset = visualTarget.position - baseAttachTransform.position;
 
             float pokeAngle = Vector3.Angle(offset, visualTarget.TransformDirection(localAxis));
 
@@ -74,7 +74,7 @@ public class PhysButtonBehaviour : MonoBehaviour
     }
     public void Reset(BaseInteractionEventArgs hover)
     {
-        if (hover.interactorObject is XRPokeInteractor)
+        if (hover.interactorObject is XRBaseInteractor)
         {
             isFollowing = false;
             isFrozen = false;
@@ -83,7 +83,7 @@ public class PhysButtonBehaviour : MonoBehaviour
 
     public void Freeze(BaseInteractionEventArgs hover)
     {
-        if (hover.interactorObject is XRPokeInteractor)
+        if (hover.interactorObject is XRBaseInteractor)
         {
             isFrozen = true;
         }

@@ -83,9 +83,8 @@ public class ShopManager : MonoBehaviour, IShop
     {
         cartTotal.SetActive(true);
         playerCash.SetActive(true);
-        checkoutPanel.SetActive(true);
         SetPlayerMoney();
-        SetTotalMoney(0);
+        SetCartTotalMoney(0);
         leftHandController.GetComponent<XRRayInteractor>().enabled=true;
         rightHandController.GetComponent<XRRayInteractor>().enabled=true;
     }
@@ -102,13 +101,19 @@ public class ShopManager : MonoBehaviour, IShop
     public void AddToCart(Item item)
     {
         itemsInCart.Add(item);
-        SetTotalMoney(item.GetPrice());
+        SetCartTotalMoney(item.GetPrice());
     }
 
     public void RemoveFromCart(Item item)
     {
         itemsInCart.Remove(item);
-        SetTotalMoney(-item.GetPrice());
+        SetCartTotalMoney(-item.GetPrice());
+    }
+
+    public static void DebugCheckout()
+    {
+        Debug.Log("Static Checkout triggered!");
+        Instance.Checkout();
     }
 
     public void Checkout()
@@ -120,7 +125,7 @@ public class ShopManager : MonoBehaviour, IShop
             checkoutEvent.Invoke();
             itemsInCart.ForEach(item => Upgrade(item));
             itemsInCart.Clear();
-            SetTotalMoney(-_totalPrice);
+            SetCartTotalMoney(-_totalPrice);
             SetPlayerMoney();
         }
         else
@@ -168,7 +173,7 @@ public class ShopManager : MonoBehaviour, IShop
         shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = _playerMoney.ToString() + 'G';
     }
     
-    public void SetTotalMoney(int addedMoney)
+    public void SetCartTotalMoney(int addedMoney)
     {
         _totalPrice += addedMoney;
         shopCartTotalPanel.GetComponent<TMP_Text>().text = _totalPrice.ToString() + 'G';

@@ -35,7 +35,7 @@ namespace Dialog.Scripts
 
         protected override void Awake()
         {
-            doneTalking = true;
+            _doneTalking = true;
             
             // testing, uncomment for production
             // ShowShopInterface();
@@ -48,7 +48,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void StartDialog()
         {
-            isConvoOngoing = true;
+            _isConvoOngoing = true;
             
             // decide which conversation to show
             int randIntGreet = rand.Next(greetingTextFiles.Count);
@@ -58,11 +58,11 @@ namespace Dialog.Scripts
                 randIntGreet = rand.Next(greetingTextFiles.Count);
             }
 
-            convoQueue = dialogParser.ParseTextFileAsQueue(greetingTextFiles[randIntGreet]);
+            _convoQueue = dialogParser.ParseTextFileAsQueue(greetingTextFiles[randIntGreet]);
             
             uiPanelsTalking.SetActive(true); // open dialog panel
-            currSpeech = convoQueue.Dequeue();
-            StartCoroutine(TypeCurrSpeech(currSpeech.speech, descDisplay, currSpeech.speed));
+            _currSpeech = _convoQueue.Dequeue();
+            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, descDisplay, _currSpeech.speed));
             
         }
 
@@ -106,9 +106,9 @@ namespace Dialog.Scripts
                 randIntFarewell = rand.Next(greetingTextFiles.Count);
             }
 
-            convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
-            currSpeech = convoQueue.Dequeue();
-            yield return StartCoroutine(TypeCurrSpeech(currSpeech.speech, descDisplay, currSpeech.speed));
+            _convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
+            _currSpeech = _convoQueue.Dequeue();
+            yield return StartCoroutine(TypeCurrSpeech(_currSpeech.speech, descDisplay, _currSpeech.speed));
             EndDialog();
         }
     }

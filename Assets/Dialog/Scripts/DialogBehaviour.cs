@@ -45,8 +45,10 @@ inputManager = InputManager.GetInstance();
         {
             // call startDialog from separate scripts in scenes
             
+            /*
             if (letPlayerControlDialog
                 && inputManager.PlayerPressedPrimaryL()) FinishCurrSentence(); // to test
+                */
         }
 
         /// <summary>

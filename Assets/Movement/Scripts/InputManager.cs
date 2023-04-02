@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
     }
 
     public bool PlayerPressedPrimaryL() {
-        return playerControls.VR.NextDialog.IsPressed();
+        return _playerControls.VR.NextDialog.IsPressed();
     }
 
     // Start is called before the first frame update

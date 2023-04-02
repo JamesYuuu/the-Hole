@@ -37,7 +37,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void StartDialog()
         {
-            isConvoOngoing = true;
+            _isConvoOngoing = true;
             convoQueueEvents = dialogParser.ParseEventTextFileAsQueue(eventTextFile, eventKeys);
             uiPanels.SetActive(true);
             
@@ -65,7 +65,7 @@ namespace Dialog.Scripts
             (string currSpeech, TextMeshProUGUI display, TextSpeed speed, int eventIdx)
         {
             display.text = "";
-            doneTalking = false;
+            _doneTalking = false;
             // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
             // set the talking speed
@@ -83,7 +83,7 @@ namespace Dialog.Scripts
             }
 
             // after this line completes typing
-            doneTalking = true;
+            _doneTalking = true;
             if (eventIdx != -1) eventTriggers[eventIdx].Invoke();
             // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
         }
@@ -107,12 +107,12 @@ namespace Dialog.Scripts
                 return;
             }
 
-            if (!doneTalking) // show all remaining text in speech, stop typing
+            if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 StopCoroutine(nameof(TypeCurrSpeech));
                 textDisplayField.text = currSpeechEvents.speech;
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
-                doneTalking = true;
+                _doneTalking = true;
                 
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);

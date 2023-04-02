@@ -36,6 +36,7 @@ namespace Dialog.Scripts
         protected override void Awake()
         {
             _doneTalking = true;
+            enableGrab.Invoke(); // triggers shopMgr::EnableGrab
             
             // testing, uncomment for production
             // ShowShopInterface();
@@ -89,7 +90,7 @@ namespace Dialog.Scripts
         public override void EndDialog()
         {
             StopCoroutine(nameof(TypeCurrSpeech));
-            enableGrab.Invoke(); // triggers shopMgr::EnableGrab
+            // enableGrab.Invoke(); // triggers shopMgr::EnableGrab
         }
 
         /// <summary>

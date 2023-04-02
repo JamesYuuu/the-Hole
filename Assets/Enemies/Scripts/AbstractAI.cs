@@ -10,6 +10,7 @@ public abstract class AbstractAI : MonoBehaviour
 
     public void Damage(int damage)
     {
+        print("fish is hit");
         if (damage >= health)
         {
             Die();

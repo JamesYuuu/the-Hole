@@ -25,10 +25,12 @@ public class SpawnControl : MonoBehaviour
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
 
-    [FormerlySerializedAs("PooledEnemies")] [SerializeField]
+    [FormerlySerializedAs("PooledEnemies")]
+    [SerializeField]
     private List<GameObject> pooledEnemies = new();
 
-    [FormerlySerializedAs("ActiveEnemies")] [SerializeField]
+    [FormerlySerializedAs("ActiveEnemies")]
+    [SerializeField]
     private List<GameObject> activeEnemies = new();
 
     private readonly Dictionary<GameObject, int> _despawnTimes = new();
@@ -45,9 +47,12 @@ public class SpawnControl : MonoBehaviour
         IsFreefall = true;
         if (!_instance) return;
 
-        print("Transfer Count:" + _instance.activeEnemies.Count);
+        // print("Transfer Count:" + _instance.activeEnemies.Count);
 
         foreach (var fish in _instance.activeEnemies) TransferActivePosition.Add(fish.transform.position);
+        List<GameObject> toDeactive = new List<GameObject>();
+        foreach (var fish in _instance.activeEnemies) toDeactive.Add(fish);
+        foreach (var fish in toDeactive) _instance.DeactivatePoolEnemy(fish);
     }
 
     public static void ResetScene()
@@ -65,19 +70,11 @@ public class SpawnControl : MonoBehaviour
 #pragma warning restore CS0162
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
-            try
-            {
-                var fish = _instance.pooledEnemies[i];
-                fish.SetActive(true);
-                fish.transform.forward = new Vector3(0, 1, 0);
-                var newY = Random.Range(FreefallBase, FreefallHeight);
-                fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
-            }
-            catch
-            {
-                return;
-            }
-
+            var fish = _instance.pooledEnemies[i];
+            fish.SetActive(true);
+            fish.transform.forward = new Vector3(0, 1, 0);
+            var newY = Random.Range(FreefallBase, FreefallHeight);
+            fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
         }
     }
 

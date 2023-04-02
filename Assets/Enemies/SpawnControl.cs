@@ -98,7 +98,6 @@ public class SpawnControl : MonoBehaviour
             if (!_isFreefalled)
             {
                 print("BRUH");
-                LoadFreeFall();
                 ChangeSceneTransform();
                 _isFreefalled = true;
             }

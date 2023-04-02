@@ -16,15 +16,17 @@ public class ResurfacePlayer : MonoBehaviour
     private float _speed;
     private int _triggerNum;
     private bool _isSurfacing;
-    private GameObject _player;
+    // private GameObject _player;
     private Rigidbody _rb;
     private Vector3 _targetPosition;
+    [SerializeField] private GameObject _player;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!_isSurfacing) return;
         if (_player.transform.position == target1.transform.position)
         {
+            // Debug.Log("approaching first target!");
             _targetPosition = target2.transform.position;
             _speed = speed2;
         }
@@ -50,16 +52,14 @@ public class ResurfacePlayer : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider collision)
-    {
-        _player = collision.gameObject;
+    { 
         if (_isSurfacing) return;
-        if (!_player.CompareTag("Player")) return;
-        if (_triggerNum == 0)
+        if (!collision.gameObject.CompareTag("Player")) return;
+        GameObject player = collision.gameObject.transform.parent.parent.gameObject;
+        if (! _player.Equals(player)) return;
+        if (PlayerData.HasTreasure())
         {
-            _triggerNum++;
-        }
-        else
-        {
+            Debug.Log("player running aways");
             _isSurfacing = true;
             _speed = speed1;
             _targetPosition = target1.transform.position;

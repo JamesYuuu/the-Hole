@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Float
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 364534dc1c17c4411b2a4c7241c883ca,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 364534dc1c17c4411b2a4c7241c883ca, type: 3}
 --- !u!1 &599641674 stripped
@@ -322,7 +327,7 @@ GameObject:
   - component: {fileID: 909420019}
   - component: {fileID: 909420018}
   - component: {fileID: 909420017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

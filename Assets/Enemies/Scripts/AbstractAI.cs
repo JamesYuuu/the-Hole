@@ -10,6 +10,7 @@ public abstract class AbstractAI : MonoBehaviour
 
     public void Damage(int damage)
     {
+        print("fish is hit");
         if (damage >= health)
         {
             Die();
@@ -21,9 +22,9 @@ public abstract class AbstractAI : MonoBehaviour
 
     private void Die()
     {
-        gameObject.SetActive(false);
         PlayerData.AddMoney(reward);
         StartParticleSystem();
+        gameObject.SetActive(false);
     }
 
     private void StartParticleSystem()

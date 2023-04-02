@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.Serialization;
 
 public class SpawnControl : MonoBehaviour
@@ -19,8 +20,8 @@ public class SpawnControl : MonoBehaviour
      */
     private readonly int _spawnRadius = 33;
 
-    private readonly int _spawnBase = -90;
-    private readonly int _spawnHeight = 50;
+    private readonly int _spawnBase = -70;
+    private readonly int _spawnHeight = 100;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
 
@@ -62,14 +63,21 @@ public class SpawnControl : MonoBehaviour
 #pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Scene changed. Respawning fish for shooting...");
 #pragma warning restore CS0162
-        print("Transferred Count:" + TransferActivePosition.Count);
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
-            var fish = _instance.pooledEnemies[i];
-            fish.SetActive(true);
-            fish.transform.forward = new Vector3(0, 1, 0);
-            var newY = Random.Range(FreefallBase, FreefallHeight);
-            fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
+            try
+            {
+                var fish = _instance.pooledEnemies[i];
+                fish.SetActive(true);
+                fish.transform.forward = new Vector3(0, 1, 0);
+                var newY = Random.Range(FreefallBase, FreefallHeight);
+                fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
+            }
+            catch
+            {
+                return;
+            }
+
         }
     }
 

@@ -53,7 +53,7 @@ public class GetPlayerToHole : MonoBehaviour
     {
         if (_isDiving == false)
         {
-            _player = collision.gameObject;
+            _player = collision.gameObject.transform.parent.parent.gameObject;
             if (_player.CompareTag("Player"))
             {
                 _isDiving = true;

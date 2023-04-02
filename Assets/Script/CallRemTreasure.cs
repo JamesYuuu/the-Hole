@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CallAddtreasure : MonoBehaviour
+public class CallRemTreasure : MonoBehaviour
 {
-   
     // Start is called before the first frame update
     void Start()
     {
-        print("calling_add_treasure");
-        PlayerData.AddTreasure();
-
+        print("calling_remove_treasure");
+        PlayerData.RemoveTreasure();
     }
 
     // Update is called once per frame
     void Update()
     {
- 
+        
     }
 }

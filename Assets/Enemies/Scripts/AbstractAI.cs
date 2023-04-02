@@ -21,9 +21,9 @@ public abstract class AbstractAI : MonoBehaviour
 
     private void Die()
     {
-        gameObject.SetActive(false);
         PlayerData.AddMoney(reward);
         StartParticleSystem();
+        gameObject.SetActive(false);
     }
 
     private void StartParticleSystem()

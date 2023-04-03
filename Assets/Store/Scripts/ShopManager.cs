@@ -138,12 +138,6 @@ public class ShopManager : MonoBehaviour, IShop
             case "Grappling Hook":
                 PlayerData.LeftHandGrapple = true;
                 break;
-            /*
-            case "O2 Tank":
-                PlayerData.AddOxygen(100);
-                PlayerData.IsO2TankBought = true;
-                break;
-                */
             case "Diving Helmet":
                 PlayerData.MultMaxOxygen(2);
                 break;
@@ -158,6 +152,12 @@ public class ShopManager : MonoBehaviour, IShop
             case "Fins":
                 PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
+            /*
+            case "O2 Tank":
+                PlayerData.AddOxygen(100);
+                PlayerData.IsO2TankBought = true;
+                break;
+                */
             /*
             case "Monster Energy Drink":
                 PlayerData.AddGrapplingReelSpeed(10.0f);

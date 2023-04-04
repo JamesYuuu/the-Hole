@@ -51,7 +51,7 @@ public class PhysButtonBehaviour : MonoBehaviour
     /// <param name="hover"></param>
     public void Follow(BaseInteractionEventArgs hover)
     {
-        if (hover.interactableObject is XRBaseInteractor)
+        if (hover.interactorObject is XRBaseInteractor)
         {
             XRBaseInteractor interactor = (XRBaseInteractor) hover.interactorObject;
             isFollowing = true;

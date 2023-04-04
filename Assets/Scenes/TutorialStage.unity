@@ -1012,9 +1012,9 @@ MonoBehaviour:
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
   dialogParser: {fileID: 643966105}
+  textDisplay: {fileID: 1011310381}
   convoTextFile: {fileID: 0}
   displayGroup: {fileID: 0}
-  textDisplay: {fileID: 1011310381}
   eventTextFile: {fileID: 4900000, guid: c2a87706940a21948a3e754643b57205, type: 3}
   eventKeys:
   - tutCont
@@ -1094,7 +1094,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   uiPanels: {fileID: 1776736094}
-  textDisplayField: {fileID: 1011310381}
 --- !u!114 &643966105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,6 +1828,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7631990904182334704, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_RootOrder
@@ -1923,6 +1927,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7631990904480149857, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}

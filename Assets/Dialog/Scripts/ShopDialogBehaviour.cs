@@ -96,10 +96,10 @@ namespace Dialog.Scripts
         /// </summary>
         public IEnumerator EndInteraction()
         {
-            int randIntFarewell = _rand.Next(greetingTextFiles.Count);
+            int randIntFarewell = _rand.Next(farewellTextFiles.Count);
             while (ConversationIsStale(randIntFarewell, _last3Farewells))
             {
-                randIntFarewell = _rand.Next(greetingTextFiles.Count);
+                randIntFarewell = _rand.Next(farewellTextFiles.Count);
             }
 
             _convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);

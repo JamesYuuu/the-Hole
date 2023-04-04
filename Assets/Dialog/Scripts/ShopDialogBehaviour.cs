@@ -61,8 +61,7 @@ namespace Dialog.Scripts
             
             uiPanelsTalking.SetActive(true); // open dialog panel
             _currSpeech = _convoQueue.Dequeue();
-            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
-            
+            StartTypeCurrSpeech(_currSpeech.speech, _currSpeech.speed);
         }
 
         private bool ConversationIsStale(int curr, int[] prevSelections)
@@ -78,7 +77,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void EndDialog()
         {
-            StopCoroutine(nameof(TypeCurrSpeech));
+            StopCoroutine(_currTalkingCoroutine);
             OnConvoEnd.Invoke();
         }
 
@@ -105,7 +104,8 @@ namespace Dialog.Scripts
 
             _convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
             _currSpeech = _convoQueue.Dequeue();
-            yield return StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
+            base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
+            yield return base._currTalkingCoroutine;
             EndDialog();
         }
     }

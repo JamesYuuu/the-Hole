@@ -100,7 +100,7 @@ namespace Dialog.Scripts
         public virtual void EndDialog()
         {
             displayGroup.SetActive(false);
-            StopCoroutine(nameof(TypeCurrSpeech));
+            StopCoroutine(_currTalkingCoroutine);
         }
 
         protected void StartTypeCurrSpeech(string thisSentence, TextSpeed speed)
@@ -155,7 +155,7 @@ namespace Dialog.Scripts
             {
                 // show all remaining text in speech, stop typing
                 textDisplay.text = _currSpeech.speech;
-                StopCoroutine(nameof(TypeCurrSpeech));
+                StopCoroutine(_currTalkingCoroutine);
                 _doneTalking = true;
                 
                 // make the continue arrow bounce
@@ -163,9 +163,9 @@ namespace Dialog.Scripts
             }
             else // start typing the next speech
             {
-                StopCoroutine(nameof(TypeCurrSpeech));
+                StopCoroutine(_currTalkingCoroutine);
                 _currSpeech = _convoQueue.Dequeue();
-                StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
+                StartTypeCurrSpeech(_currSpeech.speech, _currSpeech.speed);
             }
         }
 

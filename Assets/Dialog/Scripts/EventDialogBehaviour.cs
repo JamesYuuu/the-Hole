@@ -28,7 +28,6 @@ namespace Dialog.Scripts
         
         private Queue<(TextSpeed, string, int)> convoQueueEvents;
         private (TextSpeed speed, string speech, int eventIdx) currSpeechEvents;
-        // private IEnumerator currCoroutine; // use this instead of nameOf for TypeCurrSpeech
         
         /// <summary>
         /// Passes the dialog to display and the text panel to the
@@ -42,7 +41,7 @@ namespace Dialog.Scripts
             uiPanels.SetActive(true);
             
             currSpeechEvents = convoQueueEvents.Dequeue();
-            StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
+            base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
                 currSpeechEvents.speed, currSpeechEvents.eventIdx));
         }
 
@@ -54,7 +53,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void EndDialog()
         {
-            StopCoroutine(nameof(TypeCurrSpeech));
+            StopCoroutine(base._currTalkingCoroutine);
             uiPanels.SetActive(false);
         }
         
@@ -90,17 +89,13 @@ namespace Dialog.Scripts
         
         /// <summary>
         /// AKA: Next Sentence / Continue.
-        /// When player wants to see the next page,
-        /// if it is the end of the dialog, exit it.
-        /// if the NPC has not printed out the full speech, print it out.
-        /// if the NPC has printed out the full speech, move on to the next one.
+        /// The only diff from the base class is triggering
+        /// the event if player interrupts talking.
         ///
         /// Triggered by Continue input action.
         /// </summary>
         public override void FinishCurrSentence()
         {
-            if (!_letPlayerControlDialog) return;
-            
             if (convoQueueEvents.Count == 0)
             {
                 EndDialog();
@@ -109,8 +104,8 @@ namespace Dialog.Scripts
 
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
-                StopCoroutine(nameof(TypeCurrSpeech));
                 base.textDisplay.text = currSpeechEvents.speech;
+                StopCoroutine(base._currTalkingCoroutine);
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
                 _doneTalking = true;
                 
@@ -119,9 +114,9 @@ namespace Dialog.Scripts
             }
             else // start typing the next speech
             {
-                StopCoroutine(nameof(TypeCurrSpeech));
+                StopCoroutine(base._currTalkingCoroutine);
                 currSpeechEvents = convoQueueEvents.Dequeue();
-                StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech,
+                base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
                     currSpeechEvents.speed, currSpeechEvents.eventIdx));
             }
         }

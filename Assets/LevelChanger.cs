@@ -7,13 +7,8 @@ public class LevelChanger : MonoBehaviour
     public string levelToLoad;
     public float transitionTime = 1f;
     public Animator animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    // TODO: REMOVE THIS FUNCTION, it is very expensive
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

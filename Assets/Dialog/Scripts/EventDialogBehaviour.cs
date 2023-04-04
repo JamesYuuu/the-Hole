@@ -23,7 +23,7 @@ namespace Dialog.Scripts
         private List<UnityEvent> eventTriggers;
         
         [SerializeField] private GameObject uiPanels;
-        [SerializeField] private TextMeshProUGUI textDisplayField;
+        // assign the text Mesh Pro object in the base class.
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
         private Queue<(TextSpeed, string, int)> convoQueueEvents;
@@ -43,7 +43,7 @@ namespace Dialog.Scripts
             
             currSpeechEvents = convoQueueEvents.Dequeue();
             StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
-                textDisplayField, currSpeechEvents.speed, currSpeechEvents.eventIdx));
+                currSpeechEvents.speed, currSpeechEvents.eventIdx));
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace Dialog.Scripts
         /// Adds the speech letter by letter to the display box.
         /// </summary>
         protected IEnumerator TypeCurrSpeech
-            (string currSpeech, TextMeshProUGUI display, TextSpeed speed, int eventIdx)
+            (string currSpeech, TextSpeed speed, int eventIdx)
         {
-            display.text = "";
+            base.textDisplay.text = "";
             _doneTalking = false;
             // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
@@ -78,7 +78,7 @@ namespace Dialog.Scripts
             // add each letter to the display
             foreach (char letter in currSpeech)
             {
-                display.text += letter;
+                base.textDisplay.text += letter;
                 yield return new WaitForSeconds(currTextSpeed);
             }
 
@@ -99,7 +99,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void FinishCurrSentence()
         {
-            if (!letPlayerControlDialog) return;
+            if (!_letPlayerControlDialog) return;
             
             if (convoQueueEvents.Count == 0)
             {
@@ -110,7 +110,7 @@ namespace Dialog.Scripts
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 StopCoroutine(nameof(TypeCurrSpeech));
-                textDisplayField.text = currSpeechEvents.speech;
+                base.textDisplay.text = currSpeechEvents.speech;
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
                 _doneTalking = true;
                 
@@ -121,7 +121,7 @@ namespace Dialog.Scripts
             {
                 StopCoroutine(nameof(TypeCurrSpeech));
                 currSpeechEvents = convoQueueEvents.Dequeue();
-                StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, textDisplayField, 
+                StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech,
                     currSpeechEvents.speed, currSpeechEvents.eventIdx));
             }
         }

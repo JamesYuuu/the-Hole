@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,33 +23,41 @@ namespace Dialog.Scripts
         [SerializeField] protected float textSpeedFast = 0.01f;
         
         [SerializeField] protected DialogParser dialogParser;
+        [SerializeField] protected TextMeshProUGUI textDisplay;
         [SerializeField] private TextAsset convoTextFile;
         [SerializeField] private GameObject displayGroup;
-        [SerializeField] private TextMeshProUGUI textDisplay;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
         protected Queue<(TextSpeed speed, string speech)> _convoQueue;
         protected (TextSpeed speed, string speech) _currSpeech;
-        protected bool _doneTalking; // done showing all the text in the current speech.
+        protected bool _doneTalking = true; // done showing all the text in the current speech.
         protected bool _isConvoOngoing; // player is reading through the queue of speeches
         // ^ can also be speeches.Count == 0;
-        protected bool letPlayerControlDialog = true;
-        protected InputManager inputManager;
+        protected bool _letPlayerControlDialog = true;
+        protected bool _dialogBtnIsPressed = false;
+        protected InputManager _inputManager;
+        protected Coroutine _currTalkingCoroutine;
 
-        protected virtual void Awake() // virtual means able to be overridden
+        protected virtual void Start() // virtual means able to be overridden
         {
-            _doneTalking = true;
-inputManager = InputManager.GetInstance();
+            _inputManager = InputManager.GetInstance();
+            // call startDialog from separate scripts in scenes
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
-            // call startDialog from separate scripts in scenes
+            if (!_letPlayerControlDialog) return;
+            if (!_dialogBtnIsPressed && _inputManager.PlayerPressedSecondaryL())
+            {
+                FinishCurrSentence();
+                _dialogBtnIsPressed = true;
+                return;
+            }
             
-            /*
-            if (letPlayerControlDialog
-                && inputManager.PlayerPressedPrimaryL()) FinishCurrSentence(); // to test
-                */
+            if (_dialogBtnIsPressed && !_inputManager.PlayerPressedSecondaryL())
+            {
+                _dialogBtnIsPressed = false;
+            }
         }
 
         /// <summary>
@@ -56,7 +65,7 @@ inputManager = InputManager.GetInstance();
         /// </summary>
         public void EnablePlayerControl()
         {
-            letPlayerControlDialog = true;
+            _letPlayerControlDialog = true;
         }
         
         /// <summary>
@@ -64,7 +73,7 @@ inputManager = InputManager.GetInstance();
         /// </summary>
         public void DisablePlayerControl()
         {
-            letPlayerControlDialog = false;
+            _letPlayerControlDialog = false;
         }
 
         /// <summary>
@@ -79,7 +88,7 @@ inputManager = InputManager.GetInstance();
             displayGroup.SetActive(true); // open dialog panel
             _convoQueue = dialogParser.ParseTextFileAsQueue(convoTextFile);
             _currSpeech = _convoQueue.Dequeue();
-            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, textDisplay, _currSpeech.speed));
+            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
         }
         
         
@@ -93,13 +102,18 @@ inputManager = InputManager.GetInstance();
             displayGroup.SetActive(false);
             StopCoroutine(nameof(TypeCurrSpeech));
         }
+
+        protected void StartTypeCurrSpeech(string thisSentence, TextSpeed speed)
+        {
+            _currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(thisSentence, speed));
+        }
         
         /// <summary>
         /// Adds the speech letter by letter to the display box.
         /// </summary>
-        protected IEnumerator TypeCurrSpeech(string thisSentence, TextMeshProUGUI display, TextSpeed speed)
+        protected IEnumerator TypeCurrSpeech(string thisSentence, TextSpeed speed)
         {
-            display.text = "";
+            textDisplay.text = "";
             _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
             // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
@@ -113,7 +127,7 @@ inputManager = InputManager.GetInstance();
             // add each letter to the display
             foreach (char letter in thisSentence)
             {
-                display.text += letter;
+                textDisplay.text += letter;
                 yield return new WaitForSeconds(currTextSpeed);
             }
 
@@ -151,7 +165,7 @@ inputManager = InputManager.GetInstance();
             {
                 StopCoroutine(nameof(TypeCurrSpeech));
                 _currSpeech = _convoQueue.Dequeue();
-                StartCoroutine(TypeCurrSpeech(_currSpeech.speech, textDisplay, _currSpeech.speed));
+                StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
             }
         }
 

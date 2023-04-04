@@ -15,40 +15,25 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class ShopManager : MonoBehaviour, IShop
 {
-    [FormerlySerializedAs("CheckoutEvent")] public UnityEvent checkoutEvent;
-    [SerializeField] private ShopDialogBehaviour dialogBehaviour;
-
+    public UnityEvent checkoutEvent;
     // can use PlayerData.Money, .AddMoney() and .RemoveMoney() for money operations.
-    [FormerlySerializedAs("ItemsForSale")] [SerializeField] private List<Item> itemsForSale = new List<Item>();
+    [SerializeField] private List<Item> itemsForSale = new List<Item>();
 
-    [FormerlySerializedAs("ItemsInCart")] [SerializeField] private List<Item> itemsInCart = new List<Item>();
+    [SerializeField] private List<Item> itemsInCart = new List<Item>();
 
     // UI elements
-    [FormerlySerializedAs("ShopItemDescriptionPanel")] [SerializeField] private GameObject shopItemDescriptionPanel;
-    [FormerlySerializedAs("ShopItemPricePanel")] [SerializeField] private GameObject shopItemPricePanel;
-    [FormerlySerializedAs("ShopItemNamePanel")] [SerializeField] private GameObject shopItemNamePanel;
-    [FormerlySerializedAs("ShopCartTotalPanel")] [SerializeField] private GameObject shopCartTotalPanel;
-    [FormerlySerializedAs("ShopPlayerMoneyPanel")] [SerializeField] private GameObject shopPlayerMoneyPanel;
-
-    [FormerlySerializedAs("ItemInfo")] [SerializeField] private GameObject itemInfo;
-    [FormerlySerializedAs("CartTotal")] [SerializeField] private GameObject cartTotal;
-    [FormerlySerializedAs("PlayerCash")] [SerializeField] private GameObject playerCash;
-    [FormerlySerializedAs("CheckoutPanel")] [SerializeField] private GameObject checkoutPanel;
-    [FormerlySerializedAs("LeftHandController")] [SerializeField] private GameObject leftHandController;
-    [FormerlySerializedAs("RightHandController")] [SerializeField] private GameObject rightHandController;
-
-    [FormerlySerializedAs("CashRegister")] [SerializeField] private Button cashRegister;
-    [FormerlySerializedAs("Leave")] [SerializeField] private Button leave;
+    [SerializeField] private GameObject shopItemDescriptionPanel;
+    [SerializeField] private GameObject shopItemPricePanel;
+    [SerializeField] private GameObject shopItemNamePanel;
+    [SerializeField] private GameObject shopCartTotalPanel;
+    [SerializeField] private GameObject shopPlayerMoneyPanel;
 
     public static ShopManager Instance;
     private int _totalPrice, _playerMoney;
 
-    private Item _currentSelectedItem;
-
     private void Awake()
     {
         Instance = this;
-        cashRegister.onClick.AddListener(Checkout);
         itemsForSale.ForEach(item => SetActive(item));
     }
 
@@ -71,21 +56,15 @@ public class ShopManager : MonoBehaviour, IShop
     
     private void EnableGrabbing()
     {
-        cartTotal.SetActive(true);
-        playerCash.SetActive(true);
         SetPlayerMoney();
         SetCartTotalMoney(0);
-        leftHandController.GetComponent<XRRayInteractor>().enabled=true;
-        rightHandController.GetComponent<XRRayInteractor>().enabled=true;
     }
 
     public void ShowPanels(Item grabbedItem)
     {
-        itemInfo.SetActive(true);
         shopItemDescriptionPanel.GetComponent<TMP_Text>().text = grabbedItem.GetDescription();
         shopItemPricePanel.GetComponent<TMP_Text>().text = grabbedItem.GetPrice().ToString() + 'G';
         shopItemNamePanel.GetComponent<TMP_Text>().text = grabbedItem.GetName();
-        _currentSelectedItem = grabbedItem;
     }
 
     public void AddToCart(Item item)

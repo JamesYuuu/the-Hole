@@ -22,26 +22,24 @@ namespace Dialog.Scripts
         private List<TextAsset> farewellTextFiles;
         
         [SerializeField] private GameObject uiPanelsTalking;
-        [SerializeField] private GameObject uiPanelsShopInfo;
-        [SerializeField] private TextMeshProUGUI descDisplay;
+        // assign the text Mesh Pro object in the base class.
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
 
-        public UnityEvent enableGrab;
+        public UnityEvent OnConvoEnd; // triggers shopMgr::EnableGrab and enables item panel
         
         // used to pick greeting and farewell
         private Random _rand = new();
         private int[] _last3Greetings = new int[3];
         private int[] _last3Farewells = new int[3];
 
-        protected override void Awake()
+        protected override void Start()
         {
-            _doneTalking = true;
-            enableGrab.Invoke(); // triggers shopMgr::EnableGrab
-            
+            _inputManager = InputManager.GetInstance();
+
             // testing, uncomment for production
             // ShowShopInterface();
         }
-
+        
         /// <summary>
         /// Passes the dialog to display and the text panel to the
         /// DialogManager to parse and display.
@@ -63,7 +61,7 @@ namespace Dialog.Scripts
             
             uiPanelsTalking.SetActive(true); // open dialog panel
             _currSpeech = _convoQueue.Dequeue();
-            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, descDisplay, _currSpeech.speed));
+            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
             
         }
 
@@ -73,15 +71,6 @@ namespace Dialog.Scripts
         }
 
         /// <summary>
-        /// Enters 'buying mode', that shows the player how much
-        /// each item costs when grabbed, their cash, and the total bill.
-        /// </summary>
-        public void ShowShopInterface()
-        {
-            uiPanelsShopInfo.SetActive(true);
-        }
-        
-        /// <summary>
         /// Closes the text panel and stops talking.
         ///
         /// Triggered by Cancel input action.
@@ -90,9 +79,17 @@ namespace Dialog.Scripts
         public override void EndDialog()
         {
             StopCoroutine(nameof(TypeCurrSpeech));
-            // enableGrab.Invoke(); // triggers shopMgr::EnableGrab
+            OnConvoEnd.Invoke();
         }
 
+        /// <summary>
+        /// Trigger for calling by UnityEvent
+        /// </summary>
+        public void TriggerEndInteraction()
+        {
+            StartCoroutine(EndInteraction());
+        }
+        
         /// <summary>
         /// Says goodbye to the player. Triggered by Checkout Unity Event.
         ///
@@ -108,7 +105,7 @@ namespace Dialog.Scripts
 
             _convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
             _currSpeech = _convoQueue.Dequeue();
-            yield return StartCoroutine(TypeCurrSpeech(_currSpeech.speech, descDisplay, _currSpeech.speed));
+            yield return StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
             EndDialog();
         }
     }

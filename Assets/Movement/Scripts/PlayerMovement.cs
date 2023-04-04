@@ -35,12 +35,5 @@ public class PlayerMovement : LocomotionProvider
         if (_inputManager.PlayerHoldingPrimaryR()) {
             _rb.MovePosition(_rb.position + Vector3.up * (ascendVelocity * Time.deltaTime));
         }
-        
-        if (_inputManager.PlayerPressedPrimaryL()) {
-            Debug.Log("X button working");
-        }
-        if (_inputManager.PlayerPressedSecondaryL()) {
-            Debug.Log("Y button working");
-        }
     }
 }

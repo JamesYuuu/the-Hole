@@ -1014,7 +1014,7 @@ MonoBehaviour:
   dialogParser: {fileID: 643966105}
   convoTextFile: {fileID: 0}
   displayGroup: {fileID: 0}
-  textDisplay: {fileID: 0}
+  textDisplay: {fileID: 1011310381}
   eventTextFile: {fileID: 4900000, guid: c2a87706940a21948a3e754643b57205, type: 3}
   eventKeys:
   - tutCont

@@ -17,10 +17,10 @@ public static class PlayerData
 
     private static Dictionary<string, bool> _itemsForsale = new()
     {
-        {"Shotgun", true},
+        {"Grappling Hook", true},
         {"O2 Tank", true},
         {"Diving Mask", true},
-        {"Monster Energy Drink", true},
+        {"Energy Drink", true},
         {"Diving Equipment", true},
         {"Diving Helmet", true},
         {"Fins", true},
@@ -148,6 +148,12 @@ public static class PlayerData
     public static bool IsItemForSale(string itemName)
     {
         return _itemsForsale[itemName];
+            /*
+            case "O2 Tank":
+                PlayerData.AddOxygen(100);
+                PlayerData.IsO2TankBought = true;
+                break;
+                */
     }
     public static void RemoveItemForSale(string itemName)
     {

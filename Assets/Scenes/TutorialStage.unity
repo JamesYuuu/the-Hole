@@ -1481,7 +1481,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chatting text, as well as the item description, goes here.
+  m_text: Chatting text, as well as the item description, goes here. Perhaps the
+    message may be too
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 359e69d820ebbf64ea31d9418c9f94b1, type: 2}
   m_sharedMaterial: {fileID: -5624841017457581282, guid: 359e69d820ebbf64ea31d9418c9f94b1,

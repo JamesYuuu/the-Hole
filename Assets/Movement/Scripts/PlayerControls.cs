@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""b95fd376-6512-402e-b171-7154d14b0cf5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -275,7 +284,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d907720d-36de-4b4c-a2dd-7a5801e7bb74"",
-                    ""path"": ""<XRController>{LeftHand}/primary"",
+                    ""path"": ""<XRController>{LeftHand}/secondaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -285,23 +294,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9147a9be-5a20-4c05-b283-22b66bb8dd86"",
-                    ""path"": ""<OculusTouchController>{LeftHand}/primaryButton"",
+                    ""id"": ""2afa277d-6568-4d1b-8bcf-f92c52eda6bc"",
+                    ""path"": ""<XRController>{LeftHand}/primaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""NextDialog"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""db943e03-29a4-45a5-9e63-2795350aab21"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NextDialog"",
+                    ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -317,6 +315,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_VR_ShootL = m_VR.FindAction("ShootL", throwIfNotFound: true);
         m_VR_Ascend = m_VR.FindAction("Ascend", throwIfNotFound: true);
         m_VR_NextDialog = m_VR.FindAction("NextDialog", throwIfNotFound: true);
+        m_VR_UseItem = m_VR.FindAction("UseItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -381,6 +380,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_VR_ShootL;
     private readonly InputAction m_VR_Ascend;
     private readonly InputAction m_VR_NextDialog;
+    private readonly InputAction m_VR_UseItem;
     public struct VRActions
     {
         private @PlayerControls m_Wrapper;
@@ -390,6 +390,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @ShootL => m_Wrapper.m_VR_ShootL;
         public InputAction @Ascend => m_Wrapper.m_VR_Ascend;
         public InputAction @NextDialog => m_Wrapper.m_VR_NextDialog;
+        public InputAction @UseItem => m_Wrapper.m_VR_UseItem;
         public InputActionMap Get() { return m_Wrapper.m_VR; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +415,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @NextDialog.started -= m_Wrapper.m_VRActionsCallbackInterface.OnNextDialog;
                 @NextDialog.performed -= m_Wrapper.m_VRActionsCallbackInterface.OnNextDialog;
                 @NextDialog.canceled -= m_Wrapper.m_VRActionsCallbackInterface.OnNextDialog;
+                @UseItem.started -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
             }
             m_Wrapper.m_VRActionsCallbackInterface = instance;
             if (instance != null)
@@ -433,6 +437,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @NextDialog.started += instance.OnNextDialog;
                 @NextDialog.performed += instance.OnNextDialog;
                 @NextDialog.canceled += instance.OnNextDialog;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
         }
     }
@@ -444,5 +451,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnShootL(InputAction.CallbackContext context);
         void OnAscend(InputAction.CallbackContext context);
         void OnNextDialog(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
     }
 }

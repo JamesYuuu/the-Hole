@@ -43,8 +43,10 @@ public class InputManager : MonoBehaviour
     public bool PlayerHoldingPrimaryR() {
         return _playerControls.VR.Ascend.IsPressed();
     }
-
     public bool PlayerPressedPrimaryL() {
+        return _playerControls.VR.UseItem.IsPressed();
+    }
+    public bool PlayerPressedSecondaryL() {
         return _playerControls.VR.NextDialog.IsPressed();
     }
 }

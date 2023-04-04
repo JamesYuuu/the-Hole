@@ -50,7 +50,7 @@ namespace Dialog.Scripts
             }
             if (nextTrigger)
             {
-                FinishCurrSentence();
+                FinishCurrSentence(); // TODO: NEEDED FOR THIS LINE
                 nextTrigger = !nextTrigger;
             }
         }
@@ -62,7 +62,7 @@ namespace Dialog.Scripts
         public override void StartDialog()
         {
             _isConvoOngoing = true;
-            convoQueueEvents = dialogParser.ParseEventTextFileAsQueue(eventTextFile, eventKeys);
+            convoQueueEvents = DialogParser.ParseEventTextFileAsQueue(eventTextFile, eventKeys);
             
             currSpeechEvents = convoQueueEvents.Dequeue();
             base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
@@ -78,6 +78,7 @@ namespace Dialog.Scripts
         public override void EndDialog()
         {
             StopCoroutine(base._currTalkingCoroutine);
+            _isConvoOngoing = false;
         }
         
         /// <summary>
@@ -119,12 +120,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void FinishCurrSentence()
         {
-            if (convoQueueEvents.Count == 0)
-            {
-                EndDialog();
-                return;
-            }
-
+            if (!_isConvoOngoing) return;
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 base.textDisplay.text = currSpeechEvents.speech;
@@ -132,6 +128,11 @@ namespace Dialog.Scripts
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
                 _doneTalking = true;
                 
+                if (convoQueueEvents.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);
             }

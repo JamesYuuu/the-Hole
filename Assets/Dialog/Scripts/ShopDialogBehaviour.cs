@@ -57,7 +57,7 @@ namespace Dialog.Scripts
                 randIntGreet = _rand.Next(greetingTextFiles.Count);
             }
 
-            _convoQueue = dialogParser.ParseTextFileAsQueue(greetingTextFiles[randIntGreet]);
+            _convoQueue = DialogParser.ParseTextFileAsQueue(greetingTextFiles[randIntGreet]);
             
             uiPanelsTalking.SetActive(true); // open dialog panel
             _currSpeech = _convoQueue.Dequeue();
@@ -78,6 +78,7 @@ namespace Dialog.Scripts
         public override void EndDialog()
         {
             StopCoroutine(_currTalkingCoroutine);
+            _isConvoOngoing = false;
             OnConvoEnd.Invoke();
         }
 
@@ -102,7 +103,7 @@ namespace Dialog.Scripts
                 randIntFarewell = _rand.Next(farewellTextFiles.Count);
             }
 
-            _convoQueue = dialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
+            _convoQueue = DialogParser.ParseTextFileAsQueue(farewellTextFiles[randIntFarewell]);
             _currSpeech = _convoQueue.Dequeue();
             base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
             yield return base._currTalkingCoroutine;

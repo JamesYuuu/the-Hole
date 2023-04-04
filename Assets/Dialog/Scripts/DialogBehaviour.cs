@@ -23,7 +23,6 @@ namespace Dialog.Scripts
         [SerializeField] protected float textSpeedSlow = 0.06f;
         [SerializeField] protected float textSpeedFast = 0.01f;
         
-        [SerializeField] protected DialogParser dialogParser;
         [SerializeField] protected TextMeshProUGUI textDisplay;
         [SerializeField] private TextAsset convoTextFile;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
@@ -97,7 +96,7 @@ namespace Dialog.Scripts
         {
             _isConvoOngoing = true;
             
-            _convoQueue = dialogParser.ParseTextFileAsQueue(convoTextFile);
+            _convoQueue = DialogParser.ParseTextFileAsQueue(convoTextFile);
             _currSpeech = _convoQueue.Dequeue();
             StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
         }
@@ -111,6 +110,7 @@ namespace Dialog.Scripts
         public virtual void EndDialog()
         {
             StopCoroutine(_currTalkingCoroutine);
+            _isConvoOngoing = false;
         }
 
         protected void StartTypeCurrSpeech(string thisSentence, TextSpeed speed)
@@ -155,18 +155,18 @@ namespace Dialog.Scripts
         /// </summary>
         public virtual void FinishCurrSentence()
         {
-            if (_convoQueue.Count == 0)
+            if (!_isConvoOngoing) return;
+            if (!_doneTalking) // show all remaining text in speech, stop typing
             {
-                EndDialog();
-                return;
-            }
-
-            if (!_doneTalking)
-            {
-                // show all remaining text in speech, stop typing
                 textDisplay.text = _currSpeech.speech;
                 StopCoroutine(_currTalkingCoroutine);
                 _doneTalking = true;
+                
+                if (_convoQueue.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -821,15 +821,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c901be1c9863348b02bff94d30e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stDia: 0
-  next: 0
+  startDialogTrigger: 0
+  nextTrigger: 0
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
-  dialogParser: {fileID: 914893315}
-  convoTextFile: {fileID: 4900000, guid: aec9858b6882afb4fa71e2c77b75e385, type: 3}
-  displayGroup: {fileID: 666418319}
   textDisplay: {fileID: 107161061}
+  convoTextFile: {fileID: 4900000, guid: aec9858b6882afb4fa71e2c77b75e385, type: 3}
 --- !u!4 &626645426
 Transform:
   m_ObjectHideFlags: 0
@@ -1222,6 +1220,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -7363382999065477798, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  m_DirectionalAnchorRotationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TranslateAnchorAction:
     m_UseReference: 1
     m_Action:
@@ -1277,9 +1287,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 914893313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d4b52d6b8ecde4682e49e936a6f094, type: 3}
+  m_Script: {fileID: 11500000, guid: c7c901be1c9863348b02bff94d30e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startDialogTrigger: 0
+  nextTrigger: 0
+  textSpeedNorm: 0.022
+  textSpeedSlow: 0.06
+  textSpeedFast: 0.01
+  textDisplay: {fileID: 0}
+  convoTextFile: {fileID: 0}
 --- !u!1 &1006445136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,15 +2031,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c901be1c9863348b02bff94d30e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stDia: 0
-  next: 0
+  startDialogTrigger: 0
+  nextTrigger: 0
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
-  dialogParser: {fileID: 914893315}
-  convoTextFile: {fileID: 4900000, guid: aec9858b6882afb4fa71e2c77b75e385, type: 3}
-  displayGroup: {fileID: 1916527297}
   textDisplay: {fileID: 309441251}
+  convoTextFile: {fileID: 4900000, guid: aec9858b6882afb4fa71e2c77b75e385, type: 3}
 --- !u!1 &1656836887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2414,18 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -5913262927076077117, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  m_DirectionalAnchorRotationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   m_TranslateAnchorAction:
     m_UseReference: 1
     m_Action:

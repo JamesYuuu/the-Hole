@@ -13,19 +13,18 @@ namespace Dialog.Scripts
     /// </summary>
     public class DialogBehaviour : MonoBehaviour, ISpeakable
     {
-        [Header("DialogBehaviour Base Vars")]
+        [Header("Debug Triggers")]
         // triggers for debugging test only
-        public bool stDia = false; // start dialogue
-        public bool next = false; // next dialogue
+        public bool startDialogTrigger = false; // start dialogue
+        public bool nextTrigger = false; // next dialogue
         
+        [Header("DialogBehaviour Base Vars")]
         [SerializeField] protected float textSpeedNorm = 0.022f;
         [SerializeField] protected float textSpeedSlow = 0.06f;
         [SerializeField] protected float textSpeedFast = 0.01f;
         
-        [SerializeField] protected DialogParser dialogParser;
         [SerializeField] protected TextMeshProUGUI textDisplay;
         [SerializeField] private TextAsset convoTextFile;
-        [SerializeField] private GameObject displayGroup;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
         protected Queue<(TextSpeed speed, string speech)> _convoQueue;
@@ -58,6 +57,18 @@ namespace Dialog.Scripts
             {
                 _dialogBtnIsPressed = false;
             }
+            
+            // TODO: remove these because they are for debug
+            if (startDialogTrigger)
+            {
+                StartDialog();
+                startDialogTrigger = !startDialogTrigger;
+            }
+            if (nextTrigger)
+            {
+                FinishCurrSentence();
+                nextTrigger = !nextTrigger;
+            }
         }
 
         /// <summary>
@@ -85,8 +96,7 @@ namespace Dialog.Scripts
         {
             _isConvoOngoing = true;
             
-            displayGroup.SetActive(true); // open dialog panel
-            _convoQueue = dialogParser.ParseTextFileAsQueue(convoTextFile);
+            _convoQueue = DialogParser.ParseTextFileAsQueue(convoTextFile);
             _currSpeech = _convoQueue.Dequeue();
             StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
         }
@@ -99,8 +109,8 @@ namespace Dialog.Scripts
         /// </summary>
         public virtual void EndDialog()
         {
-            displayGroup.SetActive(false);
             StopCoroutine(_currTalkingCoroutine);
+            _isConvoOngoing = false;
         }
 
         protected void StartTypeCurrSpeech(string thisSentence, TextSpeed speed)
@@ -145,18 +155,18 @@ namespace Dialog.Scripts
         /// </summary>
         public virtual void FinishCurrSentence()
         {
-            if (_convoQueue.Count == 0)
+            if (!_isConvoOngoing) return;
+            if (!_doneTalking) // show all remaining text in speech, stop typing
             {
-                EndDialog();
-                return;
-            }
-
-            if (!_doneTalking)
-            {
-                // show all remaining text in speech, stop typing
                 textDisplay.text = _currSpeech.speech;
                 StopCoroutine(_currTalkingCoroutine);
                 _doneTalking = true;
+                
+                if (_convoQueue.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);

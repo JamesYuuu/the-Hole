@@ -22,13 +22,38 @@ namespace Dialog.Scripts
         [SerializeField] [Tooltip("Events triggered by the text. Ensure that the index of the corresponding event is the same.")]
         private List<UnityEvent> eventTriggers;
         
-        [SerializeField] private GameObject uiPanels;
-        // assign the text Mesh Pro object in the base class.
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
         private Queue<(TextSpeed, string, int)> convoQueueEvents;
         private (TextSpeed speed, string speech, int eventIdx) currSpeechEvents;
         
+        protected override void Update()
+        {
+            if (!_letPlayerControlDialog) return;
+            if (!_dialogBtnIsPressed && _inputManager.PlayerPressedSecondaryL())
+            {
+                FinishCurrSentence();
+                _dialogBtnIsPressed = true;
+                return;
+            }
+            
+            if (_dialogBtnIsPressed && !_inputManager.PlayerPressedSecondaryL())
+            {
+                _dialogBtnIsPressed = false;
+            }
+            
+            // TODO: remove these because they are for debug
+            if (startDialogTrigger)
+            {
+                StartDialog();
+                startDialogTrigger = !startDialogTrigger;
+            }
+            if (nextTrigger)
+            {
+                FinishCurrSentence(); // TODO: NEEDED FOR THIS LINE
+                nextTrigger = !nextTrigger;
+            }
+        }
         /// <summary>
         /// Passes the dialog to display and the text panel to the
         /// DialogManager to parse and display.
@@ -37,8 +62,7 @@ namespace Dialog.Scripts
         public override void StartDialog()
         {
             _isConvoOngoing = true;
-            convoQueueEvents = dialogParser.ParseEventTextFileAsQueue(eventTextFile, eventKeys);
-            uiPanels.SetActive(true);
+            convoQueueEvents = DialogParser.ParseEventTextFileAsQueue(eventTextFile, eventKeys);
             
             currSpeechEvents = convoQueueEvents.Dequeue();
             base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
@@ -54,7 +78,7 @@ namespace Dialog.Scripts
         public override void EndDialog()
         {
             StopCoroutine(base._currTalkingCoroutine);
-            uiPanels.SetActive(false);
+            _isConvoOngoing = false;
         }
         
         /// <summary>
@@ -96,12 +120,7 @@ namespace Dialog.Scripts
         /// </summary>
         public override void FinishCurrSentence()
         {
-            if (convoQueueEvents.Count == 0)
-            {
-                EndDialog();
-                return;
-            }
-
+            if (!_isConvoOngoing) return;
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 base.textDisplay.text = currSpeechEvents.speech;
@@ -109,6 +128,11 @@ namespace Dialog.Scripts
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
                 _doneTalking = true;
                 
+                if (convoQueueEvents.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);
             }

@@ -1,7 +1,5 @@
-Hey!::tutCont
-@hey you! check this out::tutMove
-@it’s a grappling arm, you armless sea cucumber!
-@I don’t know HOW HQ knew that you could use one, but they sent me alllllllll the way here to sell it to you.
+it’s a grappling arm, you armless sea cucumber!
+@~Fast~I don’t know HOW HQ knew that you could use one, but they sent me alllllllll the way here to sell it to you.
 @.....??
 @what do you mean you don’t know who I am?
 @I’m NINA! Remember that name!
@@ -11,18 +9,15 @@ Hey!::tutCont
 @Well, it WAS peaceful, until that day YOU went swimming in the hole.
 @Actually, shouldn’t you be the one telling me all this? This is your village, your island! I’m just a travelling merchant! I just got here!
 @Anyway, the villagers said that you saw 2 lights glowing in the water.
-@You swam after it, and before you knew it,
-@BAM! YOUR ARM WAS BITTEN OFF!!
+@You swam after it, and before you knew it, BAM! YOUR ARM WAS BITTEN OFF!!
 @*muttering* honestly, skill issue
 @So the villagers hauled you to the shore, barely escaping the fishes that had turned berserk.
-@From that day on, no one dared to go swimming in the hole again. Not with those glowing things in the water.
-@That was 3 years ago.
+@From that fateful day 3 years ago, no one dared to go swimming in the hole again.
 @So today, i’m glad you finally get your arm back. Here you go!::tutInventory
-@…and that will be 100000G.
-@…what do you mean you don’t have enough?
+@...and that will be 100000G.
+@...what do you mean you don’t have enough?
 @no no no, i can’t give you a discount. stop giving me those puppy eyes.
-@hmm......
-@oh!
+@~Slow~hmm......oh!
 @tell you what, i have a deal.
 @on the way here, while getting out of the helicopter, the worst thing happened in my life.
 @my chou chou dropped into the hole.

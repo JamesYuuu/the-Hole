@@ -7,30 +7,9 @@ namespace Dialog.Scripts
     /// Parses the text file and sends the output back to the DialogBehaviour
     /// Does not handle interaction.
     /// </summary>
-    public class DialogParser : MonoBehaviour 
+    public static class DialogParser
     {
-        private static DialogParser _instance;
         private static string eTag = "::";
-        public static DialogParser GetInstance()
-        {
-            return _instance;
-        }
-
-        /// <summary>
-        /// Initialises singleton.
-        /// </summary>
-        private void Awake()
-        {
-            // if there is another instance, destroy this. else make this the singleton
-            if (_instance != null && _instance != this)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-        }
 
         /// <summary>
         /// Breaks a text file into its 'speeches'
@@ -38,7 +17,7 @@ namespace Dialog.Scripts
         /// </summary>
         /// <param name="source">The text file.</param>
         /// <returns>A Queue of (Speed, speech) tuples.</returns>
-        public Queue<(TextSpeed speed, string speech)> ParseTextFileAsQueue(TextAsset source)
+        public static Queue<(TextSpeed speed, string speech)> ParseTextFileAsQueue(TextAsset source)
         {
             var result = new Queue<(TextSpeed speed, string speech)>();
             
@@ -65,13 +44,13 @@ namespace Dialog.Scripts
             return result;
         }
 
-        public List<(TextSpeed speed, string speech)> ParseTextFileAsList(TextAsset source)
+        public static List<(TextSpeed speed, string speech)> ParseTextFileAsList(TextAsset source)
         {
             return new List<(TextSpeed speed, string speech)>(
                 ParseTextFileAsQueue(source));
         }
         
-        public Queue<(TextSpeed speed, string speech, int eventIdx)>
+        public static Queue<(TextSpeed speed, string speech, int eventIdx)>
             ParseEventTextFileAsQueue(TextAsset source, List<string> eventTagKeys)
         {
             var result = new Queue<(TextSpeed, string, int)>();

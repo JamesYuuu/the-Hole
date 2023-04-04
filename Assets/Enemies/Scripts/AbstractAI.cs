@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public abstract class AbstractAI : MonoBehaviour
@@ -6,7 +5,7 @@ public abstract class AbstractAI : MonoBehaviour
     [SerializeField] private int health = 20;
     [SerializeField] private int reward = 5;
     [SerializeField] protected float attack = 0.0025f;
-    [SerializeField] private new ParticleSystem particleSystem;
+    [SerializeField] private new GameObject particleSystem;
 
     public void Damage(int damage)
     {
@@ -21,25 +20,9 @@ public abstract class AbstractAI : MonoBehaviour
 
     private void Die()
     {
-        gameObject.SetActive(false);
         PlayerData.AddMoney(reward);
-        StartParticleSystem();
-    }
-
-    private void StartParticleSystem()
-    {
-        particleSystem.Play();
-        StartCoroutine(StopParticleSystemAfterTime(3f));
-    }
-
-    private void StopParticleSystem()
-    {
-        particleSystem.Clear();
-    }
-
-    IEnumerator StopParticleSystemAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        StopParticleSystem();
+        gameObject.SetActive(false);
+        particleSystem.SetActive(true);
+        particleSystem.transform.position = gameObject.transform.position;
     }
 }

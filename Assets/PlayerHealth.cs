@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
         
         if (currentOxygen <= 10f)
         {
-            print("lower");
+            // print("lower");
             // Update Drowning Screen
             drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(currentOxygen);
             if (currentOxygen < 0f)

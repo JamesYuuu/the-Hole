@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.Serialization;
 
 public class SpawnControl : MonoBehaviour
@@ -19,15 +20,17 @@ public class SpawnControl : MonoBehaviour
      */
     private readonly int _spawnRadius = 33;
 
-    private readonly int _spawnBase = -90;
-    private readonly int _spawnHeight = 50;
+    private readonly int _spawnBase = -70;
+    private readonly int _spawnHeight = 100;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
 
-    [FormerlySerializedAs("PooledEnemies")] [SerializeField]
+    [FormerlySerializedAs("PooledEnemies")]
+    [SerializeField]
     private List<GameObject> pooledEnemies = new();
 
-    [FormerlySerializedAs("ActiveEnemies")] [SerializeField]
+    [FormerlySerializedAs("ActiveEnemies")]
+    [SerializeField]
     private List<GameObject> activeEnemies = new();
 
     private readonly Dictionary<GameObject, int> _despawnTimes = new();
@@ -44,9 +47,12 @@ public class SpawnControl : MonoBehaviour
         IsFreefall = true;
         if (!_instance) return;
 
-        print("Transfer Count:" + _instance.activeEnemies.Count);
+        // print("Transfer Count:" + _instance.activeEnemies.Count);
 
         foreach (var fish in _instance.activeEnemies) TransferActivePosition.Add(fish.transform.position);
+        List<GameObject> toDeactive = new List<GameObject>();
+        foreach (var fish in _instance.activeEnemies) toDeactive.Add(fish);
+        foreach (var fish in toDeactive) _instance.DeactivatePoolEnemy(fish);
     }
 
     public static void ResetScene()
@@ -62,7 +68,6 @@ public class SpawnControl : MonoBehaviour
 #pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Scene changed. Respawning fish for shooting...");
 #pragma warning restore CS0162
-        print("Transferred Count:" + TransferActivePosition.Count);
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
             var fish = _instance.pooledEnemies[i];
@@ -98,7 +103,6 @@ public class SpawnControl : MonoBehaviour
             if (!_isFreefalled)
             {
                 print("BRUH");
-                LoadFreeFall();
                 ChangeSceneTransform();
                 _isFreefalled = true;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,14 @@ public static class PlayerData
     /// </summary>
     public static int Money { get; private set; } = 0;
     public static Dictionary<Item, int> Inventory { get; private set; } = new();
-    private static readonly Dictionary<Item, int> InventoryMax = new();
+    /// <summary>
+    /// Treasure item. Given to player upon pickup.
+    /// </summary>
+    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1);
+    private static readonly Dictionary<Item, int> InventoryMax = new()
+    {
+        {Treasure, 1},
+    };
 
     private static Dictionary<string, bool> _itemsForsale = new()
     {
@@ -65,10 +73,7 @@ public static class PlayerData
     #endregion
 
     #region Inventory
-    /// <summary>
-    /// Treasure item. Given to player upon pickup.
-    /// </summary>
-    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1);
+
     // C# dictionary methods:
     // .Add(Item i, int qty),
     // .ContainsKey(Item i),
@@ -90,6 +95,12 @@ public static class PlayerData
     public static void RemoveTreasure()
     {
         RemoveItem(Treasure, 1);
+    }
+
+    public static bool HasTreasure()
+    {
+        if (!Inventory.ContainsKey(Treasure)) return false;
+        return Inventory[Treasure] == 1;
     }
 
     /// <summary>

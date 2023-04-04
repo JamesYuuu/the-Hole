@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,45 +13,67 @@ namespace Dialog.Scripts
     /// </summary>
     public class DialogBehaviour : MonoBehaviour, ISpeakable
     {
+        [Header("DialogBehaviour Base Vars")]
         // triggers for debugging test only
         public bool stDia = false; // start dialogue
         public bool next = false; // next dialogue
         
-        [SerializeField] private float textSpeedNorm = 0.022f;
-        [SerializeField] private float textSpeedSlow = 0.06f;
-        [SerializeField] private float textSpeedFast = 0.01f;
+        [SerializeField] protected float textSpeedNorm = 0.022f;
+        [SerializeField] protected float textSpeedSlow = 0.06f;
+        [SerializeField] protected float textSpeedFast = 0.01f;
         
-        [SerializeField] private DialogParser dialogParser;
+        [SerializeField] protected DialogParser dialogParser;
+        [SerializeField] protected TextMeshProUGUI textDisplay;
         [SerializeField] private TextAsset convoTextFile;
         [SerializeField] private GameObject displayGroup;
-        [SerializeField] private TextMeshProUGUI textDisplay;
         // [SerializeField] private Animator nextPageIcon; // stretch goal: bouncing continue animator
         
-        private Queue<(TextSpeed speed, string speech)> _speeches;
-        private (TextSpeed speed, string speech) _currSpeech;
-        private float _currTextSpeed;
-        private bool _doneTalking; // done showing all the text in the current speech.
+        protected Queue<(TextSpeed speed, string speech)> _convoQueue;
+        protected (TextSpeed speed, string speech) _currSpeech;
+        protected bool _doneTalking = true; // done showing all the text in the current speech.
+        protected bool _isConvoOngoing; // player is reading through the queue of speeches
+        // ^ can also be speeches.Count == 0;
+        protected bool _letPlayerControlDialog = true;
+        protected bool _dialogBtnIsPressed = false;
+        protected InputManager _inputManager;
+        protected Coroutine _currTalkingCoroutine;
 
-        private void Awake()
+        protected virtual void Start() // virtual means able to be overridden
         {
-            _doneTalking = true;
-            _currTextSpeed = textSpeedNorm;
+            _inputManager = InputManager.GetInstance();
+            // call startDialog from separate scripts in scenes
         }
 
-        // only for debugging test
-        private void Update()
+        protected virtual void Update()
         {
-            if (stDia)
+            if (!_letPlayerControlDialog) return;
+            if (!_dialogBtnIsPressed && _inputManager.PlayerPressedSecondaryL())
             {
-                StartDialog();
-                stDia = !stDia;
+                FinishCurrSentence();
+                _dialogBtnIsPressed = true;
+                return;
             }
             
-            if (next)
+            if (_dialogBtnIsPressed && !_inputManager.PlayerPressedSecondaryL())
             {
-                FinishSpeaking();
-                next = !next;
+                _dialogBtnIsPressed = false;
             }
+        }
+
+        /// <summary>
+        /// Let the player's controller button trigger the next dialog
+        /// </summary>
+        public void EnablePlayerControl()
+        {
+            _letPlayerControlDialog = true;
+        }
+        
+        /// <summary>
+        /// Called by text asset events to disable player continuation
+        /// </summary>
+        public void DisablePlayerControl()
+        {
+            _letPlayerControlDialog = false;
         }
 
         /// <summary>
@@ -58,11 +81,58 @@ namespace Dialog.Scripts
         /// DialogManager to parse and display.
         /// Triggered by interacting with NPCs (Unity Event).
         /// </summary>
-        public void StartDialog()
+        public virtual void StartDialog()
         {
+            _isConvoOngoing = true;
+            
             displayGroup.SetActive(true); // open dialog panel
-            _speeches = dialogParser.ParseTextFileAsQueue(convoTextFile);
-            StartCoroutine(nameof(TypeCurrSpeech));
+            _convoQueue = dialogParser.ParseTextFileAsQueue(convoTextFile);
+            _currSpeech = _convoQueue.Dequeue();
+            StartCoroutine(TypeCurrSpeech(_currSpeech.speech, _currSpeech.speed));
+        }
+        
+        
+        /// <summary>
+        /// Closes the text panel and stops talking.
+        ///
+        /// Triggered by Cancel input action.
+        /// </summary>
+        public virtual void EndDialog()
+        {
+            displayGroup.SetActive(false);
+            StopCoroutine(_currTalkingCoroutine);
+        }
+
+        protected void StartTypeCurrSpeech(string thisSentence, TextSpeed speed)
+        {
+            _currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(thisSentence, speed));
+        }
+        
+        /// <summary>
+        /// Adds the speech letter by letter to the display box.
+        /// </summary>
+        protected IEnumerator TypeCurrSpeech(string thisSentence, TextSpeed speed)
+        {
+            textDisplay.text = "";
+            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
+            // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
+
+            // set the talking speed
+            var currTextSpeed = speed == TextSpeed.Normal
+                ? textSpeedNorm
+                : speed == TextSpeed.Slow
+                ? textSpeedSlow
+                : textSpeedFast;
+            
+            // add each letter to the display
+            foreach (char letter in thisSentence)
+            {
+                textDisplay.text += letter;
+                yield return new WaitForSeconds(currTextSpeed);
+            }
+
+            _doneTalking = true;
+            // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
         }
         
         /// <summary>
@@ -73,9 +143,9 @@ namespace Dialog.Scripts
         ///
         /// Triggered by Continue input action.
         /// </summary>
-        public void FinishSpeaking()
+        public virtual void FinishCurrSentence()
         {
-            if (_speeches.Count == 0)
+            if (_convoQueue.Count == 0)
             {
                 EndDialog();
                 return;
@@ -83,59 +153,21 @@ namespace Dialog.Scripts
 
             if (!_doneTalking)
             {
-                // show all remaining text in speech, stop typing, prep next speech
+                // show all remaining text in speech, stop typing
                 textDisplay.text = _currSpeech.speech;
-                StopCoroutine(nameof(TypeCurrSpeech));
+                StopCoroutine(_currTalkingCoroutine);
                 _doneTalking = true;
-                // currSpeech = speeches.Dequeue();
                 
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);
             }
             else // start typing the next speech
             {
-                StopCoroutine(nameof(TypeCurrSpeech));
-                StartCoroutine(nameof(TypeCurrSpeech));
+                StopCoroutine(_currTalkingCoroutine);
+                _currSpeech = _convoQueue.Dequeue();
+                StartTypeCurrSpeech(_currSpeech.speech, _currSpeech.speed);
             }
         }
-        
-        /// <summary>
-        /// Closes the text panel and stops talking.
-        ///
-        /// Triggered by Cancel input action.
-        /// </summary>
-        public void EndDialog()
-        {
-            displayGroup.SetActive(false);
-            StopCoroutine(nameof(TypeCurrSpeech));
-        }
-        
-        /// <summary>
-        /// Adds the speech letter by letter to the display box.
-        /// </summary>
-        private IEnumerator TypeCurrSpeech()
-        {
-            textDisplay.text = "";
-            _currSpeech = _speeches.Dequeue();
-            _doneTalking = false; // flag, telling the show-remaining-speech line to show all if still talking
-            // nextPageIcon.SetBool("doneTalking", false); // stop the Continue arrow from bouncing
 
-            // set the talking speed
-            _currTextSpeed = _currSpeech.speed == TextSpeed.Normal
-                ? textSpeedNorm
-                : _currSpeech.speed == TextSpeed.Slow
-                ? textSpeedSlow
-                : textSpeedFast;
-            
-            // add each letter to the display
-            foreach (char letter in _currSpeech.speech)
-            {
-                textDisplay.text += letter;
-                yield return new WaitForSeconds(_currTextSpeed);
-            }
-
-            _doneTalking = true;
-            // nextPageIcon.SetBool("doneTalking", true); // make the Continue arrow bounce
-        }
     }
 }

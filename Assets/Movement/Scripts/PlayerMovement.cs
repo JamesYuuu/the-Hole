@@ -33,7 +33,7 @@ public class PlayerMovement : LocomotionProvider
         }
 
         if (_inputManager.PlayerHoldingPrimaryR()) {
-            _rb.MovePosition(_rb.position + Vector3.up * ascendVelocity * Time.deltaTime);
+            _rb.MovePosition(_rb.position + Vector3.up * (ascendVelocity * Time.deltaTime));
         }
     }
 }

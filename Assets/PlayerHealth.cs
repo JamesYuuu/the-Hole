@@ -26,7 +26,8 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentOxygen = maxOxygen;
+        // currentOxygen = maxOxygen;
+        currentOxygen = PlayerData.MaxOxygen;
         oxygenDecreasePerSecond = 1f;
         _drowning = false;
         watch = GameObject.Find("Watch");

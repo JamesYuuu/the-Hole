@@ -4,16 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    public Animator animator;
     public string levelToLoad;
     public float transitionTime = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator animator;
 
-    // Update is called once per frame
+    // TODO: REMOVE THIS FUNCTION, it is very expensive
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

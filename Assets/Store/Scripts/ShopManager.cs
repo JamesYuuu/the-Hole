@@ -15,51 +15,26 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class ShopManager : MonoBehaviour, IShop
 {
-    [FormerlySerializedAs("CheckoutEvent")] public UnityEvent checkoutEvent;
-    [SerializeField] private ShopDialogBehaviour dialogBehaviour;
-
+    public UnityEvent checkoutEvent;
     // can use PlayerData.Money, .AddMoney() and .RemoveMoney() for money operations.
-    [FormerlySerializedAs("ItemsForSale")] [SerializeField] private List<Item> itemsForSale = new List<Item>();
+    [SerializeField] private List<Item> itemsForSale = new List<Item>();
 
-    [FormerlySerializedAs("ItemsInCart")] [SerializeField] private List<Item> itemsInCart = new List<Item>();
+    [SerializeField] private List<Item> itemsInCart = new List<Item>();
 
     // UI elements
-    [FormerlySerializedAs("ShopItemDescriptionPanel")] [SerializeField] private GameObject shopItemDescriptionPanel;
-    [FormerlySerializedAs("ShopItemPricePanel")] [SerializeField] private GameObject shopItemPricePanel;
-    [FormerlySerializedAs("ShopItemNamePanel")] [SerializeField] private GameObject shopItemNamePanel;
-    [FormerlySerializedAs("ShopCartTotalPanel")] [SerializeField] private GameObject shopCartTotalPanel;
-    [FormerlySerializedAs("ShopPlayerMoneyPanel")] [SerializeField] private GameObject shopPlayerMoneyPanel;
-
-    [FormerlySerializedAs("ItemInfo")] [SerializeField] private GameObject itemInfo;
-    [FormerlySerializedAs("CartTotal")] [SerializeField] private GameObject cartTotal;
-    [FormerlySerializedAs("PlayerCash")] [SerializeField] private GameObject playerCash;
-    [FormerlySerializedAs("CheckoutPanel")] [SerializeField] private GameObject checkoutPanel;
-    [FormerlySerializedAs("LeftHandController")] [SerializeField] private GameObject leftHandController;
-    [FormerlySerializedAs("RightHandController")] [SerializeField] private GameObject rightHandController;
-
-    [FormerlySerializedAs("CashRegister")] [SerializeField] private Button cashRegister;
-    [FormerlySerializedAs("Leave")] [SerializeField] private Button leave;
+    [SerializeField] private GameObject shopItemDescriptionPanel;
+    [SerializeField] private GameObject shopItemPricePanel;
+    [SerializeField] private GameObject shopItemNamePanel;
+    [SerializeField] private GameObject shopCartTotalPanel;
+    [SerializeField] private GameObject shopPlayerMoneyPanel;
 
     public static ShopManager Instance;
     private int _totalPrice, _playerMoney;
 
-    private Item _currentSelectedItem;
-
     private void Awake()
     {
         Instance = this;
-        cashRegister.onClick.AddListener(Checkout);
         itemsForSale.ForEach(item => SetActive(item));
-        if (PlayerData.IsEnergyDrinkBought)
-        {
-            PlayerData.AddGrapplingReelSpeed(-10.0f);
-            PlayerData.IsEnergyDrinkBought = false;
-        }
-        if (PlayerData.IsO2TankBought)
-        {
-            PlayerData.AddOxygen(-100);
-            PlayerData.IsO2TankBought = false;
-        }
     }
 
     public void SetActive(Item item)
@@ -81,34 +56,36 @@ public class ShopManager : MonoBehaviour, IShop
     
     private void EnableGrabbing()
     {
-        cartTotal.SetActive(true);
-        playerCash.SetActive(true);
-        checkoutPanel.SetActive(true);
         SetPlayerMoney();
-        SetTotalMoney(0);
-        leftHandController.GetComponent<XRRayInteractor>().enabled=true;
-        rightHandController.GetComponent<XRRayInteractor>().enabled=true;
+        SetCartTotalMoney(0);
     }
 
     public void ShowPanels(Item grabbedItem)
     {
-        itemInfo.SetActive(true);
         shopItemDescriptionPanel.GetComponent<TMP_Text>().text = grabbedItem.GetDescription();
         shopItemPricePanel.GetComponent<TMP_Text>().text = grabbedItem.GetPrice().ToString() + 'G';
         shopItemNamePanel.GetComponent<TMP_Text>().text = grabbedItem.GetName();
-        _currentSelectedItem = grabbedItem;
     }
 
     public void AddToCart(Item item)
     {
         itemsInCart.Add(item);
-        SetTotalMoney(item.GetPrice());
+        SetCartTotalMoney(item.GetPrice());
     }
 
     public void RemoveFromCart(Item item)
     {
         itemsInCart.Remove(item);
-        SetTotalMoney(-item.GetPrice());
+        SetCartTotalMoney(-item.GetPrice());
+    }
+
+    /// <summary>
+    /// Triggered by checkout button in shop scene.
+    /// Singleton method.
+    /// </summary>
+    public static void CheckoutStatic()
+    {
+        Instance.Checkout();
     }
 
     public void Checkout()
@@ -120,7 +97,7 @@ public class ShopManager : MonoBehaviour, IShop
             checkoutEvent.Invoke();
             itemsInCart.ForEach(item => Upgrade(item));
             itemsInCart.Clear();
-            SetTotalMoney(-_totalPrice);
+            SetCartTotalMoney(-_totalPrice);
             SetPlayerMoney();
         }
         else
@@ -137,29 +114,35 @@ public class ShopManager : MonoBehaviour, IShop
             PlayerData.RemoveItemForSale(item.GetName());
         }
         switch (item.GetName()){
-            case "Shotgun":
+            case "Grappling Hook":
                 PlayerData.LeftHandGrapple = true;
                 break;
-            case "O2 Tank":
-                PlayerData.AddOxygen(100);
-                PlayerData.IsO2TankBought = true;
+            case "Diving Helmet":
+                PlayerData.MultMaxOxygen(2);
                 break;
             case "Diving Mask":
-                PlayerData.AddOxygen(100);
-                break;
-            case "Monster Energy Drink":
-                PlayerData.AddGrapplingReelSpeed(10.0f);
-                PlayerData.IsEnergyDrinkBought = true;
+                PlayerData.MultMaxOxygen(2);
                 break;
             case "Diving Equipment":
-                PlayerData.AddOxygen(100);
-                break;
-            case "Diving Helmet":
-                PlayerData.AddOxygen(100);
+                PlayerData.MultGrapplingShootSpeed(1.5f);
+                PlayerData.MultGrapplingReelSpeed(1.5f);
+                PlayerData.MultGrapplingRange(1.5f);
                 break;
             case "Fins":
                 PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
+            /*
+            case "O2 Tank":
+                PlayerData.AddOxygen(100);
+                PlayerData.IsO2TankBought = true;
+                break;
+                */
+            /*
+            case "Monster Energy Drink":
+                PlayerData.AddGrapplingReelSpeed(10.0f);
+                PlayerData.IsEnergyDrinkBought = true;
+                break;
+                */
         }
     }
     public void SetPlayerMoney()
@@ -168,7 +151,7 @@ public class ShopManager : MonoBehaviour, IShop
         shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = _playerMoney.ToString() + 'G';
     }
     
-    public void SetTotalMoney(int addedMoney)
+    public void SetCartTotalMoney(int addedMoney)
     {
         _totalPrice += addedMoney;
         shopCartTotalPanel.GetComponent<TMP_Text>().text = _totalPrice.ToString() + 'G';

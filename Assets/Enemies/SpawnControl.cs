@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 using UnityEngine.Serialization;
 
 public class SpawnControl : MonoBehaviour

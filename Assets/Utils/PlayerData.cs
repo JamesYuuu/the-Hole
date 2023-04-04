@@ -4,7 +4,6 @@ using UnityEngine;
 
 /// <summary>
 /// A static class containing the player's current state.
-/// TODO: how do I place this on the XRRig? And how do I make it DoNotDestroyOnLoad scenes?
 /// </summary>
 public static class PlayerData
 {
@@ -199,8 +198,6 @@ public static class PlayerData
     #endregion
 
     #region Oxygen
-
-    
     // TODO: ask gary to read from here for his PlayerHealth script
     public static void AddMaxOxygen(int amount)
     {
@@ -210,6 +207,5 @@ public static class PlayerData
     {
         MaxOxygen *= multiplier;
     }
-
     #endregion
 }

@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50G
+  m_text: 0G
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 359e69d820ebbf64ea31d9418c9f94b1, type: 2}
   m_sharedMaterial: {fileID: -5624841017457581282, guid: 359e69d820ebbf64ea31d9418c9f94b1,
@@ -2947,7 +2947,6 @@ GameObject:
   - component: {fileID: 1119341251}
   - component: {fileID: 1119341250}
   - component: {fileID: 1119341249}
-  - component: {fileID: 1119341252}
   m_Layer: 0
   m_Name: ShopDialogManager
   m_TagString: Untagged
@@ -2967,15 +2966,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ffc7cc3ee36bd4983b381ecf331101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stDia: 0
-  next: 0
+  startDialogTrigger: 0
+  nextTrigger: 0
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
-  dialogParser: {fileID: 1119341252}
   textDisplay: {fileID: 680554469}
   convoTextFile: {fileID: 0}
-  displayGroup: {fileID: 0}
   greetingTextFiles:
   - {fileID: 4900000, guid: 99f8ed82f87fb1546b868640e71f6104, type: 3}
   - {fileID: 4900000, guid: 630f0817102a41c438518f8f7c60e237, type: 3}
@@ -3051,7 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sdb: {fileID: 1119341249}
+  dialogBehaviour: {fileID: 0}
 --- !u!4 &1119341251
 Transform:
   m_ObjectHideFlags: 0
@@ -3067,18 +3064,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1119341252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119341248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d4b52d6b8ecde4682e49e936a6f094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1155698438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4329,7 +4314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1550G
+  m_text: 0G
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 359e69d820ebbf64ea31d9418c9f94b1, type: 2}
   m_sharedMaterial: {fileID: -5624841017457581282, guid: 359e69d820ebbf64ea31d9418c9f94b1,

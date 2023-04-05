@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SceneTransitScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SceneTransitScript : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
+        // if (collision.gameObject.GetComponent<XRDirectInteractor>() != null) // TODO: suggested trigger instead
         {
             if (!_isLoaded)
             {

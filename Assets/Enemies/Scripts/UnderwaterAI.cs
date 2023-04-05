@@ -38,7 +38,7 @@ public class UnderwaterAI : AbstractAI
     private int _turns;
     private Vector3 _turnAmount = new(0, 0, 0);
 
-    private const int ReturnRadius = 33;
+    private const int ReturnRadius = 24;
     private const int SpawnBase = -90;
     private const int SpawnHeight = 50;
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -37,6 +38,8 @@ public class SpawnControl : MonoBehaviour
     private static readonly List<Vector3> TransferActivePosition = new();
     public static bool IsFreefall;
     private static bool _isFreefalled;
+    [SerializeField]
+    private float time = 15.0f;
 
     public static void LoadFreeFall()
     {
@@ -75,6 +78,7 @@ public class SpawnControl : MonoBehaviour
             var newY = Random.Range(FreefallBase, FreefallHeight);
             fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
         }
+        _instance.StartFreeFallTimer();
     }
 
     private void Awake()
@@ -101,7 +105,6 @@ public class SpawnControl : MonoBehaviour
         {
             if (!_isFreefalled)
             {
-                print("BRUH");
                 ChangeSceneTransform();
                 _isFreefalled = true;
             }
@@ -269,5 +272,25 @@ public class SpawnControl : MonoBehaviour
         var dispY = position.y - position1.y;
         var dispZ = position.z - position1.z;
         return FindDistance(dispX, dispY, dispZ);
+    }
+    private void StartFreeFallTimer()
+    {
+        StartCoroutine(StopFreeFallTimerAfterTime());
+    }
+
+    private void StopFreeFallTimer()
+    {
+        List<GameObject> toDeactive = new List<GameObject>();
+        for (var i = 0; i < TransferActivePosition.Count; i++)
+        {
+            _instance.pooledEnemies[i].SetActive(false);
+        }
+        // set the door to be active
+    }
+
+    IEnumerator StopFreeFallTimerAfterTime()
+    {
+        yield return new WaitForSeconds(time);
+        StopFreeFallTimer();
     }
 }

@@ -5,7 +5,7 @@ public class ParticlePlayer : MonoBehaviour
 {
     [SerializeField] private new ParticleSystem particleSystem;
 
-    void Start()
+    public void PlayParticle()
     {
         particleSystem.Play();
         StartCoroutine(StopParticleSystemAfterTime(3f));

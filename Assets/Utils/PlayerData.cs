@@ -33,6 +33,8 @@ public static class PlayerData
         {"Fins", true},
     };
 
+    public static Dictionary<string, string> AttachInventory { get; private set; } = new();
+
     public static bool LeftHandGrapple = false;
     public static float GrapplingShootSpeed = 25.0f;
     public static float GrapplingReelSpeed = 40.0f;
@@ -207,5 +209,20 @@ public static class PlayerData
     {
         MaxOxygen *= multiplier;
     }
+    #endregion
+
+    #region Attachment
+
+    // public static void AddAttachment(string attachmentName)
+    // {   
+    //     for (int i = 0; i < 5; i++)
+    //     {
+    //         if (!AttachInventory.ContainsKey("attachpoint" + i))
+    //         {
+    //             AttachInventory.Add("attachpoint" + i, attachmentName);
+    //             break;
+    //         }
+    //     }
+    // }
     #endregion
 }

@@ -2967,15 +2967,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ffc7cc3ee36bd4983b381ecf331101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stDia: 0
-  next: 0
+  startDialogTrigger: 0
+  nextTrigger: 0
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
-  dialogParser: {fileID: 1119341252}
   textDisplay: {fileID: 680554469}
   convoTextFile: {fileID: 0}
-  displayGroup: {fileID: 0}
   greetingTextFiles:
   - {fileID: 4900000, guid: 99f8ed82f87fb1546b868640e71f6104, type: 3}
   - {fileID: 4900000, guid: 630f0817102a41c438518f8f7c60e237, type: 3}
@@ -3051,7 +3049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sdb: {fileID: 1119341249}
+  dialogBehaviour: {fileID: 1119341249}
 --- !u!4 &1119341251
 Transform:
   m_ObjectHideFlags: 0
@@ -4271,6 +4269,160 @@ MonoBehaviour:
   price: 50
   description: I heard that good-looking people can breathe longer underwater. This
     makes you twice as good-looking!
+--- !u!1 &1569702086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1569702087}
+  - component: {fileID: 1569702091}
+  - component: {fileID: 1569702090}
+  - component: {fileID: 1569702089}
+  - component: {fileID: 1569702092}
+  m_Layer: 0
+  m_Name: Attachpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1569702087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569702086}
+  m_LocalRotation: {x: -0, y: -0.85104036, z: -0, w: -0.52510035}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 0.1, y: 0.099999994, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1777643853}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!135 &1569702089
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569702086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1569702090
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569702086}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1569702091
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569702086}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1569702092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569702086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de6f61cfdb57244098c8d3937d927d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 539393859}
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 2
+  m_AttachTransform: {fileID: 0}
+  m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
+  m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingTargetFilter: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ShowInteractableHoverMeshes: 1
+  m_InteractableHoverMeshMaterial: {fileID: 0}
+  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_SocketActive: 1
+  m_InteractableHoverScale: 1
+  m_RecycleDelayTime: 1
+  SocketName: Attachpoint
 --- !u!1 &1587245747
 GameObject:
   m_ObjectHideFlags: 0
@@ -5195,6 +5347,12 @@ PrefabInstance:
 --- !u!20 &1777643852 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7631990904480149859, guid: 10617a2f4137d41afa1690341f8559d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777643851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1777643853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7631990904378478693, guid: 10617a2f4137d41afa1690341f8559d5,
     type: 3}
   m_PrefabInstance: {fileID: 1777643851}
   m_PrefabAsset: {fileID: 0}

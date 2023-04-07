@@ -7,6 +7,7 @@ TagManager:
   - water
   - air
   - Particles
+  - treasure
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - CollideWithPlayer
   - CPIG (Collide Player Ignore Grapple)
-  - 
+  - ItemPurchased
   - 
   - 
   - 

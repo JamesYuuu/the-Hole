@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GripR"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba0dfe1c-aae4-40d8-8147-7bfe0f4dd8d0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +311,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54955810-c3c0-48e1-8fcd-d8b724b666ab"",
+                    ""path"": ""<XRController>{RightHand}/gripButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cec7200-b65c-4a4a-84c8-e422b6c6a8fc"",
+                    ""path"": ""<OculusTouchController>/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a99ad9f3-5960-45de-ab77-1dc7e1026fd0"",
+                    ""path"": ""<XRController>/gripButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -316,6 +358,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_VR_Ascend = m_VR.FindAction("Ascend", throwIfNotFound: true);
         m_VR_NextDialog = m_VR.FindAction("NextDialog", throwIfNotFound: true);
         m_VR_UseItem = m_VR.FindAction("UseItem", throwIfNotFound: true);
+        m_VR_GripR = m_VR.FindAction("GripR", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -381,6 +424,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_VR_Ascend;
     private readonly InputAction m_VR_NextDialog;
     private readonly InputAction m_VR_UseItem;
+    private readonly InputAction m_VR_GripR;
     public struct VRActions
     {
         private @PlayerControls m_Wrapper;
@@ -391,6 +435,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Ascend => m_Wrapper.m_VR_Ascend;
         public InputAction @NextDialog => m_Wrapper.m_VR_NextDialog;
         public InputAction @UseItem => m_Wrapper.m_VR_UseItem;
+        public InputAction @GripR => m_Wrapper.m_VR_GripR;
         public InputActionMap Get() { return m_Wrapper.m_VR; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -418,6 +463,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UseItem.started -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
                 @UseItem.performed -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
                 @UseItem.canceled -= m_Wrapper.m_VRActionsCallbackInterface.OnUseItem;
+                @GripR.started -= m_Wrapper.m_VRActionsCallbackInterface.OnGripR;
+                @GripR.performed -= m_Wrapper.m_VRActionsCallbackInterface.OnGripR;
+                @GripR.canceled -= m_Wrapper.m_VRActionsCallbackInterface.OnGripR;
             }
             m_Wrapper.m_VRActionsCallbackInterface = instance;
             if (instance != null)
@@ -440,6 +488,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UseItem.started += instance.OnUseItem;
                 @UseItem.performed += instance.OnUseItem;
                 @UseItem.canceled += instance.OnUseItem;
+                @GripR.started += instance.OnGripR;
+                @GripR.performed += instance.OnGripR;
+                @GripR.canceled += instance.OnGripR;
             }
         }
     }
@@ -452,5 +503,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAscend(InputAction.CallbackContext context);
         void OnNextDialog(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+        void OnGripR(InputAction.CallbackContext context);
     }
 }

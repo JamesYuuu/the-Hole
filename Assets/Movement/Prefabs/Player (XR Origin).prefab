@@ -2230,7 +2230,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+    m_Reference: {fileID: 1603365604131916350, guid: 24501ca9ff81f4a83bda100c7210b258,
       type: 3}
   gripAction:
     m_UseReference: 1
@@ -2243,7 +2243,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+    m_Reference: {fileID: 8944681366179021872, guid: 24501ca9ff81f4a83bda100c7210b258,
       type: 3}
   _debugOverrideValues: 0
   _triggerPressed: 0

@@ -1947,6 +1947,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1640217335, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
+      propertyPath: _grappleReady
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2096153958720417010, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_Layer

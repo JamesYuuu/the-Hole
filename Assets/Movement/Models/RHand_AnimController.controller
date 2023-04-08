@@ -109,7 +109,7 @@ AnimatorStateTransition:
     m_ConditionEvent: TriggerPressed
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: GrappleFixed
@@ -221,7 +221,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GripPressed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1213907603737878028}
@@ -274,7 +274,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -387098482409984958}
@@ -299,7 +299,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -387098482409984958}
@@ -382,7 +382,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GripPressed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2523189550101787080}
@@ -733,7 +733,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: GrappleActive
+  - m_Name: GrappleReady
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -773,7 +773,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GripPressed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8875580123859460184}
@@ -1164,7 +1164,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -387098482409984958}
@@ -1297,7 +1297,7 @@ AnimatorStateTransition:
     m_ConditionEvent: TriggerPressed
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3582642098824000485}
@@ -1378,7 +1378,7 @@ AnimatorStateTransition:
     m_ConditionEvent: GripPressed
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6226395800401140541}
@@ -1431,7 +1431,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: GrappleActive
+    m_ConditionEvent: GrappleReady
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -387098482409984958}

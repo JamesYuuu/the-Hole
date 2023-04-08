@@ -18,7 +18,7 @@ public class AnimateHandOnInput : MonoBehaviour
     [SerializeField] private bool _grappleFixed = false;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         _inputManager = InputManager.GetInstance();
         if (grappleHook != null) 

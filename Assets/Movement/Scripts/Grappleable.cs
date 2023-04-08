@@ -167,14 +167,21 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     void ShootHook()
     {
-        if (!_checkForShoot()) ChangeState(GrappleState.Aiming);
+        if (!_checkForShoot()) 
+        {
+            ChangeState(GrappleState.Aiming);
+            return;
+        }
+
         _hookPos = Vector3.MoveTowards(_hookPos, _targetPos, shootSpeed * Time.deltaTime);
         _reelDir = Vector3.Normalize(_targetPos - pointer.position);
+
         if (hookObject != null)
         {
             hookObject.transform.position = _hookPos;
             hookObject.transform.rotation = Quaternion.LookRotation(_reelDir);
         }
+        
         if (Vector3.Distance(_hookPos, _targetPos) < float.Epsilon) 
         {
             ChangeState(GrappleState.Reeling);
@@ -184,7 +191,11 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     void ReelHook()
     {
-        if (!_checkForShoot()) ChangeState(GrappleState.Aiming);
+        if (!_checkForShoot()) 
+        {
+            ChangeState(GrappleState.Aiming);
+            return;
+        }
         if (affectedRigidbody.velocity.magnitude > reelVibrationSpeed) xrController.SendHapticImpulse(reelVibrationAmplitude, 0.1f);
         _reelDir = Vector3.Normalize(_targetPos - pointer.position);
         if (hookObject != null)

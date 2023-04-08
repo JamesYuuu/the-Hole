@@ -8,8 +8,7 @@ public class AnimateHandOnInput : MonoBehaviour
     public Animator handAnimator;
     public Grappleable grappleHook;
 
-    public InputActionProperty triggerAction;
-    public InputActionProperty gripAction;
+    private InputManager _inputManager;
 
     [Header("For Testing Animations")]
     [SerializeField] private bool _debugOverrideValues = false;
@@ -21,6 +20,7 @@ public class AnimateHandOnInput : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _inputManager = InputManager.GetInstance();
         if (grappleHook != null) 
         {
             grappleHook.OnChangeToAim += HandUnstickFromWall;
@@ -33,8 +33,8 @@ public class AnimateHandOnInput : MonoBehaviour
     {
         if (!_debugOverrideValues) 
         {
-            _triggerPressed = triggerAction.action.ReadValue<bool>();
-            _gripPressed = gripAction.action.ReadValue<bool>();
+            _triggerPressed = _inputManager.PlayerHoldingTriggerR();
+            _gripPressed = _inputManager.PlayerHoldingGripR();
 
             if (grappleHook != null)
             {

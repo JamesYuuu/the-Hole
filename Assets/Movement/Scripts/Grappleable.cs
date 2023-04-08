@@ -22,6 +22,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     [Header("Object References")]
     public Transform pointer;
     public GameObject targetPointPrefab;
+    public GameObject hookObject;
     public Rigidbody affectedRigidbody;
 
     [Header("Haptics")]
@@ -46,8 +47,10 @@ public class Grappleable : MonoBehaviour, IGrappleable
     private GrappleState _state;
     private InputManager _inputManager;
 
+    private bool _readytoShoot = false;
     private GameObject _targetPoint;
     private Vector3 _targetPos;
+    private Vector3 _targetNormal;
     private Vector3 _reelDir;
     private Vector3 _hookPos;
     private float _playerMass;
@@ -63,6 +66,11 @@ public class Grappleable : MonoBehaviour, IGrappleable
     private LineRenderer _lineRenderer;
     private Vector3[] _lineVertices = new Vector3[2];
 
+    public delegate void ChangeStateDelegate();
+    public event ChangeStateDelegate OnChangeToAim;
+    public event ChangeStateDelegate OnChangeToShoot;
+    public event ChangeStateDelegate OnChangeToReel;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -119,12 +127,17 @@ public class Grappleable : MonoBehaviour, IGrappleable
         {
             case GrappleState.Aiming:
                 _hookPos = pointer.position;
+                hookObject.transform.position = _hookPos;
+                hookObject.transform.rotation = pointer.rotation;
+                OnChangeToAim();
                 break;
             case GrappleState.Shooting:
                 xrController.SendHapticImpulse(shootVibrationAmplitude, shootVibrationAmplitude);
                 _hookPos = pointer.position;
+                OnChangeToShoot();
                 break;
             case GrappleState.Reeling:
+                OnChangeToReel();
                 break;
             default:
                 break;
@@ -137,15 +150,17 @@ public class Grappleable : MonoBehaviour, IGrappleable
     {
         RaycastHit hit;
         if (Physics.Raycast(pointer.position, pointer.forward, out hit, range, ~ignoreLayers)){
+            _readytoShoot = true;
             _targetPoint.SetActive(true);
             _targetPoint.transform.position = hit.point;
-            _targetPoint.transform.rotation = Quaternion.LookRotation(hit.normal);
+            _targetNormal = hit.normal;
+            _targetPoint.transform.rotation = Quaternion.LookRotation(_targetNormal);
             _targetPos = _targetPoint.transform.position;
             if (_checkForShoot()) ChangeState(GrappleState.Shooting);
-
         }
         else
         {
+            _readytoShoot = false;
             _targetPoint.SetActive(false);
         }
     }
@@ -154,7 +169,17 @@ public class Grappleable : MonoBehaviour, IGrappleable
     {
         if (!_checkForShoot()) ChangeState(GrappleState.Aiming);
         _hookPos = Vector3.MoveTowards(_hookPos, _targetPos, shootSpeed * Time.deltaTime);
-        if (Vector3.Distance(_hookPos, _targetPos) < float.Epsilon) _state = GrappleState.Reeling;
+        _reelDir = Vector3.Normalize(_targetPos - pointer.position);
+        if (hookObject != null)
+        {
+            hookObject.transform.position = _hookPos;
+            hookObject.transform.rotation = Quaternion.LookRotation(_reelDir);
+        }
+        if (Vector3.Distance(_hookPos, _targetPos) < float.Epsilon) 
+        {
+            ChangeState(GrappleState.Reeling);
+            if (hookObject != null) hookObject.transform.rotation = Quaternion.LookRotation(_targetNormal);
+        }
     }
 
     void ReelHook()
@@ -162,6 +187,11 @@ public class Grappleable : MonoBehaviour, IGrappleable
         if (!_checkForShoot()) ChangeState(GrappleState.Aiming);
         if (affectedRigidbody.velocity.magnitude > reelVibrationSpeed) xrController.SendHapticImpulse(reelVibrationAmplitude, 0.1f);
         _reelDir = Vector3.Normalize(_targetPos - pointer.position);
+        if (hookObject != null)
+        {
+            hookObject.transform.position = _hookPos;
+            hookObject.transform.rotation = Quaternion.LookRotation(_reelDir);
+        }
         affectedRigidbody.AddForce(_reelDir * reelSpeed * _playerMass);
     }
 
@@ -221,6 +251,10 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     void OnEnable()
     {
+    }
+
+    public bool IsReadyToShoot() {
+        return _readytoShoot;
     }
 
 }

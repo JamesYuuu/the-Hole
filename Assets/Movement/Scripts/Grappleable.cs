@@ -129,15 +129,15 @@ public class Grappleable : MonoBehaviour, IGrappleable
                 _hookPos = pointer.position;
                 hookObject.transform.position = _hookPos;
                 hookObject.transform.rotation = pointer.rotation;
-                OnChangeToAim()?.Invoke();
+                OnChangeToAim?.Invoke();
                 break;
             case GrappleState.Shooting:
                 xrController.SendHapticImpulse(shootVibrationAmplitude, shootVibrationAmplitude);
                 _hookPos = pointer.position;
-                OnChangeToShoot()?.Invoke();
+                OnChangeToShoot?.Invoke();
                 break;
             case GrappleState.Reeling:
-                OnChangeToReel()?.Invoke();
+                OnChangeToReel?.Invoke();
                 break;
             default:
                 break;

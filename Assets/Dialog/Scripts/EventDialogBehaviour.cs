@@ -121,24 +121,22 @@ namespace Dialog.Scripts
         public override void FinishCurrSentence()
         {
             if (!_isConvoOngoing) return;
+            StopCoroutine(base._currTalkingCoroutine);
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 base.textDisplay.text = currSpeechEvents.speech;
-                StopCoroutine(base._currTalkingCoroutine);
                 if (currSpeechEvents.eventIdx != -1) eventTriggers[currSpeechEvents.eventIdx].Invoke();
                 _doneTalking = true;
-                
-                if (convoQueueEvents.Count == 0)
-                {
-                    EndDialog();
-                    return;
-                }
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);
             }
             else // start typing the next speech
             {
-                StopCoroutine(base._currTalkingCoroutine);
+                if (convoQueueEvents.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 currSpeechEvents = convoQueueEvents.Dequeue();
                 base._currTalkingCoroutine = StartCoroutine(TypeCurrSpeech(currSpeechEvents.speech, 
                     currSpeechEvents.speed, currSpeechEvents.eventIdx));

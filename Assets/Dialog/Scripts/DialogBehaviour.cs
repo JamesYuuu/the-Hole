@@ -156,27 +156,25 @@ namespace Dialog.Scripts
         public virtual void FinishCurrSentence()
         {
             if (!_isConvoOngoing) return;
+            StopCoroutine(_currTalkingCoroutine);
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 textDisplay.text = _currSpeech.speech;
-                StopCoroutine(_currTalkingCoroutine);
                 _doneTalking = true;
-                
-                if (_convoQueue.Count == 0)
-                {
-                    EndDialog();
-                    return;
-                }
-                
                 // make the continue arrow bounce
                 // nextPageIcon.SetBool("doneTalking", true);
             }
             else // start typing the next speech
             {
-                StopCoroutine(_currTalkingCoroutine);
+                if (_convoQueue.Count == 0)
+                {
+                    EndDialog();
+                    return;
+                }
                 _currSpeech = _convoQueue.Dequeue();
                 StartTypeCurrSpeech(_currSpeech.speech, _currSpeech.speed);
             }
+            
         }
 
     }

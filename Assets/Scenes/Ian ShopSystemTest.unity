@@ -2945,8 +2945,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1119341251}
-  - component: {fileID: 1119341250}
   - component: {fileID: 1119341249}
+  - component: {fileID: 1119341252}
+  - component: {fileID: 1119341253}
   m_Layer: 0
   m_Name: ShopDialogManager
   m_TagString: Untagged
@@ -3036,19 +3037,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &1119341250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119341248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogBehaviour: {fileID: 0}
 --- !u!4 &1119341251
 Transform:
   m_ObjectHideFlags: 0
@@ -3064,6 +3052,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1119341252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119341248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffce116cd97b6414b8d28ebcf8828e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1119341253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119341248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f9bf8606780c74a9ceaff6ccd1c151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBehaviour: {fileID: 1119341249}
 --- !u!1001 &1155698438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3181,6 +3194,7 @@ GameObject:
   - component: {fileID: 1229037673}
   - component: {fileID: 1229037672}
   - component: {fileID: 1229037671}
+  - component: {fileID: 1229037674}
   m_Layer: 5
   m_Name: DialogPanel
   m_TagString: Untagged
@@ -3271,6 +3285,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1229037674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229037669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffce116cd97b6414b8d28ebcf8828e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1239786485
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,6 +5181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (XR Origin)
       objectReference: {fileID: 0}
+    - target: {fileID: 7631990904182334717, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7631990904378478692, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_TagString
@@ -5713,6 +5744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1996682501}
   - component: {fileID: 1996682502}
+  - component: {fileID: 1996682503}
   m_Layer: 0
   m_Name: ShopManager
   m_TagString: Untagged
@@ -5776,6 +5808,18 @@ MonoBehaviour:
   shopItemNamePanel: {fileID: 897295431}
   shopCartTotalPanel: {fileID: 419756842}
   shopPlayerMoneyPanel: {fileID: 1587245747}
+--- !u!114 &1996682503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996682499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffce116cd97b6414b8d28ebcf8828e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2008051092
 GameObject:
   m_ObjectHideFlags: 0

@@ -290,7 +290,6 @@ public class SpawnControl : MonoBehaviour
         {
             _instance.pooledEnemies[i].SetActive(false);
         }
-        // TODO: set the door to be active
         doneShooting.Invoke();
     }
 

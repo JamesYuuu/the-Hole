@@ -8,15 +8,6 @@ public class LevelChanger : MonoBehaviour
     public float transitionTime = 1f;
     public Animator animator;
 
-    // TODO: REMOVE THIS FUNCTION, it is very expensive
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            LoadNextLevel();
-        }
-    }
-
     public void LoadNextLevel() 
     {
         StartCoroutine(LoadLevel());
@@ -29,8 +20,7 @@ public class LevelChanger : MonoBehaviour
         // TODO: Call this when loading underwater scene
         SpawnControl.ResetScene();
         // Play Animation
-        Debug.Log("ian level out triggered");
-        animator.SetTrigger("Fade_Out");
+        // animator.SetTrigger("Fade_Out");
         // Wait
         yield return new WaitForSeconds(transitionTime);
         // Load Scene

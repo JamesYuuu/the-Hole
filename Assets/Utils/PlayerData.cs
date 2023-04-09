@@ -75,14 +75,6 @@ public static class PlayerData
 
     #region Inventory
 
-    // C# dictionary methods:
-    // .Add(Item i, int qty),
-    // .ContainsKey(Item i),
-    // .TryGetValue(Item i, out variable), // returns bool and stores value in variable
-    // .Count,
-    // .Remove(Item i),
-    // .Inventory[key] // to get the value
-
     public static void AddTreasure()
     {
         AddItem(Treasure, 1);

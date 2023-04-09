@@ -57,7 +57,7 @@ public class ResurfacePlayer : MonoBehaviour
         if (_isSurfacing) return;
         if (!collision.gameObject.CompareTag("Player")) return;
         GameObject player = collision.gameObject.transform.parent.parent.gameObject;
-        grappleController = collision.gameObject.GetComponent<GrappleController>();
+        grappleController = player.GetComponent<GrappleController>();
         if (! _player.Equals(player)) return;
         if (PlayerData.HasTreasure())
         {

@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 
 public class PlayerHealth : MonoBehaviour
 {
     public float currentOxygen;
+    private float maxOxygen;
     public Animator animator;
-    [FormerlySerializedAs("OxygenDecreasePerSecond")] public float oxygenChangePerSecond;
+    [FormerlySerializedAs("OxygenDecreasePerSecond")] public float oxygenChangePerSecond = 1;
 
     // For updating watch display
     public GameObject watch;
     public WatchUIManager watchUIManager;
+    public LevelChangeManager levelChangeManager;
 
     // For smoother drowning transistion
     [FormerlySerializedAs("drowning_Screen")] public GameObject drowningScreen;
@@ -22,15 +22,25 @@ public class PlayerHealth : MonoBehaviour
     private bool _isInWater;
     private bool _drowning;
 
+    private Image levelImage;
+
     // Start is called before the first frame update
     void Start()
     {
         // currentOxygen = maxOxygen;
         currentOxygen = PlayerData.MaxOxygen;
+        maxOxygen = PlayerData.MaxOxygen;
         oxygenChangePerSecond = 1f;
         _drowning = false;
         watch = GameObject.Find("Watch");
         drowningScreen = GameObject.Find("Drowning Screen");
+
+        // Find the Level_Image UI image
+        GameObject levelImageGO = GameObject.Find("Level_Image");
+        if (levelImageGO != null)
+        {
+            levelImage = levelImageGO.GetComponent<Image>();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -71,6 +81,18 @@ public class PlayerHealth : MonoBehaviour
         {
             ChangeOxygen(oxygenChangePerSecond * 5 * Time.deltaTime);
         }
+
+        // Calculate the percentage of oxygen remaining
+        float oxygenPercentage = currentOxygen / maxOxygen;
+
+        // Set the Y-axis scale of the Level_Image UI image based on the oxygen percentage
+        if (levelImage != null)
+        {
+            Vector3 levelImageScale = levelImage.rectTransform.localScale;
+            levelImageScale.y = oxygenPercentage;
+            levelImage.rectTransform.localScale = levelImageScale;
+        }
+
         // Update Wirst Display
         watch.GetComponent<WatchUIManager>().ChangeScore((int)currentOxygen);
         
@@ -83,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
             if (currentOxygen < 0f)
             {
                 print("Dead");
-                SceneManager.LoadScene(1);
+                levelChangeManager.LoadSceneWithName();
                 // to-do Add sound if die to shop
             }
         }

@@ -19,11 +19,6 @@ public class GrappleController : MonoBehaviour
         SetGrappleActive(Grappleable.Hand.Left, PlayerData.LeftHandGrapple || forceActiveLeftGrapple);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /// <summary>
     /// Sets whether a left or right Grapple Hook GameObject is active.

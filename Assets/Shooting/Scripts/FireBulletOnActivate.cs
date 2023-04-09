@@ -12,6 +12,7 @@ public class FireBulletOnActivate : MonoBehaviour
     private AudioSource _audioSource;
 
     public int defaultObjectPoolSize = 50;
+    public float vol = 0.3f;
     public GameObject bulletPrefab;
     public Transform spawnPoint;
     public int bulletDamage = 20;
@@ -34,7 +35,7 @@ public class FireBulletOnActivate : MonoBehaviour
     }
 
     public void FireBullet(ActivateEventArgs arg) {
-        _audioSource.PlayOneShot(_audioSource.clip);
+        _audioSource.PlayOneShot(_audioSource.clip, vol);
         _pool.Get();
     }
 

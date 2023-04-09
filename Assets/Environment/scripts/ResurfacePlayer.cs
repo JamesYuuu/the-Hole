@@ -18,6 +18,7 @@ public class ResurfacePlayer : MonoBehaviour
     private bool _isSurfacing;
     // private GameObject _player;
     private Rigidbody _rb;
+    private GrappleController grappleController;
     private Vector3 _targetPosition;
     [SerializeField] private GameObject _player;
 
@@ -56,6 +57,7 @@ public class ResurfacePlayer : MonoBehaviour
         if (_isSurfacing) return;
         if (!collision.gameObject.CompareTag("Player")) return;
         GameObject player = collision.gameObject.transform.parent.parent.gameObject;
+        grappleController = collision.gameObject.GetComponent<GrappleController>();
         if (! _player.Equals(player)) return;
         if (PlayerData.HasTreasure())
         {
@@ -65,6 +67,8 @@ public class ResurfacePlayer : MonoBehaviour
             _targetPosition = target1.transform.position;
             _rb = _player.GetComponent<Rigidbody>();
             _rb.useGravity = false;
+            grappleController.SetGrappleActive(Grappleable.Hand.Right, false);
+            grappleController.SetGrappleActive(Grappleable.Hand.Left, false);
         }
     }
 }

@@ -105,4 +105,9 @@ public class LevelChangeManager : MonoBehaviour
         if (!_isLoaded) SceneManager.LoadSceneAsync(i); // was no 1 but we should really use strings instead
         _isLoaded = true;
     }
+
+    public void LoadSceneWithName()
+    {
+        SceneManager.LoadScene(levelToLoad);
+    }
 }

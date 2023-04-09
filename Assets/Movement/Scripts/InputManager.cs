@@ -49,4 +49,7 @@ public class InputManager : MonoBehaviour
     public bool PlayerPressedSecondaryL() {
         return _playerControls.VR.NextDialog.IsPressed();
     }
+    public bool PlayerHoldingGripR() {
+        return _playerControls.VR.GripR.IsPressed();
+    }
 }

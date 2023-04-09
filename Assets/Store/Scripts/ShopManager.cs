@@ -33,6 +33,8 @@ public class ShopManager : MonoBehaviour, IShop
 
     private void Awake()
     {
+        PlayerData.AddMoney(3000);
+
         Instance = this;
         itemsForSale.ForEach(item => SetActive(item));
     }
@@ -130,6 +132,14 @@ public class ShopManager : MonoBehaviour, IShop
                 break;
             case "Fins":
                 PlayerData.AddGrapplingReelSpeed(10.0f);
+                break;
+            case "O2 Tank":
+                item.gameObject.SetActive(true);
+                item.gameObject.layer = 9;
+                break;
+            case "Energy Drink":
+                item.gameObject.SetActive(true);
+                item.gameObject.layer = 9;
                 break;
             /*
             case "O2 Tank":

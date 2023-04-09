@@ -147,7 +147,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7900789870021312046, guid: e491b853a06a44c3ab408492418000e0,
     type: 3}
   spawnPoint: {fileID: 6626059246961735147}
-  bulletDamage: 20
+  bulletDamage: 50
   bulletSpeed: 20
   maxBulletDist: 50
   tagsToHit: []

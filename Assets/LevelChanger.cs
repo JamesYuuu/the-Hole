@@ -29,6 +29,7 @@ public class LevelChanger : MonoBehaviour
         // TODO: Call this when loading underwater scene
         SpawnControl.ResetScene();
         // Play Animation
+        Debug.Log("ian level out triggered");
         animator.SetTrigger("Fade_Out");
         // Wait
         yield return new WaitForSeconds(transitionTime);

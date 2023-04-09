@@ -7,6 +7,7 @@ public abstract class AbstractAI : MonoBehaviour
     [SerializeField] protected float attack = 0.0025f;
     [SerializeField] private new ParticlePlayer particleSystem;
     [SerializeField] private AudioSource soundSystem;
+    [SerializeField] private SpawnControl spawnControl;
 
     public void Damage(int damage)
     {
@@ -26,5 +27,6 @@ public abstract class AbstractAI : MonoBehaviour
         particleSystem.transform.position = gameObject.transform.position;
         soundSystem.Play();
         gameObject.SetActive(false);
+        spawnControl.OnFishDie(gameObject);
     }
 }

@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class SpawnControl : MonoBehaviour
 {
+    public UnityEvent doneShooting;
     private static SpawnControl _instance;
     private const bool Debug = false;
 
@@ -77,6 +81,7 @@ public class SpawnControl : MonoBehaviour
             fish.transform.forward = new Vector3(0, 1, 0);
             var newY = Random.Range(FreefallBase, FreefallHeight);
             fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
+            _instance.activeEnemies.Add(fish);
         }
         _instance.StartFreeFallTimer();
     }
@@ -285,12 +290,19 @@ public class SpawnControl : MonoBehaviour
         {
             _instance.pooledEnemies[i].SetActive(false);
         }
-        // set the door to be active
+        // TODO: set the door to be active
+        doneShooting.Invoke();
     }
 
     IEnumerator StopFreeFallTimerAfterTime()
     {
         yield return new WaitForSeconds(time);
         StopFreeFallTimer();
+    }
+
+    public void OnFishDie(GameObject fish)
+    {
+        _instance.activeEnemies.Remove(fish);
+        if (_instance.activeEnemies.Count == 0) doneShooting.Invoke();
     }
 }

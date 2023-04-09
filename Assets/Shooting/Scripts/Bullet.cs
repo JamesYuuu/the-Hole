@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    public int damage = 1;
+    public int damage = 50;
 
     public string[] tagsToHit;
     private bool _hitEverything;

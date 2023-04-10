@@ -1,5 +1,70 @@
-# the-hole
-VR diving game made as part of CS3247 coursework
+# The Hole
+
+![hole above](./Docs/holeAbove.png)
+A virtual reality diving game made as part of CS3247 coursework. Tested on Oculus Rift, (Meta) Quest and Quest 2.
+
+## Description
+![island](./Docs/island.png)
+Years ago, you lost your arm on a beach day when the fish in your village's lagoon turned hostile. Now, equipped with your new prosthetic grappling arm, it's time to get to the bottom of it. Literally. Swim, grapple, and blast your way through the deep in this virtual reality role-playing diving game. And don't forget to tease the wits out of your shopkeeper along the way.
+
+## Notable Features
+- 'Natural user interface' user interaction paradigm. Inventory, shop interactions, status indicators (radar, oxygen) all aiming to mimic real-life interactions in physical space
+- Custom mechanical hand model with animations, coupled with grappling movement system made in-house
+- Pains taken to reduce motion sickness
+- Custom water and water vision shaders written in-house
+- Custom enemy AI that pathfinds towards player.
+- Characterisation of Nina and plot immerses the player, with random dialogues in the shop such that conversation does not get stale.
+
+## Developers
+
+| Developer           | Contribution                                                                                                             |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Ni Yilun            | World model and prop models, water shader, water vision shader                                                           |
+| Ng Jun Wei, Timothy | Grappling, player movement and controls, shooting system, hand model and animation                                       |
+| Xu Yukun            | Fish models and animation, enemy behaviour system                                                                        |
+| Wang Huayu (Gary)   | Inventory system, user interface systems (radar, oxygen, grabbable items)                                                |
+| Yu Jingda (James)   | Shop and price systems, item system, Integration for Huayu                                                               |
+| Hong Yi En, Ian     | User experience, project management, dialogue system, tutorial system and icons, story and characterisation, integration |
+
+Pair programming was conducted extensively.
+
+## Installation System Requirements
+
+- Unity 2021.3.13f1 with Android Build Support
+
+Packages
+
+- 2D SpriteShape 7.0.6
+- ARCore XR Plugin 4.2.7
+- JetBrains Rider Editor 3.0.15
+- Oculus XR Plugin 3.2.2
+- OpenXR Plugin 1.5.3
+- Post Processing 3.2.2
+- Probuilder 5.0.6
+- Test Framework 1.1.31
+- TextMeshPro 3.0.6
+- Timeline 1.6.4
+- Toolchain Win Linux x64 2.0.4
+- Tutorial Frameowkr 2.2.2
+- Unity UI 1.0.0
+- Universal RP 12.1.7
+- Version Control 1.17.6
+- Visual Scripting 1.7.8
+- Visual Studio Code Editor 1.2.5
+- Visual Studio Editor 2.0.16
+- XR Interaction Toolkit 2.3.0
+- XR Plugin Management 4.2.1
+
+## Getting started
+
+1. Clone this project and open it in Unity, ensuring that you have the installation requirements fulfilled
+
+## Project status, Contributing
+
+Development for this project has stopped completely after the completion of the semester.
+If you wish to fork the project, do leave an issue.
+
+### Commit message format
 
 ```csharp
 // better commit messages
@@ -15,13 +80,11 @@ feat: a new feature
 
 fix: a bug fix
 
+style: changes that don’t affect the meaning of the code (white space, formatting, semicolons)
+
 chore: other changes that don’t modify src or test files
 
-revert: reverts a previous commit
-
 docs: documentation only changes
-
-style: changes that don’t affect the meaning of the code (white space, formatting, semicolons)
 
 refactor: a code change that neither fixes a bug nor adds a feature
 
@@ -33,97 +96,85 @@ build: changes that affect the build system or external dependencies
 
 ci: changes to our CI config files and scripts (Travis, Circle)
 
+revert: reverts a previous commit
+
 - add ! after the type to indicate that it is a breaking change
 
 - add the scope in brackets to indicate the scope. (eg. the component or file name). if it affects everything, it should be (\*)
 
-## System Requirements
+### Roadmap
 
-- Unity 2021.3.13f1 with Android Build Support
-- Oculus Integration v47
-- Unity XR Interaction Toolkit package 2.3.0
+- None.
 
-## Getting started
+## Acknowledgment
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Made In-house
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- fish models and animation by Xu Yukun
+- robotic right hand model by Timothy Ng
+- seagrass, coral models by Ni Yilun
+- oculus controller icons and secondary dialog bubble by Ian Hong
 
-## Add your files
+### Models
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Sketchfab
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/team-y6/fish.git
-git branch -M main
-git push -uf origin main
-```
+- list all items and give links
+- shop model by 
+- cash register model by 
+- energy drink by
+- diving helmet by
+- diving mask by
+- grappling hook by
+- diving equipment by
+- diving fins by
+- oxygen tank by
+- treasure cup by
 
-## Integrate with your tools
+- door by 
 
-- [ ] [Set up project integrations](https://gitlab.com/team-y6/fish/-/settings/integrations)
+- jetty by
+- village models by
+- shooting platform model by
+- rock models by
+- car models by
+- road models by
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+Kenney
 
-## Test and Deploy
+- gun and bullets
 
-Use the built-in continuous integration in GitLab.
+### Textures, Sprites
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Textures
 
-***
+- grass, rock textures by
+- CasualDay skybox by someone on unity asset store
 
-# Editing this README
+Sprites
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Kenney
+- dialogue background panel
+- oxygen bar
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Font
 
-## Name
-Choose a self-explaining name for your project.
+- fibberfish by person on itch.io
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Sounds
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Freesound
+- light switch sound by
+- fish dying sound by 
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Youtube
+- water splash sound by
+- water bubble sound by 
+- gun sounds by
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-- Gary Huayu
+### Contributors
 - Jedidiah Cheng (@jedidiahC) for the Hitchhiker's Guide to the Galaxy reference in one of the shop farewell messages.
 
 ## License
 This project is not meant to be open sourced, and all code belongs to the respective authors in this group.
-
-## Project status
-In progress.
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

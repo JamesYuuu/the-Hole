@@ -43,20 +43,29 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         // Decrease Oxygen when colliding with water
         if (other.gameObject.tag == "water")
         {
-            // print("Under Water");
+            print("Entered Water");
             _isInWater = true;
-            
+
             return; // so that won't collide with air at the same time
         }
 
-        _isInWater = false;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        // Decrease Oxygen when colliding with water
+        if (other.gameObject.tag == "water")
+        {
+            print("Exited Water");
+            _isInWater = false;
 
-        
+            return; // so that won't collide with air at the same time
+        }
+
     }
 
     // Call this function to increase/decrease Oxygen

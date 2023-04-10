@@ -304,18 +304,7 @@
                 {
                     "name": "",
                     "id": "0cec7200-b65c-4a4a-84c8-e422b6c6a8fc",
-                    "path": "<OculusTouchController>/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GripR",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a99ad9f3-5960-45de-ab77-1dc7e1026fd0",
-                    "path": "<XRController>/gripButton",
+                    "path": "<OculusTouchController>{RightHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

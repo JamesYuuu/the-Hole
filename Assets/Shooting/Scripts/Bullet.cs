@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(TrailRenderer))]
 public class Bullet : MonoBehaviour
 {
     public int damage = 50;
@@ -96,6 +97,7 @@ public class Bullet : MonoBehaviour
     void OnDisable() 
     {
         _rb.velocity = Vector3.zero;    
+        gameObject.GetComponent<TrailRenderer>().Clear();
     }
 
     void OnTriggerEnter(Collider other)

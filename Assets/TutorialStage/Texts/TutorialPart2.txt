@@ -15,11 +15,30 @@ it’s a grappling arm, you armless sea cucumber!
 @...what do you mean you don’t have enough?
 @no no no, i can’t give you a discount. stop giving me those puppy eyes.
 @~Slow~hmm......tell you what, i have a deal.
-@on the way here, while getting out of the helicopter, my chou chou dropped into the hole.
-@I CANT LIVE WITHOUT MY CHOU CHOU!!!
-@so, if you could hop in there and grab it for me, i’ll pay for your grappling hand. Deal?
-@Okay you don't really have a choice. Haha.
-@oh, and there’s a HUGE market for Buraco fish meat. I'll give you $5 for each fish you blast with my gun at the surface.
-@Right, that’s enough yapping from me. Time to snag that chou chou!
+@Well, like it or not, you're gonna have to make some money, bucko.
+@Fortunately, I've just come up with a brilliant plan!
+@Alright, listen up. I'm quite an artist myself, so I'll draw it out for ya.::plan_0
+@Here's the plan: I'm gonna drop you and your fancy new hand into the hole.::plan_1
+@It seems that a lotta folks have dropped their precious stuff into the hole.
+@Stuff that they're willing to pay a pretty penny for.
+@I need you to find these items and get them back.::plan_2
+@The hole's pretty big, and it'll be hard for you to swim around in there.
+@Fortunately, that's what that pretty, pricey, red thing on your right arm is for.
+@It'll help you zip around that underwater pit real quickly!
+@~Fast~heheheh, "reel" quickly, heheh...::plan_3
+@Oh, right, anyways, you might notice that there are some spooky ghost fish there in the hole.
+@They're mostly harmless, with one teeny tiny exception.::plan_4
+@For some reason, they get really angry whenever someone tries to take an item out of the hole.
+@If they touch you, they can sap the life right out of your lungs!::plan_5
+@In fact, I bet they get so angry, they'll fly right out of the water trying to chase you!
+@Don't worry though. Shrewd and cunning businesswoman I am, I've also got a clever solution for this.::plan_6
+@~Slow~It's a gun.
+@Pick up that pistol and blast those fishies right out of the sky!
+@I hear their meat happens to be pretty tasty, so I think we can make a few more dollars outta them.::plan_7
+@Oh yeah, I'll also give you this to wear on your left wrist as well.
+@It'll show you how much oxygen you have left in your lungs so you don't drown.
+@More importantly, it'll also tell you where treasure can be found if you're close enough!::plan_8
+@Got all that? Great. I'll also sell you gear here to make diving easier, if you come back with the cash.
+@Now get out there and find some treasure!
 @Nowhere Express, Convenience in catastrophe!::onDoor
 @::close

@@ -1,19 +1,23 @@
 # The Hole
 
 ![hole above](./Docs/holeAbove.png)
+![hole under](./Docs/holeUnder.png)
 A virtual reality diving game made as part of CS3247 coursework. Tested on Oculus Rift, (Meta) Quest and Quest 2.
 
 ## Description
+
 ![island](./Docs/island.png)
 Years ago, you lost your arm on a beach day when the fish in your village's lagoon turned hostile. Now, equipped with your new prosthetic grappling arm, it's time to get to the bottom of it. Literally. Swim, grapple, and blast your way through the deep in this virtual reality role-playing diving game. And don't forget to tease the wits out of your shopkeeper along the way.
 
 ## Notable Features
+
+![hands](./Docs/shopHands.png)
 - 'Natural user interface' user interaction paradigm. Inventory, shop interactions, status indicators (radar, oxygen) all aiming to mimic real-life interactions in physical space
 - Custom mechanical hand model with animations, coupled with grappling movement system made in-house
-- Pains taken to reduce motion sickness
+- Pains taken to reduce motion sickness with vignette
 - Custom water and water vision shaders written in-house
-- Custom enemy AI that pathfinds towards player.
-- Characterisation of Nina and plot immerses the player, with random dialogues in the shop such that conversation does not get stale.
+- Custom enemy AI that pathfinds towards player
+- Characterisation of Nina and plot immerses the player, with random dialogues in the shop such that conversation does not get stale
 
 ## Developers
 

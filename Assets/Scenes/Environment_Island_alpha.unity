@@ -59588,46 +59588,6 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.051386997
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.051386997
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.051386997
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0596
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.223
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.16853474
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9856957
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720625430384436674, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -19.405
-      objectReference: {fileID: 0}
     - target: {fileID: 7579498420488458976, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size

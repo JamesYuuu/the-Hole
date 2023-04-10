@@ -58874,6 +58874,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2096153958720417012, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_ApertureSize
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096153958720417012, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_FeatheringEffect
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2131614975368985982, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size

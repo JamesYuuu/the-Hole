@@ -144,12 +144,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultObjectPoolSize: 50
+  vol: 0.3
   bulletPrefab: {fileID: 7900789870021312046, guid: e491b853a06a44c3ab408492418000e0,
     type: 3}
   spawnPoint: {fileID: 6626059246961735147}
   bulletDamage: 50
   bulletSpeed: 20
-  maxBulletDist: 50
+  maxBulletDist: 100
   tagsToHit: []
 --- !u!114 &6626059247324191201
 MonoBehaviour:

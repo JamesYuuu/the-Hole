@@ -55,6 +55,7 @@ public class ResurfacePlayer : MonoBehaviour
     private void teleport(GameObject player)
     {
         player.transform.position = target3.transform.position;
+        player.transform.rotation = target3.transform.rotation;
     }
 
     private void loadShootingScene()

@@ -6775,7 +6775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 7631990904182334708}
-  debugActivate: 1
+  debugActivate: 0
 --- !u!1 &7631990904378478692
 GameObject:
   m_ObjectHideFlags: 0

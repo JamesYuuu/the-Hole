@@ -92,6 +92,7 @@ public static class PlayerData
 
     public static bool HasTreasure()
     {
+        //Debug.Log("check treasure status");
         if (!Inventory.ContainsKey(Treasure)) return false;
         return Inventory[Treasure] == 1;
     }

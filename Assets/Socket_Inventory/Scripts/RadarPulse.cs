@@ -43,26 +43,26 @@ public class RadarPulse : MonoBehaviour {
                     alreadyHit.Add(colliderHit);
                     if (colliderHit.CompareTag("treasure"))
                     {
-                        print("find");
+                        //print("find");
                         GameObject pingObj = null;
                         float yDiff = Mathf.Abs(player.transform.position.y - colliderHit.transform.position.y);
                         if (yDiff < 3)
                         {
-                            print("Equal");
+                            // print("Equal");
                             pingObj = Instantiate(rPing, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 
                         }
                         else if (colliderHit.transform.position.y < player.transform.position.y)
                         {
-                            print("Lower");
+                            // print("Lower");
                             pingObj = Instantiate(rPing_Low, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 
                         }
                         else if (colliderHit.transform.position.y > player.transform.position.y)
                         {
-                            print("Higher");
+                            // print("Higher");
                             pingObj = Instantiate(rPing_Up, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 

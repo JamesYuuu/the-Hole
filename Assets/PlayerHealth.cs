@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     // For updating watch display
     public GameObject watch;
+    public AudioSource dieSound;
     public WatchUIManager watchUIManager;
     public LevelChangeManager levelChangeManager;
 
@@ -115,7 +116,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 print("Dead");
                 levelChangeManager.LoadSceneWithName();
-                // to-do Add sound if die to shop
+                dieSound.Play();
             }
         }
     }

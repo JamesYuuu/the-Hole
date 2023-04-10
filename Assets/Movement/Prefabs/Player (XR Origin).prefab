@@ -6761,6 +6761,7 @@ MonoBehaviour:
   rightGrapple: {fileID: 7631990903890648811}
   forceActiveLeftGrapple: 0
   overrideStaticVariables: 0
+  onLand: 1
 --- !u!1 &7631990904378478692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7130,7 +7131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
+  pointer: {fileID: 7631990904378478693}
   targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   hookObject: {fileID: 0}

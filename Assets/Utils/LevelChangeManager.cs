@@ -3,10 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// A messy class that pastes all the scene changing functions together first
-/// not in use yet
-///
-/// Not a singleton. Should be placed on obj in scene and preset which scene to go to next
+/// Placed on obj in scene and preset which scene to go to next
 ///
 /// Current load scenes:
 /// Assets/LevelChanger.cs
@@ -30,6 +27,7 @@ public class LevelChangeManager : MonoBehaviour
     public int loadSceneNum = 1;
     public float transitionTime = 1f;
     public Animator animator;
+    public bool nextSceneHasGrapple = false;
     
     private bool _isLoaded = false;
 
@@ -68,15 +66,12 @@ public class LevelChangeManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator LoadLevel() 
     {
-        // TODO: Call this when loading shooting scene
-        // SpawnControl.ChangeScene();
         // TODO: Call this when loading underwater scene
+        PlayerData.GrappleActivatedInScene = nextSceneHasGrapple;
         SpawnControl.ResetScene();
-        // Play Animation
         animator.SetTrigger("Fade_Out");
-        // Wait
         yield return new WaitForSeconds(transitionTime);
-        // Load Scene
+        
         SceneManager.LoadScene(levelToLoad);
     }
     
@@ -88,6 +83,7 @@ public class LevelChangeManager : MonoBehaviour
     {
         SpawnControl.ResetScene();
         PlayerData.RemoveTreasure();
+        PlayerData.GrappleActivatedInScene = false;
         UnderwaterAI.IsHostile = false;
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelToLoad);

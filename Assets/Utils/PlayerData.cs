@@ -35,6 +35,7 @@ public static class PlayerData
 
     public static Dictionary<string, string> AttachInventory { get; private set; } = new();
 
+    public static bool GrappleActivatedInScene = false;
     public static bool LeftHandGrapple = false;
     public static float GrapplingShootSpeed = 25.0f;
     public static float GrapplingReelSpeed = 40.0f;

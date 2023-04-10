@@ -1,12 +1,8 @@
 using System.Collections.Generic;
-using Dialog.Scripts;
 using Store.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// Implements the IShop interface, letting the player
@@ -33,8 +29,6 @@ public class ShopManager : MonoBehaviour, IShop
 
     private void Awake()
     {
-        PlayerData.AddMoney(3000);
-
         Instance = this;
         itemsForSale.ForEach(item => SetActive(item));
     }

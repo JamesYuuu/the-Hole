@@ -56,6 +56,11 @@ public class LevelChangeManager : MonoBehaviour
     {
         StartCoroutine(LoadLevel());
     }
+    
+    public void LoadWaterToShop() 
+    {
+        StartCoroutine(LoadLevelWaterToShop());
+    }
 
     /// <summary>
     /// from level changer
@@ -72,6 +77,19 @@ public class LevelChangeManager : MonoBehaviour
         // Wait
         yield return new WaitForSeconds(transitionTime);
         // Load Scene
+        SceneManager.LoadScene(levelToLoad);
+    }
+    
+    /// <summary>
+    /// Water into shop
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LoadLevelWaterToShop() 
+    {
+        SpawnControl.ResetScene();
+        PlayerData.RemoveTreasure();
+        UnderwaterAI.IsHostile = false;
+        yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelToLoad);
     }
     

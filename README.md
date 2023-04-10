@@ -25,7 +25,7 @@ Years ago, you lost your arm on a beach day when the fish in your village's lago
 |---------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Ni Yilun            | World model and prop models, water shader, water vision shader                                                           |
 | Ng Jun Wei, Timothy | Grappling, player movement and controls, shooting system, hand model and animation                                       |
-| Xu Yukun            | Fish models and animation, enemy behaviour system                                                                        |
+| Xu Yukun            | General modelling and animation, enemy spawning/AI, player inventory system, general integration, housekeeping           |
 | Wang Huayu (Gary)   | Inventory system, user interface systems (radar, oxygen, grabbable items)                                                |
 | Yu Jingda (James)   | Shop and price systems, item system, Integration for Huayu                                                               |
 | Hong Yi En, Ian     | User experience, project management, dialogue system, tutorial system and icons, story and characterisation, integration |
@@ -133,13 +133,11 @@ Sketchfab
 - diving equipment by
 - diving fins by
 - oxygen tank by
-- treasure cup by
 
 - door by 
 
 - jetty by
 - village models by
-- shooting platform model by
 - rock models by
 - car models by
 - road models by
@@ -148,6 +146,12 @@ Sketchfab
 Kenney
 
 - gun and bullets from 
+
+Yukun
+
+- fishes
+- shooting platform
+- treasure goblet
 
 ### Textures, Sprites
 

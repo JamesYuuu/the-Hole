@@ -581,6 +581,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &159528701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7631990904378478693, guid: 10617a2f4137d41afa1690341f8559d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777643851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &198328476
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +853,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1777643852}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -950,7 +956,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1777643852}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2817,7 +2823,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1777643852}
+      objectReference: {fileID: 0}
     - target: {fileID: 6480318923346394292, guid: 47f9a5f9447c1fd4fa1dbd87097c1efc,
         type: 3}
       propertyPath: m_fontSize
@@ -3276,7 +3282,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1777643852}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3866,7 +3872,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1777643852}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4922,7 +4928,7 @@ PrefabInstance:
     - target: {fileID: 2864652124188253241, guid: 51ad18ca7d1e707409bc323bb4d92d25,
         type: 3}
       propertyPath: levelToLoad
-      value: Environment_Island_alpha
+      value: Environment_Island_beta
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ad18ca7d1e707409bc323bb4d92d25, type: 3}
@@ -5213,6 +5219,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: pointer
+      value: 
+      objectReference: {fileID: 159528701}
     - target: {fileID: 7631990904480149859, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -5235,12 +5246,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
---- !u!20 &1777643852 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7631990904480149859, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1777643851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1777643853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7631990904182334717, guid: 10617a2f4137d41afa1690341f8559d5,
@@ -5956,7 +5961,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 1777643852}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

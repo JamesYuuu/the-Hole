@@ -38,9 +38,10 @@ public class UnderwaterAI : AbstractAI
     private int _turns;
     private Vector3 _turnAmount = new(0, 0, 0);
 
-    private const int ReturnRadius = 24;
-    private const int SpawnBase = -90;
-    private const int SpawnHeight = 50;
+    private const int ReturnRadius = 180;
+    private const int SpawnBase = -150;
+    private const int SpawnHeight = 130;
+    private readonly Vector3 _spawnTransform = new(247, -28f, 45);
 
     private bool _isColliding;
 
@@ -190,6 +191,7 @@ public class UnderwaterAI : AbstractAI
 
     private bool IsLocationWithinHole(Vector3 loc)
     {
+        loc -= _spawnTransform;
         if (FindDistance(loc.x, 0, loc.z) > ReturnRadius)
         {
             return false;

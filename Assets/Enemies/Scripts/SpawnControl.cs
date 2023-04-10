@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,19 +21,18 @@ public class SpawnControl : MonoBehaviour
     /**
      * Spawn volume settings
      */
-    private readonly int _spawnRadius = 33;
+    private readonly Vector3 _spawnTransform = new(247, -28f, 45);
+    private readonly int _spawnRadius = 200;
 
-    private readonly int _spawnBase = -70;
-    private readonly int _spawnHeight = 100;
+    private readonly int _spawnBase = -150;
+    private readonly int _spawnHeight = 130;
     private static readonly int FreefallBase = 90;
     private static readonly int FreefallHeight = 120;
 
-    [FormerlySerializedAs("PooledEnemies")]
-    [SerializeField]
+    [FormerlySerializedAs("PooledEnemies")] [SerializeField]
     private List<GameObject> pooledEnemies = new();
 
-    [FormerlySerializedAs("ActiveEnemies")]
-    [SerializeField]
+    [FormerlySerializedAs("ActiveEnemies")] [SerializeField]
     private List<GameObject> activeEnemies = new();
 
     private readonly Dictionary<GameObject, int> _despawnTimes = new();
@@ -42,8 +40,7 @@ public class SpawnControl : MonoBehaviour
     private static readonly List<Vector3> TransferActivePosition = new();
     public static bool IsFreefall;
     private static bool _isFreefalled;
-    [SerializeField]
-    private float time = 15.0f;
+    [SerializeField] private float time = 15.0f;
 
     public static void LoadFreeFall()
     {
@@ -56,9 +53,9 @@ public class SpawnControl : MonoBehaviour
         // print("Transfer Count:" + _instance.activeEnemies.Count);
 
         foreach (var fish in _instance.activeEnemies) TransferActivePosition.Add(fish.transform.position);
-        List<GameObject> toDeactive = new List<GameObject>();
-        foreach (var fish in _instance.activeEnemies) toDeactive.Add(fish);
-        foreach (var fish in toDeactive) _instance.DeactivatePoolEnemy(fish);
+        List<GameObject> toDeactivate = new List<GameObject>();
+        foreach (var fish in _instance.activeEnemies) toDeactivate.Add(fish);
+        foreach (var fish in toDeactivate) _instance.DeactivatePoolEnemy(fish);
     }
 
     public static void ResetScene()
@@ -83,6 +80,7 @@ public class SpawnControl : MonoBehaviour
             fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
             _instance.activeEnemies.Add(fish);
         }
+
         _instance.StartFreeFallTimer();
     }
 
@@ -231,7 +229,7 @@ public class SpawnControl : MonoBehaviour
         var locY = position.y + dispY;
         var locZ = position.z + dispZ;
 
-        Vector3 loc = new(locX, locY, locZ);
+        Vector3 loc = new Vector3(locX, locY, locZ) + _spawnTransform;
 
         activeEnemy.transform.position = loc;
 
@@ -260,6 +258,7 @@ public class SpawnControl : MonoBehaviour
 
     private bool IsLocationWithinHole(Vector3 loc)
     {
+        loc -= _spawnTransform;
         if (FindDistance(loc.x, 0, loc.z) > _spawnRadius) return false;
         return !(loc.y < _spawnBase) && !(loc.y > _spawnBase + _spawnHeight);
     }
@@ -278,6 +277,7 @@ public class SpawnControl : MonoBehaviour
         var dispZ = position.z - position1.z;
         return FindDistance(dispX, dispY, dispZ);
     }
+
     private void StartFreeFallTimer()
     {
         StartCoroutine(StopFreeFallTimerAfterTime());
@@ -285,11 +285,11 @@ public class SpawnControl : MonoBehaviour
 
     private void StopFreeFallTimer()
     {
-        List<GameObject> toDeactive = new List<GameObject>();
         for (var i = 0; i < TransferActivePosition.Count; i++)
         {
             _instance.pooledEnemies[i].SetActive(false);
         }
+
         doneShooting.Invoke();
     }
 

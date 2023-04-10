@@ -147,7 +147,7 @@ Sketchfab
 
 Kenney
 
-- gun and bullets
+- gun and bullets from 
 
 ### Textures, Sprites
 
@@ -159,18 +159,18 @@ Textures
 Sprites
 
 Kenney
-- dialogue background panel
-- oxygen bar
+- oxygen bar and dialogue background panel from [UI Pack (RPG Expansion)](https://kenney.nl/assets/ui-pack-rpg-expansion)
 
 Font
 
-- fibberfish by person on itch.io
+- [fibberfish by nathan scott on itch.io](https://caffinate.itch.io/fibberish)
 
 ### Sounds
 
 Freesound
-- light switch sound by
-- fish dying sound by 
+- [light switch sound by tbrook](https://freesound.org/people/tbrook/sounds/348223/)
+- [cash register sound by kiddpark](https://freesound.org/people/kiddpark/sounds/201159/)
+- [fish dying splat sound by nebulasnails](https://freesound.org/people/nebulasnails/sounds/495117/)
 
 Youtube
 - water splash sound by

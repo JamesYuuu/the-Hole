@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48161775, g: 0.6274892, b: 0.7220997, a: 1}
+  m_IndirectSpecularColor: {r: 0.6757799, g: 0.77882016, b: 0.78926694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -59393,7 +59393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342824753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 156.6, y: -28.2, z: -44.2}
+  m_LocalPosition: {x: 247, y: -28.2, z: 45}
   m_LocalScale: {x: 20, y: 10, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -59431,7 +59431,7 @@ MonoBehaviour:
   poolSize: 15
   activeSize: 10
   spawnDistance: 50
-  viewDistance: 200
+  viewDistance: 250
   despawnTime: 1000
   pooledEnemies:
   - {fileID: 1113829}

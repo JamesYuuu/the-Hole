@@ -32,6 +32,8 @@ public class ShopManager : MonoBehaviour, IShop
     {
         Instance = this;
         itemsForSale.ForEach(item => SetActive(item));
+        SetPlayerMoney();
+        SetCartTotalMoney(0);
     }
 
     public void SetActive(Item item)
@@ -51,12 +53,6 @@ public class ShopManager : MonoBehaviour, IShop
         Invoke("EnableGrabbing", 3f);
     }   
     
-    private void EnableGrabbing()
-    {
-        SetPlayerMoney();
-        SetCartTotalMoney(0);
-    }
-
     public void ShowPanels(Item grabbedItem)
     {
         shopItemDescriptionPanel.GetComponent<TMP_Text>().text = grabbedItem.GetDescription();

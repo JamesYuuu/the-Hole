@@ -62,10 +62,10 @@ public class SpawnControl : MonoBehaviour
 
     public static void ResetScene()
     {
+        IsFreefall = false;
 #pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Resetting scene...");
 #pragma warning restore CS0162
-        IsFreefall = false;
     }
 
     private static void ChangeSceneTransform()

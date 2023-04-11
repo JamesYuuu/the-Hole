@@ -12,6 +12,7 @@ public class ItemInteract : XRGrabInteractable
         if (item != null) ShopManager.Instance.ShowPanels(item);
     }
 
+    /*
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
@@ -24,4 +25,5 @@ public class ItemInteract : XRGrabInteractable
         base.OnSelectExited(args);
         ItemUpgrade._instance.SetSelected(false);
     }
+    */
 }

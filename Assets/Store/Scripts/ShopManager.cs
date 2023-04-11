@@ -54,8 +54,8 @@ public class ShopManager : MonoBehaviour, IShop
     public void EnableGrab()
     {
         Invoke("EnableGrabbing", 3f);
-    }   
-    
+    }
+
     private void EnableGrabbing()
     {
         SetPlayerMoney();
@@ -92,7 +92,7 @@ public class ShopManager : MonoBehaviour, IShop
 
     public void Checkout()
     {
-        
+
         if (_totalPrice <= _playerMoney)
         {
             PlayerData.RemoveMoney(_totalPrice);
@@ -110,12 +110,13 @@ public class ShopManager : MonoBehaviour, IShop
 
     public void Upgrade(Item item)
     {
-        item.gameObject.SetActive(false);
-        if (item.GetName()!="Monster Energy Drink" || item.GetName()!="O2 Tank")
+        if (item.GetName() != "Energy Drink" && item.GetName() != "O2 Tank")
         {
             PlayerData.RemoveItemForSale(item.GetName());
+            item.gameObject.SetActive(false);
         }
-        switch (item.GetName()){
+        switch (item.GetName())
+        {
             case "Grappling Hook":
                 PlayerData.LeftHandGrapple = true;
                 break;
@@ -134,25 +135,23 @@ public class ShopManager : MonoBehaviour, IShop
                 PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
             case "O2 Tank":
-                item.gameObject.SetActive(true);
-                item.gameObject.layer = 9;
+                item.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("ItemPurchased");
                 break;
             case "Energy Drink":
-                item.gameObject.SetActive(true);
-                item.gameObject.layer = 9;
+                item.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("ItemPurchased");
                 break;
-            /*
-            case "O2 Tank":
-                PlayerData.AddOxygen(100);
-                PlayerData.IsO2TankBought = true;
-                break;
-                */
-            /*
-            case "Monster Energy Drink":
-                PlayerData.AddGrapplingReelSpeed(10.0f);
-                PlayerData.IsEnergyDrinkBought = true;
-                break;
-                */
+                /*
+                case "O2 Tank":
+                    PlayerData.AddOxygen(100);
+                    PlayerData.IsO2TankBought = true;
+                    break;
+                    */
+                /*
+                case "Monster Energy Drink":
+                    PlayerData.AddGrapplingReelSpeed(10.0f);
+                    PlayerData.IsEnergyDrinkBought = true;
+                    break;
+                    */
         }
     }
     public void SetPlayerMoney()
@@ -160,7 +159,7 @@ public class ShopManager : MonoBehaviour, IShop
         _playerMoney = PlayerData.Money;
         shopPlayerMoneyPanel.GetComponent<TMP_Text>().text = _playerMoney.ToString() + 'G';
     }
-    
+
     public void SetCartTotalMoney(int addedMoney)
     {
         _totalPrice += addedMoney;

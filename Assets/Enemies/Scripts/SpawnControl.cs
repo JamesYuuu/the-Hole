@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -75,9 +77,7 @@ public class SpawnControl : MonoBehaviour
         {
             var fish = _instance.pooledEnemies[i];
             fish.SetActive(true);
-            fish.transform.forward = new Vector3(0, 1, 0);
-            var newY = Random.Range(FreefallBase, FreefallHeight);
-            fish.transform.position = new Vector3(TransferActivePosition[i].x, newY, TransferActivePosition[i].z);
+            TransformFreefallEnemyLoc(fish);
             _instance.activeEnemies.Add(fish);
         }
 
@@ -210,6 +210,11 @@ public class SpawnControl : MonoBehaviour
         return active < activeSize;
     }
 
+    /// <summary>
+    /// Used to transform enemy to shooting location upwards
+    /// </summary>
+    /// <param name="activeEnemy"></param>
+    /// <returns></returns>
     private Vector3 TransformPooledEnemyLoc(GameObject activeEnemy)
     {
         var randX = Random.Range(-1f, 1f);
@@ -237,6 +242,34 @@ public class SpawnControl : MonoBehaviour
         if (Debug) print("[LOG][SC] Transformed pooled enemy location: " + locX + "," + locY + "," + locZ);
 #pragma warning restore CS0162
         return loc;
+    }
+
+    private static void TransformFreefallEnemyLoc(GameObject freefallEnemy)
+    {
+        float distFromBoat = 20f;
+        float otherSpawnDistance = 10f;
+        var randX = Random.Range(-1f, 1f);
+        var randY = Random.Range(-1f, 1f);
+        var randZ = Random.Range(-1f, 1f);
+
+        var randDist = FindDistance(randX, randY, randZ);
+
+        var scale = (distFromBoat - otherSpawnDistance) / randDist;
+
+        var dispX = randX * scale;
+        var dispY = Random.Range(FreefallBase, FreefallHeight);
+        var dispZ = randZ * scale;
+        
+
+        var position = _instance.player.transform.position;
+        var locX = position.x + dispX;
+        var locY = position.y + dispY;
+        var locZ = position.z + dispZ;
+
+        Vector3 loc = new Vector3(locX, locY, locZ);
+
+        freefallEnemy.transform.position = loc;
+        freefallEnemy.transform.forward = new Vector3(0, 1, 0);
     }
 
     private void TransformPooledEnemyRot(GameObject activeEnemy, Vector3 loc)

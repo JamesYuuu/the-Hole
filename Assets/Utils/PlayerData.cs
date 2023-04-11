@@ -49,14 +49,6 @@ public static class PlayerData
     // an element can be (Item = SodaCan, quantity = 3)
     // we need a way to limit some items to be only bought once
 
-    /// <summary>
-    /// For debug. This works when called from CreateShopItems.cs::Start()
-    /// </summary>
-    public static void TestExistence()
-    {
-        Debug.Log("PlayerData static class exists");
-    }
-
     #region Money
     public static void AddMoney(int amount)
     {

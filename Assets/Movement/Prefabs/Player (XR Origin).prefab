@@ -3726,7 +3726,7 @@ GameObject:
   - component: {fileID: 8891473086071833019}
   - component: {fileID: 6436283247294670084}
   - component: {fileID: 7579498420488458976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: atp1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6545,6 +6545,7 @@ GameObject:
   - component: {fileID: 7631990905856998635}
   - component: {fileID: -4142849843579120790}
   - component: {fileID: 6880297067089660307}
+  - component: {fileID: 3938383930112097005}
   m_Layer: 6
   m_Name: Player (XR Origin)
   m_TagString: Player
@@ -6731,7 +6732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 7631990904182334708}
-  ascendVelocity: 4
+  ascendVelocity: 6
   vignetteVelocity: 2
 --- !u!114 &-4142849843579120790
 MonoBehaviour:
@@ -6761,7 +6762,20 @@ MonoBehaviour:
   rightGrapple: {fileID: 7631990903890648811}
   forceActiveLeftGrapple: 0
   overrideStaticVariables: 0
-  onLand: 1
+--- !u!114 &3938383930112097005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631990904182334717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fb3ddc984ea42f29ae0e494e8de444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 7631990904182334708}
+  debugActivate: 0
 --- !u!1 &7631990904378478692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7131,7 +7145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4fc3b3b47ec4084ae52d22eb553f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 7631990904378478693}
+  pointer: {fileID: 0}
   targetPointPrefab: {fileID: 942323896210399397, guid: 7dff5a2136eee43258e40c8d83001a09,
     type: 3}
   hookObject: {fileID: 0}
@@ -8138,13 +8152,13 @@ GameObject:
   - component: {fileID: 5715262393992703596}
   - component: {fileID: 1924188357200685479}
   - component: {fileID: 9043001408725075475}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: atp3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3318731155028370894
 Transform:
   m_ObjectHideFlags: 0
@@ -8356,13 +8370,13 @@ GameObject:
   - component: {fileID: 3964879971896230849}
   - component: {fileID: 495117357807445535}
   - component: {fileID: 2131614975368985982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: atp4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &581427147791178721
 Transform:
   m_ObjectHideFlags: 0
@@ -8873,13 +8887,13 @@ GameObject:
   - component: {fileID: 7401704342310102711}
   - component: {fileID: 3972619867208419860}
   - component: {fileID: 798969295374246940}
-  m_Layer: 0
-  m_Name: atp2
+  m_Layer: 8
+  m_Name: atp5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &224265594165019967
 Transform:
   m_ObjectHideFlags: 0
@@ -9013,7 +9027,7 @@ MonoBehaviour:
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
-  SocketName: atp2
+  SocketName: atp5
 --- !u!1 &8442823936949483350
 GameObject:
   m_ObjectHideFlags: 0
@@ -9142,8 +9156,8 @@ GameObject:
   - component: {fileID: 1080384207019965323}
   - component: {fileID: 3797686067289466638}
   - component: {fileID: 1000486744541123312}
-  m_Layer: 0
-  m_Name: atp5
+  m_Layer: 8
+  m_Name: atp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9282,7 +9296,7 @@ MonoBehaviour:
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
-  SocketName: atp5
+  SocketName: atp2
 --- !u!1 &8523578361583217204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9983,6 +9997,7 @@ GameObject:
   - component: {fileID: 4114230622288782382}
   - component: {fileID: 6057607213148629535}
   - component: {fileID: 865322007950350258}
+  - component: {fileID: 268999576983833014}
   m_Layer: 6
   m_Name: HeadCollider
   m_TagString: Untagged
@@ -10129,6 +10144,72 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &268999576983833014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123547454191421361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9874fabefe8584c7eb1fecdefab8c201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enteredWater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057607213148629535}
+        m_TargetAssemblyTypeName: PlayerWaterSoundManager, Assembly-CSharp
+        m_MethodName: EnterWater
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7631990905856998635}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: AllowAscend
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  exitedWater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057607213148629535}
+        m_TargetAssemblyTypeName: PlayerWaterSoundManager, Assembly-CSharp
+        m_MethodName: ExitWater
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7631990905856998635}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: AllowAscend
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9159259244469168189
 GameObject:
   m_ObjectHideFlags: 0
@@ -10978,7 +11059,7 @@ PrefabInstance:
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
@@ -10999,7 +11080,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_LocomotionProvider
       value: 
-      objectReference: {fileID: 7631990904454797357}
+      objectReference: {fileID: 3938383930112097005}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideDefaultParameters
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[0].m_OverrideParameters.m_EaseInTime
@@ -11008,7 +11094,7 @@ PrefabInstance:
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_EaseInTime
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
@@ -11028,7 +11114,7 @@ PrefabInstance:
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_ApertureSize
-      value: 0.7
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
@@ -11042,13 +11128,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColor.b
+      value: 0.03804734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColor.g
+      value: 0.03804734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColor.r
+      value: 0.5377358
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[0].m_OverrideParameters.m_FeatheringEffect
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_FeatheringEffect
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
         type: 3}
@@ -11059,6 +11160,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColorBlend.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColorBlend.b
+      value: 0.039215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColorBlend.g
+      value: 0.039215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429981633443581383, guid: 1670dca8ee98f864eb412b51a24c08e1,
+        type: 3}
+      propertyPath: m_LocomotionVignetteProviders.Array.data[1].m_OverrideParameters.m_VignetteColorBlend.r
+      value: 0.5411765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1670dca8ee98f864eb412b51a24c08e1, type: 3}

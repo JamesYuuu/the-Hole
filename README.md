@@ -27,7 +27,7 @@ Years ago, you lost your arm on a beach day when the fish in your village's lago
 | Ng Jun Wei, Timothy | Grappling, player movement and controls, shooting system, hand model and animation                                       |
 | Xu Yukun            | General modelling and animation, enemy spawning/AI, player inventory system, general integration, housekeeping           |
 | Wang Huayu (Gary)   | Inventory system, user interface systems (radar, oxygen, grabbable items)                                                |
-| Yu Jingda (James)   | Shop and price systems, item system, Integration for Huayu                                                               |
+| Yu Junda (James)   | Shop and price systems, item system, Integration for Huayu                                                               |
 | Hong Yi En, Ian     | User experience, project management, dialogue system, tutorial system and icons, story and characterisation, integration |
 
 Pair programming was conducted extensively.
@@ -123,18 +123,18 @@ Made In-house
 
 Sketchfab
 
-- list all items and give links
-- shop model by 
-- cash register model by 
-- energy drink by
-- diving helmet by
-- diving mask by
-- grappling hook by
-- diving equipment by
-- diving fins by
-- oxygen tank by
+- [shop model by FabioNuzzo90](https://sketchfab.com/3d-models/fantasy-handpainted-shop-131d82bda0bc446a84b4a0eebd389ce2)
+- [cash register model by bretzel44](https://sketchfab.com/3d-models/cash-register-1efcbed7fd124a89a9265c693d91b655)
+- [energy drink by dark-minaz](https://sketchfab.com/3d-models/monster-energy-drink-d9e8651b357e4b11909ae305024e1d37)
+- [diving helmet by Nadir Alishly](https://sketchfab.com/3d-models/diving-helmet-5073ee26106a467492e4943905c57ce2)
+- [diving mask by pixelated_stars](https://sketchfab.com/3d-models/scuba-mask-a12059a9ff8f45e1979bd1af6fc1b8b2)
+- [grappling hook by Aegis_Wolf](https://sketchfab.com/3d-models/halo-banished-brutehook-shotgun-63bc60bdc55d443c986f82fd9b419f65)
+- [diving equipment by Steren](https://sketchfab.com/3d-models/scuba-equipment-25491e0d3a7d4c2c8ebb575307d830f7)
+- [diving fins by FrancescoMilanese](https://sketchfab.com/3d-models/swimming-fins-1-cb7f4c712682470687a59233b466e369)
+- [oxygen tank by pixelated_stars](https://sketchfab.com/3d-models/diving-tank-6d6c589bae0f4fb893a2bbb6cf895698)
 
-- door by 
+- [door by NoobiePie](https://sketchfab.com/3d-models/low-poly-door-ae823f24039a4ecdbad86fe545778d4d)
+- [table by Berk Gedik](https://sketchfab.com/3d-models/simple-table-low-poly-847fa35fec684e9ca57f4e3f8bdc25d0)
 
 - jetty by
 - village models by

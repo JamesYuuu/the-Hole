@@ -55,4 +55,23 @@ public class GrappleController : MonoBehaviour
                 return false;
         }
     }
+
+    /// <summary>
+    /// Sets the range, shooting speed, reeling speed of a left or right hand grapple
+    /// </summary>
+    /// <param name="hand">Which hand, either Grappleable.Hand.Left or Grappleable.Hand.Right.</param>
+    /// <param name="range">New range for grappling hook.</param>
+    /// <param name="shootSpeed">New shooting speed for grappling hook.</param>
+    /// <param name="reelSpeed">New reeling speed for grappling hook.</param>
+    public void SetGrappleValues(Grappleable.Hand hand, float range, float shootSpeed, float reelSpeed)
+    {
+        switch (hand) {
+            case Grappleable.Hand.Left:
+                leftGrapple.SetValues(range, shootSpeed, reelSpeed);
+                break;
+            case Grappleable.Hand.Right:
+                rightGrapple.SetValues(range, shootSpeed, reelSpeed);
+                break;
+        }
+    }
 }

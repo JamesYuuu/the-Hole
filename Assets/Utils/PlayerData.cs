@@ -39,7 +39,7 @@ public static class PlayerData
     public static bool LeftHandGrapple = false;
     public static float GrapplingShootSpeed = 25.0f;
     public static float GrapplingReelSpeed = 40.0f;
-    public static float GrapplingRange = 40;
+    public static float GrapplingRange = 60;
     public static float MaxOxygen = 100;
 
     public static bool IsEnergyDrinkBought = false;

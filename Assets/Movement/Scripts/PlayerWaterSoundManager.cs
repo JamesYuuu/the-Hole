@@ -8,21 +8,15 @@ public class PlayerWaterSoundManager : MonoBehaviour
     public AudioClip splashSound;
     public AudioClip underwaterAmbience;
 
-    private void OnTriggerEnter(Collider other) 
+    public void EnterWater() 
     {
-        if (other.gameObject.tag == "water") 
-        {
-            audioSource.PlayOneShot(splashSound);
-            audioSource.PlayOneShot(underwaterAmbience);
-        }
+        audioSource.PlayOneShot(splashSound);
+        audioSource.PlayOneShot(underwaterAmbience);
     }
 
-    private void OnTriggerExit(Collider other) 
+    public void ExitWater()
     {
-        if (other.gameObject.tag == "water") 
-        {
-            audioSource.Stop();
-            audioSource.PlayOneShot(splashSound);
-        }
+        audioSource.Stop();
+        audioSource.PlayOneShot(splashSound);
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1227899527356206433
+--- !u!1 &475899582293519918
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1891987596240721883}
-  - component: {fileID: 3309700581065529470}
-  - component: {fileID: 723562684213128372}
-  - component: {fileID: 2146820422101037111}
-  - component: {fileID: 2146820422101037112}
-  - component: {fileID: 2146820422101037106}
-  - component: {fileID: 2146820422101037115}
+  - component: {fileID: 76567082378742023}
+  - component: {fileID: 76567082378742018}
+  - component: {fileID: 76567082378742019}
+  - component: {fileID: 76567082378742016}
+  - component: {fileID: 76567082378742017}
+  - component: {fileID: 475899583848853230}
+  - component: {fileID: 76567082378742022}
   m_Layer: 0
   m_Name: O2Tank
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1891987596240721883
+--- !u!4 &76567082378742023
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.441, y: 1.737, z: 2.409}
-  m_LocalScale: {x: 0.5608323, y: 0.5608321, z: 0.5608323}
+  m_GameObject: {fileID: 475899582293519918}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.21, y: 1.731, z: 2.979}
+  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 475899582692933246}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!33 &3309700581065529470
+--- !u!33 &76567082378742018
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   m_Mesh: {fileID: -951608786083511892, guid: 4a1a532394530364598ff11ee27631dc, type: 3}
---- !u!23 &723562684213128372
+--- !u!23 &76567082378742019
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2146820422101037111
+--- !u!54 &76567082378742016
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -103,26 +104,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2146820422101037112
+--- !u!65 &76567082378742017
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.47353017, y: 0.45422518, z: 1.2501488}
   m_Center: {x: -0.006148876, y: 0, z: 0.6250744}
---- !u!114 &2146820422101037106
+--- !u!114 &475899583848853230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89c15c78ec9961e4e9135bf4eb0c2f2a, type: 3}
@@ -132,13 +133,13 @@ MonoBehaviour:
   price: 50
   description: (One Use) This came in handy when someone farted during a meeting.
     Replenishes 30% of your oxygen.
---- !u!114 &2146820422101037115
+--- !u!114 &76567082378742022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227899527356206433}
+  m_GameObject: {fileID: 475899582293519918}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a3c049f28c078941a97809dfa6b4c4f, type: 3}
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 475899582692933246}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -267,4 +268,35 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  item: {fileID: 2146820422101037106}
+  item: {fileID: 475899583848853230}
+--- !u!1 &475899582692933247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 475899582692933246}
+  m_Layer: 0
+  m_Name: ATP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &475899582692933246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475899582692933247}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0.518}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 76567082378742023}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

@@ -33,7 +33,7 @@ public class Print_dictionary : MonoBehaviour
             GameObject newObject = Instantiate(prefab, position, rotation);
 
             // Set the instantiated object's local scale to (1,1,1)
-            newObject.transform.localScale = Vector3.one;
+            // newObject.transform.localScale = Vector3.one;
 
             // Set the attachPoint as the parent of the instantiated object
             newObject.transform.SetParent(attachPoint.transform, true);

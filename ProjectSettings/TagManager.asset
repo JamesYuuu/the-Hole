@@ -8,6 +8,7 @@ TagManager:
   - air
   - Particles
   - treasure
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ public class ItemUpgrade: MonoBehaviour
 {
 
     public static ItemUpgrade _instance;
-    public string ItemName;
+    public GameObject item;
     public bool IsSelected;
 
     private void Awake()
@@ -12,20 +12,36 @@ public class ItemUpgrade: MonoBehaviour
         _instance = this;
     }
 
+    public void Start()
+    {
+        IsSelected = false;
+        item = null;
+    }
+
     public void Update()
     {
-        if (IsSelected == true && InputManager.GetInstance().PlayerPressedPrimaryL())
+        bool IsUpgrade = false;
+        if (item!=null && IsSelected == true && InputManager.GetInstance().PlayerPressedPrimaryL())
         {
-            if (ItemName == "Energy Drink")
+            print(item.GetComponent<Item>().GetName() + " has been upgraded!");
+            if (item.GetComponent<Item>().GetName() == "Energy Drink")
             {
-                //upgrade;
-                //delete;
+                GrappleController._instance.SetGrappleValues(Grappleable.Hand.Left,PlayerData.GrapplingRange*1.3f,PlayerData.GrapplingShootSpeed*1.3f,PlayerData.GrapplingRange*1.3f);
+                GrappleController._instance.SetGrappleValues(Grappleable.Hand.Right,PlayerData.GrapplingRange*1.3f,PlayerData.GrapplingShootSpeed*1.3f,PlayerData.GrapplingRange*1.3f);
+                IsUpgrade = true;
+                IsSelected = false;
             }
-            else if (ItemName == "O2 Tank")
+            else if (item.GetComponent<Item>().GetName() == "O2 Tank")
             {
-                //upgrade;
-                //delete;
+                PlayerHealth._Instance.ChangeOxygen(50.0f);
+                IsUpgrade = true;
+                IsSelected = false;
             }
+        }
+
+        if (IsUpgrade == true)
+        {
+            Destroy(item);
         }
     }
 
@@ -33,8 +49,8 @@ public class ItemUpgrade: MonoBehaviour
     {
         IsSelected = selected;
     }
-    public void SetItemName(string name)
+    public void SetItem(GameObject gameObject)
     {
-        ItemName = name;
+        item = gameObject;
     }
 }

@@ -7,6 +7,8 @@ public class GrappleController : MonoBehaviour
     public Grappleable leftGrapple;
     public Grappleable rightGrapple;
 
+    public static GrappleController _instance;
+
     public bool forceActiveLeftGrapple = false;
     public bool overrideStaticVariables = false;
     
@@ -19,6 +21,7 @@ public class GrappleController : MonoBehaviour
         }
         SetGrappleActive(Grappleable.Hand.Left,  PlayerData.GrappleActivatedInScene && (PlayerData.LeftHandGrapple || forceActiveLeftGrapple));
         SetGrappleActive(Grappleable.Hand.Right, PlayerData.GrappleActivatedInScene);
+        _instance = this;
     }
 
 

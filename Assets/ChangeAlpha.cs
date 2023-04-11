@@ -40,7 +40,6 @@ public class ChangeAlpha : MonoBehaviour
         {
             Color color = myModel.material.color;
             color.a = Mathf.Lerp(alphaIn, alphaOut, timer / fadeDuration);
-            print(color.a);
             myModel.material.color = color;
 
             timer += Time.deltaTime;

@@ -6732,7 +6732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 7631990904182334708}
-  ascendVelocity: 4
+  ascendVelocity: 6
   vignetteVelocity: 2
 --- !u!114 &-4142849843579120790
 MonoBehaviour:
@@ -9997,6 +9997,7 @@ GameObject:
   - component: {fileID: 4114230622288782382}
   - component: {fileID: 6057607213148629535}
   - component: {fileID: 865322007950350258}
+  - component: {fileID: 268999576983833014}
   m_Layer: 6
   m_Name: HeadCollider
   m_TagString: Untagged
@@ -10143,6 +10144,72 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &268999576983833014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123547454191421361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9874fabefe8584c7eb1fecdefab8c201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enteredWater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057607213148629535}
+        m_TargetAssemblyTypeName: PlayerWaterSoundManager, Assembly-CSharp
+        m_MethodName: EnterWater
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7631990905856998635}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: AllowAscend
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  exitedWater:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6057607213148629535}
+        m_TargetAssemblyTypeName: PlayerWaterSoundManager, Assembly-CSharp
+        m_MethodName: ExitWater
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7631990905856998635}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: AllowAscend
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9159259244469168189
 GameObject:
   m_ObjectHideFlags: 0

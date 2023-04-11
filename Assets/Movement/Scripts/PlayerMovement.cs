@@ -11,6 +11,8 @@ public class PlayerMovement : LocomotionProvider
     private Rigidbody _rb;
     private InputManager _inputManager;
 
+    private bool _canAscend = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,13 @@ public class PlayerMovement : LocomotionProvider
             locomotionPhase = LocomotionPhase.Idle;
         }
 
-        if (_inputManager.PlayerHoldingPrimaryR()) {
+        if (_inputManager.PlayerHoldingPrimaryR() && _canAscend) {
             _rb.MovePosition(_rb.position + Vector3.up * (ascendVelocity * Time.deltaTime));
         }
+    }
+
+    public void AllowAscend(bool allow) 
+    {
+        _canAscend = allow;
     }
 }

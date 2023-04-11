@@ -260,8 +260,8 @@ public class Grappleable : MonoBehaviour, IGrappleable
 
     void OnDisable()
     {
-        if (_targetPoint) _targetPoint.SetActive(false);
         ChangeState(GrappleState.Aiming);
+        if (_targetPoint.activeInHierarchy) _targetPoint.SetActive(false);
     }
 
     public bool IsReadyToShoot() {

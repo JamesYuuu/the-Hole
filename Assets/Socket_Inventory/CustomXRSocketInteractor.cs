@@ -10,23 +10,24 @@ public class CustomXRSocketInteractor : XRSocketInteractor
 
     protected override void OnSelectEntered(XRBaseInteractable interactable)
     {
-        bool isTreasure = false;
         base.OnSelectEntered(interactable);
 
         if (interactable.CompareTag("treasure"))
         {
             blink = GameObject.Find("Watch").GetComponent<BlinkImage>();
+            PlayerData.AddTreasure();
             blink.StartBlinking();
-            isTreasure = true;
             Debug.Log("Treasure enter");
+        }
+
+        if (interactable.CompareTag("Item"))
+        {
+            ItemUpgrade._instance.SetSelected(false);
+            ItemUpgrade._instance.SetItem(null);
         }
 
         if (interactable is XRGrabInteractable grabInteractable)
         {
-            if (isTreasure)
-            {
-                PlayerData.AddTreasure();
-            }
             string prefabName = grabInteractable.gameObject.name;
             PlayerData.AttachInventory[SocketName] = prefabName;
             print(prefabName + " has been ATTACHED from: " + SocketName);
@@ -36,7 +37,6 @@ public class CustomXRSocketInteractor : XRSocketInteractor
 
     protected override void OnSelectExited(XRBaseInteractable interactable)
     {
-        bool isTreasure = false;
         if (!gameObject.scene.isLoaded)
         {
             return; // skip removing socket name and object name from dictionary
@@ -46,16 +46,18 @@ public class CustomXRSocketInteractor : XRSocketInteractor
 
         if (interactable.CompareTag("treasure"))
         {
-            isTreasure=true;
             Debug.Log("Treasure exit");
+            PlayerData.RemoveTreasure();
+        }
+
+        if (interactable.CompareTag("Item"))
+        {
+            ItemUpgrade._instance.SetSelected(true);
+            ItemUpgrade._instance.SetItem(interactable.gameObject);
         }
 
         if (PlayerData.AttachInventory.ContainsKey(SocketName))
         {
-            if (isTreasure)
-            {
-                PlayerData.RemoveTreasure();
-            }
             PlayerData.AttachInventory.Remove(SocketName);
             print(interactable + " has been REMOVED from: " + SocketName);
         }

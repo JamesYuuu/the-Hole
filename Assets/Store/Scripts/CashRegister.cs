@@ -11,10 +11,23 @@ public class CashRegister : MonoBehaviour
     /// Set up an event that sends this item component to shopmanager when an item enters
     /// </summary>
     /// <param name="other"></param>
+
+    public bool TankIsBrought = false;
+    public bool DrinkIsBrought = false;
+    public static CashRegister _instance;
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Item i = other.gameObject.GetComponent<Item>();
-        if (i != null) ShopManager.Instance.AddToCart(i);
+        if (i == null || i.GetName() == "Energy Drink" && DrinkIsBrought == true || i.GetName() == "O2 Tank" && TankIsBrought == true)
+        {
+            return;
+        }
+        ShopManager.Instance.AddToCart(i);
     }
     
     /// <summary>
@@ -24,6 +37,10 @@ public class CashRegister : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Item i = other.gameObject.GetComponent<Item>();
-        if (i != null) ShopManager.Instance.RemoveFromCart(i);
+        if (i == null || i.GetName() == "Energy Drink" && DrinkIsBrought == true || i.GetName() == "O2 Tank" && TankIsBrought == true)
+        {
+            return;
+        }
+        ShopManager.Instance.RemoveFromCart(i);
     }
 }

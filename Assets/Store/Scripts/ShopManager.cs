@@ -110,10 +110,10 @@ public class ShopManager : MonoBehaviour, IShop
 
     public void Upgrade(Item item)
     {
-        item.gameObject.SetActive(false);
-        if (item.GetName()!="Monster Energy Drink" || item.GetName()!="O2 Tank")
+        if (item.GetName()!="Energy Drink" && item.GetName()!="O2 Tank")
         {
             PlayerData.RemoveItemForSale(item.GetName());
+            item.gameObject.SetActive(false);
         }
         switch (item.GetName()){
             case "Grappling Hook":
@@ -134,25 +134,13 @@ public class ShopManager : MonoBehaviour, IShop
                 PlayerData.AddGrapplingReelSpeed(10.0f);
                 break;
             case "O2 Tank":
-                item.gameObject.SetActive(true);
-                item.gameObject.layer = 9;
+                item.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("ItemPurchased");
+                CashRegister._instance.TankIsBrought = true;
                 break;
             case "Energy Drink":
-                item.gameObject.SetActive(true);
-                item.gameObject.layer = 9;
+                item.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("ItemPurchased");
+                CashRegister._instance.DrinkIsBrought = true;
                 break;
-            /*
-            case "O2 Tank":
-                PlayerData.AddOxygen(100);
-                PlayerData.IsO2TankBought = true;
-                break;
-                */
-            /*
-            case "Monster Energy Drink":
-                PlayerData.AddGrapplingReelSpeed(10.0f);
-                PlayerData.IsEnergyDrinkBought = true;
-                break;
-                */
         }
     }
     public void SetPlayerMoney()

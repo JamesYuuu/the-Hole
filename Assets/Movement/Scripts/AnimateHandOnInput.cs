@@ -36,7 +36,7 @@ public class AnimateHandOnInput : MonoBehaviour
             _triggerPressed = _inputManager.PlayerHoldingTriggerR();
             _gripPressed = _inputManager.PlayerHoldingGripR();
 
-            if (grappleHook != null)
+            if (grappleHook != null && grappleHook.isActiveAndEnabled)
             {
                 _grappleReady = grappleHook.IsReadyToShoot();
             } 

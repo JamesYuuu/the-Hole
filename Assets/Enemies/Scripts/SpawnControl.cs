@@ -63,6 +63,9 @@ public class SpawnControl : MonoBehaviour
     public static void ResetScene()
     {
         IsFreefall = false;
+        List<GameObject> toDeactivate = new List<GameObject>();
+        foreach (var fish in _instance.activeEnemies) toDeactivate.Add(fish);
+        foreach (var fish in toDeactivate) _instance.DeactivatePoolEnemy(fish);
 #pragma warning disable CS0162
         if (Debug) print("[LOG][SC] Resetting scene...");
 #pragma warning restore CS0162

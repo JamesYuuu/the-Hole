@@ -9,11 +9,6 @@ public class AnimateOculusHand : MonoBehaviour
     public InputActionProperty gripAnimationAction;
 
     public Animator handAnimator;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -21,7 +16,7 @@ public class AnimateOculusHand : MonoBehaviour
         float triggerValue = pinchAnimationAction.action.ReadValue<float>();
         handAnimator.SetFloat("Trigger", triggerValue);
 
-        float gripValue = pinchAnimationAction.action.ReadValue<float>();
+        float gripValue = gripAnimationAction.action.ReadValue<float>();
         handAnimator.SetFloat("Grip", gripValue);
 
     }

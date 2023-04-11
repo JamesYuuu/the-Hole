@@ -3075,7 +3075,7 @@ RectTransform:
   - {fileID: 897295432}
   - {fileID: 144352036}
   m_Father: {fileID: 1822483549}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -197.044, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3850,6 +3850,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8646821409213077880, guid: 10617a2f4137d41afa1690341f8559d5,
+        type: 3}
+      propertyPath: maxRange
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9043001408725075475, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_InteractionLayers.m_Bits
@@ -3926,8 +3931,8 @@ Transform:
   - {fileID: 1229037670}
   - {fileID: 382814001}
   - {fileID: 405718192}
-  - {fileID: 1002565540}
   - {fileID: 1395925059}
+  - {fileID: 1002565540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

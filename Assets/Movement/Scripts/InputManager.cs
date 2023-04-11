@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
     private static InputManager _instance;
+    [SerializeField] private UnityEvent OnUseItem; 
+    [SerializeField] private UnityEvent OnAscend; 
+    [SerializeField] private UnityEvent OnGrapple; 
 
     public static InputManager GetInstance() {
         return _instance;
@@ -38,12 +42,15 @@ public class InputManager : MonoBehaviour
         return _playerControls.VR.ShootL.IsPressed();
     }
     public bool PlayerHoldingTriggerR() {
+        OnGrapple.Invoke();
         return _playerControls.VR.ShootR.IsPressed();
     }
     public bool PlayerHoldingPrimaryR() {
+        OnAscend.Invoke();
         return _playerControls.VR.Ascend.IsPressed();
     }
     public bool PlayerPressedPrimaryL() {
+        OnUseItem.Invoke();
         return _playerControls.VR.UseItem.IsPressed();
     }
     public bool PlayerPressedSecondaryL() {

@@ -121,7 +121,7 @@ public class Grappleable : MonoBehaviour, IGrappleable
     void ChangeState(GrappleState newState)
     {
 
-        _targetPoint.SetActive(false);
+        if (_targetPoint != null && _targetPoint.activeInHierarchy) _targetPoint.SetActive(false);
 
         switch (newState)
         {

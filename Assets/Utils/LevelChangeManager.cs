@@ -66,9 +66,7 @@ public class LevelChangeManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator LoadLevel() 
     {
-        // TODO: Call this when loading underwater scene
         PlayerData.GrappleActivatedInScene = nextSceneHasGrapple;
-        SpawnControl.ResetScene();
         animator.SetTrigger("Fade_Out");
         yield return new WaitForSeconds(transitionTime);
         

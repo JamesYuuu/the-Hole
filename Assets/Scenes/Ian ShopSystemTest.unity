@@ -792,20 +792,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382814000}
-  m_LocalRotation: {x: 0.10342188, y: -0.8952202, z: 0.2793431, w: 0.33143958}
-  m_LocalPosition: {x: 0, y: 0, z: 2.3779}
-  m_LocalScale: {x: 0.0015619446, y: 0.0015619446, z: 0.0015619447}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0005020495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 138585758}
   - {fileID: 1631738898}
   - {fileID: 1587245748}
-  m_Father: {fileID: 1822483549}
-  m_RootOrder: 1
+  m_Father: {fileID: 405718192}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 34.66, y: -139.368, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.744, y: 2.2921}
+  m_AnchoredPosition: {x: 169.32457, y: 113.41277}
   m_SizeDelta: {x: 338.6479, y: 60.367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382814002
@@ -903,8 +903,9 @@ RectTransform:
   - {fileID: 198328477}
   - {fileID: 1239786486}
   - {fileID: 419756843}
+  - {fileID: 382814001}
   m_Father: {fileID: 1822483549}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 34.66, y: -139.368, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3075,12 +3076,12 @@ RectTransform:
   - {fileID: 897295432}
   - {fileID: 144352036}
   m_Father: {fileID: 1822483549}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -197.044, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0041, y: 2.33}
-  m_SizeDelta: {x: 324.9319, y: 60.367}
+  m_AnchoredPosition: {x: -0.0041, y: 2.456}
+  m_SizeDelta: {x: 444.7266, y: 72.454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395925060
 MonoBehaviour:
@@ -3850,11 +3851,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8646821409213077880, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: maxRange
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 9043001408725075475, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_InteractionLayers.m_Bits
@@ -3929,7 +3925,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1229037670}
-  - {fileID: 382814001}
   - {fileID: 405718192}
   - {fileID: 1395925059}
   - {fileID: 1002565540}

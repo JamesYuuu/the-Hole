@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
-
 public class SceneTransitScript : MonoBehaviour
 {
     private Boolean _isLoaded = false;

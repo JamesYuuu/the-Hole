@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     // For updating watch display
     public GameObject watch;
+    public AudioSource dieSound;
     public WatchUIManager watchUIManager;
     public LevelChangeManager levelChangeManager;
 
@@ -41,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         _drowning = false;
         watch = GameObject.Find("Watch");
         drowningScreen = GameObject.Find("Drowning Screen");
+        levelChangeManager = FindObjectOfType<LevelChangeManager>();
 
         // Find the Level_Image UI image
         GameObject levelImageGO = GameObject.Find("Level_Image");
@@ -115,14 +117,12 @@ public class PlayerHealth : MonoBehaviour
         drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(10f);
         if (currentOxygen <= 10f)
         {
-            // print("lower");
             // Update Drowning Screen
             drowningScreen.GetComponent<ChangeAlpha>().AlphaSlider(currentOxygen);
             if (currentOxygen < 0f)
             {
-                print("Dead");
-                levelChangeManager.LoadSceneWithName();
-                // to-do Add sound if die to shop
+                levelChangeManager.LoadWaterToShop();
+                dieSound.Play();
             }
         }
     }

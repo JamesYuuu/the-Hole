@@ -26,7 +26,7 @@ public class PlayerMovement : LocomotionProvider
     {
         if (locomotionPhase == LocomotionPhase.Idle && _rb.velocity.magnitude > vignetteVelocity) {
             locomotionPhase = LocomotionPhase.Started;
-        } else if (_rb.velocity.magnitude > vignetteVelocity) {
+        } else if (locomotionPhase == LocomotionPhase.Started) {
             locomotionPhase = LocomotionPhase.Moving;
         } else if (locomotionPhase == LocomotionPhase.Moving && _rb.velocity.magnitude < vignetteVelocity) {
             locomotionPhase = LocomotionPhase.Done;

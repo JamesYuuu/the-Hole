@@ -127,8 +127,11 @@ public class Grappleable : MonoBehaviour, IGrappleable
         {
             case GrappleState.Aiming:
                 _hookPos = pointer.position;
-                hookObject.transform.position = _hookPos;
-                hookObject.transform.rotation = pointer.rotation;
+                if (hookObject != null)
+                {
+                    hookObject.transform.position = _hookPos;
+                    hookObject.transform.rotation = pointer.rotation;
+                }
                 OnChangeToAim?.Invoke();
                 break;
             case GrappleState.Shooting:

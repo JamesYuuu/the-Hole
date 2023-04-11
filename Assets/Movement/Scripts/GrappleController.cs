@@ -11,14 +11,16 @@ public class GrappleController : MonoBehaviour
 
     public bool forceActiveLeftGrapple = false;
     public bool overrideStaticVariables = false;
-    void Awake()
+    
+    void Start()
     {
         if (!overrideStaticVariables)
         {
             leftGrapple.SetValues(PlayerData.GrapplingRange, PlayerData.GrapplingShootSpeed, PlayerData.GrapplingReelSpeed);
             rightGrapple.SetValues(PlayerData.GrapplingRange, PlayerData.GrapplingShootSpeed, PlayerData.GrapplingReelSpeed);
         }
-        SetGrappleActive(Grappleable.Hand.Left, PlayerData.LeftHandGrapple || forceActiveLeftGrapple);
+        SetGrappleActive(Grappleable.Hand.Left,  PlayerData.GrappleActivatedInScene && (PlayerData.LeftHandGrapple || forceActiveLeftGrapple));
+        SetGrappleActive(Grappleable.Hand.Right, PlayerData.GrappleActivatedInScene);
         _instance = this;
     }
 

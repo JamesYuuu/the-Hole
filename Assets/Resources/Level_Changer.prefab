@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2864652124188253222}
   - component: {fileID: 2864652124188253223}
-  - component: {fileID: 2864652124188253241}
+  - component: {fileID: 8952801608743123756}
   m_Layer: 0
   m_Name: Level_Changer
   m_TagString: Untagged
@@ -231,7 +231,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2864652124188253241
+--- !u!114 &8952801608743123756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,8 +240,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2864652124188253220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a8bcae4d2a110448137e17ce6f99af, type: 3}
+  m_Script: {fileID: 11500000, guid: 88dd78cf071766f47a255ecc4f26ffa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2864652124188253223}
+  levelToLoad: Environment_Island_beta
+  sceneName: 
+  loadSceneNum: 1
   transitionTime: 1
+  animator: {fileID: 2864652124188253223}

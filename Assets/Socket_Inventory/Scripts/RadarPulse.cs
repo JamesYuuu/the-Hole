@@ -33,7 +33,7 @@ public class RadarPulse : MonoBehaviour {
         }
         radarTransform.localScale = new Vector3(rangeNow, rangeNow);
 
-        Collider[] collidersHitArray = Physics.OverlapSphere(radarTransform.position, rangeNow);
+        Collider[] collidersHitArray = Physics.OverlapSphere(radarTransform.position, rangeNow, LayerMask.GetMask("Treasure"));
         foreach (Collider colliderHit in collidersHitArray)
         {
             if (colliderHit != null)
@@ -41,8 +41,7 @@ public class RadarPulse : MonoBehaviour {
                 if (!alreadyHit.Contains(colliderHit))
                 {
                     alreadyHit.Add(colliderHit);
-                    if (colliderHit.CompareTag("treasure"))
-                    {
+                    
                         //print("find");
                         GameObject pingObj = null;
                         float yDiff = Mathf.Abs(player.transform.position.y - colliderHit.transform.position.y);
@@ -70,7 +69,7 @@ public class RadarPulse : MonoBehaviour {
 
                         pingObj.GetComponent<SpriteRenderer>().material.color = Color.white;
 
-                }
+                
 
                     /*
                     if (colliderHit.CompareTag("treasure"))

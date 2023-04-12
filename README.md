@@ -23,7 +23,7 @@ Years ago, you lost your arm on a beach day when the fish in your village's lago
 
 | Developer           | Contribution                                                                                                             |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Ni Yilun            | World model and prop models, water shader, water vision shader                                                           |
+| Ni Yilun            | World model and prop models, water shader, water vision shader, scene transition, treasure spawning                      |
 | Ng Jun Wei, Timothy | Grappling, player movement and controls, shooting system, hand model and animation                                       |
 | Xu Yukun            | General modelling and animation, enemy spawning/AI, player inventory system, general integration, housekeeping           |
 | Wang Huayu (Gary)   | Inventory system, user interface systems (radar, oxygen, grabbable items)                                                |
@@ -137,10 +137,12 @@ Sketchfab
 - [table by Berk Gedik](https://sketchfab.com/3d-models/simple-table-low-poly-847fa35fec684e9ca57f4e3f8bdc25d0)
 
 - jetty by
-- village models by
-- rock models by
-- car models by
-- road models by
+- village models by yilun
+- rock models by yilun
+- car models by yilun
+- road models by yilun
+- seaweed models by yilun
+- coral reef models by yilun
 
 
 Kenney
@@ -157,7 +159,7 @@ Yukun
 
 Textures
 
-- grass, rock textures by
+- grass, rock textures by yilun
 - CasualDay skybox by someone on unity asset store
 
 Sprites

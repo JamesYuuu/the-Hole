@@ -2329,8 +2329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ffc7cc3ee36bd4983b381ecf331101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDialogTrigger: 0
-  nextTrigger: 0
   textSpeedNorm: 0.022
   textSpeedSlow: 0.06
   textSpeedFast: 0.01
@@ -2342,7 +2340,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 4420a7b413297b84ea516b15394eb358, type: 3}
   - {fileID: 4900000, guid: b952a580cb5ab8542b2ddb179ea02b9c, type: 3}
   - {fileID: 4900000, guid: 694210bb5f9660047900a90dd15cdfe5, type: 3}
-  - {fileID: 4900000, guid: 6813da1a33a4e2647a1a862dd0f8fe2c, type: 3}
   - {fileID: 4900000, guid: 0364a97b46443a847ad350333dcbb23f, type: 3}
   - {fileID: 4900000, guid: da0feed069123b149be77ce54a4090be, type: 3}
   - {fileID: 4900000, guid: 9197170f0c891f446acdc0511c65f03d, type: 3}

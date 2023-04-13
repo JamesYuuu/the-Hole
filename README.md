@@ -75,10 +75,11 @@ If you wish to fork the project, do leave an issue.
 
 ### Known Issues
 
+- In the hole, when other movement is being done (joystick strafing or grappling), pressing the Ascend button does nothing. The player can only ascend if they are not moving horizontally.
 - After getting the treasure and returning to the boat, 
 the fishes spawn directly above the player's head, instead of above the water.
 - When climbing into the boat after a second dive, fishes do not appear above the player,
-making the game loop unable to continue.
+and the player is unable to continue the game loop.
 - The player is not taught how to use many functions such as grappling, 
 ascending, and using items from the shop
 - software engineering: 3 different scene transition scripts are being used by 3 different authors

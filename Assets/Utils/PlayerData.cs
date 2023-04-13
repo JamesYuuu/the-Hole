@@ -16,7 +16,7 @@ public static class PlayerData
     /// <summary>
     /// Treasure item. Given to player upon pickup.
     /// </summary>
-    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1);
+    private static readonly Item Treasure = new("Treasure", "An ancient relic. Who knows what finding this might do?", -1); // TODO: causing warning, but idk what gary meant when he made this.
     private static readonly Dictionary<Item, int> InventoryMax = new()
     {
         {Treasure, 1},
@@ -81,7 +81,6 @@ public static class PlayerData
 
     public static bool HasTreasure()
     {
-        //Debug.Log("check treasure status");
         if (!Inventory.ContainsKey(Treasure)) return false;
         return Inventory[Treasure] == 1;
     }

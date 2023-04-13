@@ -17,7 +17,6 @@ public class CustomXRSocketInteractor : XRSocketInteractor
             blink = GameObject.Find("Watch").GetComponent<BlinkImage>();
             PlayerData.AddTreasure();
             blink.StartBlinking();
-            Debug.Log("Treasure enter");
         }
 
         if (interactable.CompareTag("Item"))
@@ -30,7 +29,6 @@ public class CustomXRSocketInteractor : XRSocketInteractor
         {
             string prefabName = grabInteractable.gameObject.name;
             PlayerData.AttachInventory[SocketName] = prefabName;
-            print(prefabName + " has been ATTACHED from: " + SocketName);
         }
         
     }
@@ -46,7 +44,6 @@ public class CustomXRSocketInteractor : XRSocketInteractor
 
         if (interactable.CompareTag("treasure"))
         {
-            Debug.Log("Treasure exit");
             PlayerData.RemoveTreasure();
         }
 
@@ -59,7 +56,6 @@ public class CustomXRSocketInteractor : XRSocketInteractor
         if (PlayerData.AttachInventory.ContainsKey(SocketName))
         {
             PlayerData.AttachInventory.Remove(SocketName);
-            print(interactable + " has been REMOVED from: " + SocketName);
         }
     }
 

@@ -25,13 +25,11 @@ public class Print_dictionary : MonoBehaviour
             Quaternion rotation = attachPoint.transform.rotation;
 
             // Get the prefab by name
-            GameObject prefab = Resources.Load<GameObject>(prefabName);
+            GameObject prefab = Resources.Load<GameObject>(prefabName); // null
+            if (prefab == null) return;
 
             // Instantiate the prefab without a parent
             GameObject newObject = Instantiate(prefab, position, rotation);
-
-            // Set the instantiated object's local scale to (1,1,1)
-            // newObject.transform.localScale = Vector3.one;
 
             // Set the attachPoint as the parent of the instantiated object
             newObject.transform.SetParent(attachPoint.transform, true);

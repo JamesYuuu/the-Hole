@@ -23,35 +23,6 @@ public class ResurfacePlayer : MonoBehaviour
     private Vector3 _targetPosition;
     [SerializeField] private GameObject _player;
 
-    //private void FixedUpdate()
-    //{
-    //    if (!_isSurfacing) return;
-    //    if (_player.transform.position == target1.transform.position)
-    //    {
-    //        // Debug.Log("approaching first target!");
-    //        _targetPosition = target2.transform.position;
-    //        _speed = speed2;
-    //    }
-    //    else if (_player.transform.position == target2.transform.position)
-    //    {
-    //        _targetPosition = target3.transform.position;
-    //        _speed = speed3;
-    //    }
-    //    else if (_player.transform.position == target3.transform.position)
-    //    {
-    //        SpawnControl.LoadFreeFall();
-    //        SceneManager.LoadSceneAsync(shootingSceneNum, LoadSceneMode.Additive);
-    //        _isSurfacing = false;
-    //        _rb.useGravity = true;
-    //        _speed = speed1;
-    //        _triggerNum = 0;
-    //    }
-    //    else
-    //    {
-    //        _player.transform.position =
-    //            Vector3.MoveTowards(_player.transform.position, _targetPosition, _speed * Time.deltaTime);
-    //    }
-    //}
     private void teleport(GameObject player)
     {
         player.transform.position = target3.transform.position;
@@ -74,7 +45,6 @@ public class ResurfacePlayer : MonoBehaviour
         if (! _player.Equals(player)) return;
         if (PlayerData.HasTreasure())
         {
-            Debug.Log("player running aways");
             _isSurfacing = true;
             // _speed = speed1;
             // _targetPosition = target1.transform.position;

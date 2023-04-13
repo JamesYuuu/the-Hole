@@ -41,18 +41,6 @@ namespace Dialog.Scripts
             {
                 _dialogBtnIsPressed = false;
             }
-            
-            // TODO: remove these because they are for debug
-            if (startDialogTrigger)
-            {
-                StartDialog();
-                startDialogTrigger = !startDialogTrigger;
-            }
-            if (nextTrigger)
-            {
-                FinishCurrSentence(); // TODO: NEEDED FOR THIS LINE
-                nextTrigger = !nextTrigger;
-            }
         }
         /// <summary>
         /// Passes the dialog to display and the text panel to the
@@ -121,7 +109,7 @@ namespace Dialog.Scripts
         public override void FinishCurrSentence()
         {
             if (!_isConvoOngoing) return;
-            StopCoroutine(base._currTalkingCoroutine);
+            if (_currTalkingCoroutine != null) StopCoroutine(_currTalkingCoroutine);
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 base.textDisplay.text = currSpeechEvents.speech;

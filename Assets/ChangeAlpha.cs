@@ -23,7 +23,6 @@ public class ChangeAlpha : MonoBehaviour
     {
         Color color = myModel.material.color;
         color.a = 1 - val / 10;
-        // print(color.a);
         myModel.material.color = color;
     }
 

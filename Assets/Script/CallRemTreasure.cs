@@ -7,7 +7,6 @@ public class CallRemTreasure : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("calling_remove_treasure");
         PlayerData.RemoveTreasure();
     }
 

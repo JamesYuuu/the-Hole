@@ -52,8 +52,6 @@ public class SpawnControl : MonoBehaviour
         IsFreefall = true;
         if (!_instance) return;
 
-        // print("Transfer Count:" + _instance.activeEnemies.Count);
-
         foreach (var fish in _instance.activeEnemies) TransferActivePosition.Add(fish.transform.position);
         List<GameObject> toDeactivate = new List<GameObject>();
         foreach (var fish in _instance.activeEnemies) toDeactivate.Add(fish);

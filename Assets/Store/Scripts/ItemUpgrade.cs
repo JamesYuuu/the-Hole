@@ -23,7 +23,6 @@ public class ItemUpgrade: MonoBehaviour
         bool IsUpgrade = false;
         if (item!=null && IsSelected == true && InputManager.GetInstance().PlayerPressedPrimaryL())
         {
-            print(item.GetComponent<Item>().GetName() + " has been upgraded!");
             if (item.GetComponent<Item>().GetName() == "Energy Drink")
             {
                 GrappleController._instance.SetGrappleValues(Grappleable.Hand.Left,PlayerData.GrapplingRange*1.3f,PlayerData.GrapplingShootSpeed*1.3f,PlayerData.GrapplingRange*1.3f);

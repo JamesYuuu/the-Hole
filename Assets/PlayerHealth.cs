@@ -7,13 +7,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public float currentOxygen;
     private float maxOxygen;
-    public Animator animator;
     [FormerlySerializedAs("OxygenDecreasePerSecond")] public float oxygenChangePerSecond = 1;
 
     // For updating watch display
     public GameObject watch;
     public AudioSource dieSound;
-    public WatchUIManager watchUIManager;
     public LevelChangeManager levelChangeManager;
 
     // For smoother drowning transistion
@@ -57,7 +55,6 @@ public class PlayerHealth : MonoBehaviour
         // Decrease Oxygen when colliding with water
         if (other.gameObject.tag == "water")
         {
-            print("Entered Water");
             _isInWater = true;
 
             return; // so that won't collide with air at the same time
@@ -69,7 +66,6 @@ public class PlayerHealth : MonoBehaviour
         // Decrease Oxygen when colliding with water
         if (other.gameObject.tag == "water")
         {
-            print("Exited Water");
             _isInWater = false;
 
             return; // so that won't collide with air at the same time

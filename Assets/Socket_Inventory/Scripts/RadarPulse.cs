@@ -42,54 +42,28 @@ public class RadarPulse : MonoBehaviour {
                 {
                     alreadyHit.Add(colliderHit);
                     
-                        //print("find");
                         GameObject pingObj = null;
                         float yDiff = Mathf.Abs(player.transform.position.y - colliderHit.transform.position.y);
                         if (yDiff < 3)
                         {
-                            // print("Equal");
                             pingObj = Instantiate(rPing, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 
                         }
                         else if (colliderHit.transform.position.y < player.transform.position.y)
                         {
-                            // print("Lower");
                             pingObj = Instantiate(rPing_Low, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 
                         }
                         else if (colliderHit.transform.position.y > player.transform.position.y)
                         {
-                            // print("Higher");
                             pingObj = Instantiate(rPing_Up, colliderHit.transform.position, player.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
                             pingObj.transform.SetParent(player.transform);
 
                         }
 
                         pingObj.GetComponent<SpriteRenderer>().material.color = Color.white;
-
-                
-
-                    /*
-                    if (colliderHit.CompareTag("treasure"))
-                    {
-                        float yDiff = Mathf.Abs(player.transform.position.y - colliderHit.transform.position.y);
-                        if (yDiff < 3)
-                        {
-                            print("Equal");
-                        }
-                        else if (colliderHit.transform.position.y < player.transform.position.y)
-                        {
-                            print("Lower");
-                        }
-                        else if (colliderHit.transform.position.y > player.transform.position.y)
-                        {
-                            print("Higher");
-                        }
-                        Instantiate(rPing, colliderHit.transform.position, Quaternion.Euler(90f, 0f, 0f));
-                    }
-                    */
                 }
             }
         }

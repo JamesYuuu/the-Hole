@@ -18,7 +18,6 @@ public class Waypoint : MonoBehaviour
         var canvas = GameObject.Find("Waypoints").transform;
         _waypoint = Instantiate(prefab, canvas);
         _distance = _waypoint.GetComponentInChildren<Text>();
-        print(_distance);
         _player = GameObject.Find("Main Camera").transform;
 
     }
@@ -31,8 +30,6 @@ public class Waypoint : MonoBehaviour
 
         _waypoint.gameObject.SetActive(screenPos.z > 0);
 
-        print(_distance);
-        
         _distance.text = Vector3.Distance(_player.position, transform.position).ToString("0") + " m";
     }
 }

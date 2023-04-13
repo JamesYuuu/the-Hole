@@ -13,11 +13,6 @@ namespace Dialog.Scripts
     /// </summary>
     public class DialogBehaviour : MonoBehaviour, ISpeakable
     {
-        [Header("Debug Triggers")]
-        // triggers for debugging test only
-        public bool startDialogTrigger = false; // start dialogue
-        public bool nextTrigger = false; // next dialogue
-        
         [Header("DialogBehaviour Base Vars")]
         [SerializeField] protected float textSpeedNorm = 0.022f;
         [SerializeField] protected float textSpeedSlow = 0.06f;
@@ -56,18 +51,6 @@ namespace Dialog.Scripts
             if (_dialogBtnIsPressed && !_inputManager.PlayerPressedSecondaryL())
             {
                 _dialogBtnIsPressed = false;
-            }
-            
-            // TODO: remove these because they are for debug
-            if (startDialogTrigger)
-            {
-                StartDialog();
-                startDialogTrigger = !startDialogTrigger;
-            }
-            if (nextTrigger)
-            {
-                FinishCurrSentence();
-                nextTrigger = !nextTrigger;
             }
         }
 
@@ -156,7 +139,7 @@ namespace Dialog.Scripts
         public virtual void FinishCurrSentence()
         {
             if (!_isConvoOngoing) return;
-            StopCoroutine(_currTalkingCoroutine);
+            if (_currTalkingCoroutine != null) StopCoroutine(_currTalkingCoroutine);
             if (!_doneTalking) // show all remaining text in speech, stop typing
             {
                 textDisplay.text = _currSpeech.speech;

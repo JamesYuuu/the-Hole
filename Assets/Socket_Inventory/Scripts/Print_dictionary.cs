@@ -7,7 +7,6 @@ public class Print_dictionary : MonoBehaviour
 
     private void Start()
     {
-        print("In Scene2");
         PrintAttachInventory();
     }
 
@@ -20,7 +19,6 @@ public class Print_dictionary : MonoBehaviour
 
             // Find the attach point by name
             GameObject attachPoint = GameObject.Find(attachPointName);
-            print(attachPoint.transform);
 
             // Get the position and rotation of the attach point
             Vector3 position = attachPoint.transform.position;

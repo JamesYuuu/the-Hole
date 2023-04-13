@@ -31,15 +31,9 @@ public class LevelChangeManager : MonoBehaviour
     
     private bool _isLoaded = false;
 
-    private void Start()
-    {
-        // AddScene(); // from SceneTransitScript
-    }
-
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
-        // if (collision.gameObject.GetComponent<XRDirectInteractor>() != null) // TODO: suggested trigger instead
         {
             if (!_isLoaded)
             {

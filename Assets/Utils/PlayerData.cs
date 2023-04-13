@@ -37,17 +37,13 @@ public static class PlayerData
 
     public static bool GrappleActivatedInScene = false;
     public static bool LeftHandGrapple = false;
-    public static float GrapplingShootSpeed = 25.0f;
+    public static float GrapplingShootSpeed = 60.0f;
     public static float GrapplingReelSpeed = 40.0f;
     public static float GrapplingRange = 60;
-    public static float MaxOxygen = 100;
+    public static float MaxOxygen = 200;
 
     public static bool IsEnergyDrinkBought = false;
     public static bool IsO2TankBought = false;
-
-    // C# Dictionary == Java's HashMap
-    // an element can be (Item = SodaCan, quantity = 3)
-    // we need a way to limit some items to be only bought once
 
     #region Money
     public static void AddMoney(int amount)
@@ -186,7 +182,6 @@ public static class PlayerData
     #endregion
 
     #region Oxygen
-    // TODO: ask gary to read from here for his PlayerHealth script
     public static void AddMaxOxygen(int amount)
     {
         MaxOxygen += amount;

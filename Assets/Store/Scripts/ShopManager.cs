@@ -8,7 +8,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// <summary>
 /// Implements the IShop interface, letting the player
 /// buy items and talk with the shopkeeper
-/// TODO: decouple ui and shop manager operations
 /// </summary>
 public class ShopManager : MonoBehaviour, IShop
 {

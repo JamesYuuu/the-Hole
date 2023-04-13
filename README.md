@@ -43,6 +43,7 @@ Packages
 - JetBrains Rider Editor 3.0.15
 - Oculus XR Plugin 3.2.2
 - OpenXR Plugin 1.5.3
+  - the main API we are using is Unity's OpenXR, not Oculus
 - Post Processing 3.2.2
 - Probuilder 5.0.6
 - Test Framework 1.1.31
@@ -52,6 +53,7 @@ Packages
 - Tutorial Frameowkr 2.2.2
 - Unity UI 1.0.0
 - Universal RP 12.1.7
+  - we are using universal render pipeline
 - Version Control 1.17.6
 - Visual Scripting 1.7.8
 - Visual Studio Code Editor 1.2.5
@@ -62,11 +64,24 @@ Packages
 ## Getting started
 
 1. Clone this project and open it in Unity, ensuring that you have the installation requirements fulfilled
+2. The project can only be played from the editor. To start, open the TutorialStage scene
+3. Connect your Oculus headset (preferably Quest 2) and press Unity's play button
+4. (to the teaching team) If you ever get stuck, do watch the walkthrough video submitted along with the STePS materials.
 
 ## Project status, Contributing
 
 Development for this project has stopped completely after the completion of the semester.
 If you wish to fork the project, do leave an issue.
+
+### Known Issues
+
+- After getting the treasure and returning to the boat, 
+the fishes spawn directly above the player's head, instead of above the water.
+- When climbing into the boat after a second dive, fishes do not appear above the player,
+making the game loop unable to continue.
+- The player is not taught how to use many functions such as grappling, 
+ascending, and using items from the shop
+- software engineering: 3 different scene transition scripts are being used by 3 different authors
 
 ### Commit message format
 
@@ -114,10 +129,11 @@ revert: reverts a previous commit
 
 Made In-house
 
-- fish models and animation by Xu Yukun
+- fish models and animation, shooting platform, treasure goblet by Xu Yukun
 - robotic right hand model by Timothy Ng
-- seagrass, coral models by Ni Yilun
-- oculus controller icons and secondary dialog bubble by Ian Hong
+- village, rock, car, road pieces, seagrass, coral reef models by Ni Yilun
+  - grass, rock textures also by Ni Yilun
+- oculus controller icons and secondary dialog bubble (unused) by Ian Hong
 
 ### Models
 
@@ -136,36 +152,20 @@ Sketchfab
 - [door by NoobiePie](https://sketchfab.com/3d-models/low-poly-door-ae823f24039a4ecdbad86fe545778d4d)
 - [table by Berk Gedik](https://sketchfab.com/3d-models/simple-table-low-poly-847fa35fec684e9ca57f4e3f8bdc25d0)
 
-- jetty by
-- village models by yilun
-- rock models by yilun
-- car models by yilun
-- road models by yilun
-- seaweed models by yilun
-- coral reef models by yilun
-
-
 Kenney
 
-- gun and bullets from 
-
-Yukun
-
-- fishes
-- shooting platform
-- treasure goblet
+- [gun and bullets from Blaster Kit](https://www.kenney.nl/assets/blaster-kit)
 
 ### Textures, Sprites
 
 Textures
 
-- grass, rock textures by yilun
-- CasualDay skybox by someone on unity asset store
+- [CasualDay skybox by Avionx on unity asset store](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
 
 Sprites
 
 Kenney
-- oxygen bar and dialogue background panel from [UI Pack (RPG Expansion)](https://kenney.nl/assets/ui-pack-rpg-expansion)
+- [oxygen bar and dialogue background panel from UI Pack (RPG Expansion)](https://kenney.nl/assets/ui-pack-rpg-expansion)
 
 Font
 
@@ -177,11 +177,7 @@ Freesound
 - [light switch sound by tbrook](https://freesound.org/people/tbrook/sounds/348223/)
 - [cash register sound by kiddpark](https://freesound.org/people/kiddpark/sounds/201159/)
 - [fish dying splat sound by nebulasnails](https://freesound.org/people/nebulasnails/sounds/495117/)
-
-Youtube
-- water splash sound by
-- water bubble sound by 
-- gun sounds by
+- [gun sounds by morganpurkis](https://freesound.org/people/morganpurkis/sounds/370304/)
 
 ### Contributors
 - Jedidiah Cheng (@jedidiahC) for the Hitchhiker's Guide to the Galaxy reference in one of the shop farewell messages.

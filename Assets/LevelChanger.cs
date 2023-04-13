@@ -15,15 +15,10 @@ public class LevelChanger : MonoBehaviour
 
     IEnumerator LoadLevel() 
     {
-        // TODO: Call this when loading shooting scene
-        // SpawnControl.ChangeScene();
-        // TODO: Call this when loading underwater scene
         SpawnControl.ResetScene();
         // Play Animation
         // animator.SetTrigger("Fade_Out");
-        // Wait
         yield return new WaitForSeconds(transitionTime);
-        // Load Scene
         SceneManager.LoadScene(levelToLoad);
     }
 }

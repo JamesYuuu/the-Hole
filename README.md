@@ -88,6 +88,9 @@ Packages
   - permanent upgrade items will just disappear from the checkout counter instead of being attachable to the player
   - using bought items in the water `LH X button`
 - software engineering: 3 different scene transition scripts are being used by 3 different authors
+- if the scene changing doesn't work, ensure that the build order in `Files > Build Settings` is as such:
+![build](./Docs/buildOrder.jpg)
+- if the scene is entirely purple, ensure that graphics settings has a universal render pipeline asset
 
 ## Project status, Contributing
 

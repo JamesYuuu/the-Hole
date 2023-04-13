@@ -2,7 +2,7 @@
 
 ![hole above](./Docs/holeAbove.png)
 ![hole under](./Docs/holeUnder.png)
-A virtual reality diving game made as part of CS3247 coursework. Tested on Oculus Rift, (Meta) Quest and Quest 2.
+A virtual reality diving game made as part of CS3247 coursework. Tested on Oculus Rift, Quest and Quest 2.
 
 ## Description
 
@@ -12,12 +12,14 @@ Years ago, you lost your arm on a beach day when the fish in your village's lago
 ## Notable Features
 
 ![hands](./Docs/shopHands.png)
-- 'Natural user interface' user interaction paradigm. Inventory, shop interactions, status indicators (radar, oxygen) all aiming to mimic real-life interactions in physical space
+- 'Natural user interface' user interaction paradigm. Inventory, items, shop interactions, status indicators (radar, oxygen) all aiming to mimic real-life interactions in physical space
 - Custom mechanical hand model with animations, coupled with grappling movement system made in-house
 - Pains taken to reduce motion sickness with vignette
-- Custom water and water vision shaders written in-house
+- Custom water and water vision shaders written in-house, along with many many custom models made in-house (see acknowledgements below)
 - Custom enemy AI that pathfinds towards player
+- Object pooling for bullets to reduce memory cost
 - Characterisation of Nina and plot immerses the player, with random dialogues in the shop such that conversation does not get stale
+- Use of kanban boards, milestones, for project management. Use of unity profiler for performance debugging and testing.
 
 ## Developers
 
@@ -68,21 +70,33 @@ Packages
 3. Connect your Oculus headset (preferably Quest 2) and press Unity's play button
 4. (to the teaching team) If you ever get stuck, do watch the walkthrough video submitted along with the STePS materials.
 
+### Controls
+![island](./Docs/controls.jpg)
+
+### Known Issues
+
+- In the hole, when other movement is being done (joystick strafing or grappling), pressing the Ascend button does nothing. The player can only ascend if they are not moving horizontally.
+- After getting the treasure and returning to the boat,
+  the fishes spawn directly above the player's head, instead of above the water.
+- When climbing into the boat after a second dive, fishes do not appear above the player,
+  and the player is unable to continue the game loop.
+- The player is not taught how to use many functions such as
+  - grappling `right front trigger`, ascending `RH A button`
+  - hovering over items to see their description, bringing them to checkout to pay,
+  - grabbing(not pressing) the checkout button to check out
+  - some items can only be attached to the player's belt after paying for them
+  - permanent upgrade items will just disappear from the checkout counter instead of being attachable to the player
+  - using bought items in the water `LH X button`
+- software engineering: 3 different scene transition scripts are being used by 3 different authors
+
 ## Project status, Contributing
 
 Development for this project has stopped completely after the completion of the semester.
 If you wish to fork the project, do leave an issue.
 
-### Known Issues
+### Conceptualisation Board, Roadmap
 
-- In the hole, when other movement is being done (joystick strafing or grappling), pressing the Ascend button does nothing. The player can only ascend if they are not moving horizontally.
-- After getting the treasure and returning to the boat, 
-the fishes spawn directly above the player's head, instead of above the water.
-- When climbing into the boat after a second dive, fishes do not appear above the player,
-and the player is unable to continue the game loop.
-- The player is not taught how to use many functions such as grappling, 
-ascending, and using items from the shop
-- software engineering: 3 different scene transition scripts are being used by 3 different authors
+![island](./Docs/conceptualisation.jpg)
 
 ### Commit message format
 
@@ -122,10 +136,6 @@ revert: reverts a previous commit
 
 - add the scope in brackets to indicate the scope. (eg. the component or file name). if it affects everything, it should be (\*)
 
-### Roadmap
-
-- None.
-
 ## Acknowledgment
 
 Made In-house
@@ -163,9 +173,7 @@ Textures
 
 - [CasualDay skybox by Avionx on unity asset store](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
 
-Sprites
-
-Kenney
+Sprites from Kenney
 - [oxygen bar and dialogue background panel from UI Pack (RPG Expansion)](https://kenney.nl/assets/ui-pack-rpg-expansion)
 
 Font

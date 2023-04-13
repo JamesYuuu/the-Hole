@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4439403, g: 0.4931519, b: 0.5722083, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 80527469}
   - component: {fileID: 80527468}
   - component: {fileID: 80527467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 88456390}
   - component: {fileID: 88456389}
   - component: {fileID: 88456388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 116686923}
   - component: {fileID: 116686922}
   - component: {fileID: 116686921}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 237929753}
   - component: {fileID: 237929752}
   - component: {fileID: 237929751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 269916941}
   - component: {fileID: 269916940}
   - component: {fileID: 269916939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 535294559}
   - component: {fileID: 535294558}
   - component: {fileID: 535294557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 643324719}
   - component: {fileID: 643324718}
   - component: {fileID: 643324717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 713258820}
   - component: {fileID: 713258819}
   - component: {fileID: 713258818}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 770824247}
   - component: {fileID: 770824246}
   - component: {fileID: 770824245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 803886774}
   - component: {fileID: 803886773}
   - component: {fileID: 803886772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 1038982299}
   - component: {fileID: 1038982298}
   - component: {fileID: 1038982297}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,7 +1203,7 @@ GameObject:
   - component: {fileID: 1077752142}
   - component: {fileID: 1077752141}
   - component: {fileID: 1077752140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 1321196568}
   - component: {fileID: 1321196567}
   - component: {fileID: 1321196566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 1377792385}
   - component: {fileID: 1377792384}
   - component: {fileID: 1377792383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 1418702577}
   - component: {fileID: 1418702576}
   - component: {fileID: 1418702575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 1825492683}
   - component: {fileID: 1825492682}
   - component: {fileID: 1825492681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009378215}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Env
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1914,16 +1914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7631990903890648811, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: xrController
-      value: 
-      objectReference: {fileID: 7631990905856998633}
-    - target: {fileID: 7631990903890648813, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7631990904182334704, guid: 10617a2f4137d41afa1690341f8559d5,
         type: 3}
       propertyPath: m_RootOrder
@@ -1984,34 +1974,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
-    - target: {fileID: 7631990904454797357, guid: 10617a2f4137d41afa1690341f8559d5,
-        type: 3}
-      propertyPath: xrController
-      value: 
-      objectReference: {fileID: 7631990905856998634}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10617a2f4137d41afa1690341f8559d5, type: 3}
---- !u!114 &7631990905856998633 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7631990905041024445, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7631990905856998632}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7631990905856998634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7631990904378478694, guid: 10617a2f4137d41afa1690341f8559d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7631990905856998632}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
